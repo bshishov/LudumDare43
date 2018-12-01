@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -55,6 +54,12 @@ namespace Assets.Scripts
         }
 
         public event Action<CommandSequence> OnCommandSequence;
+        public event Action<Note> OnNotePlayed;
+
+        public float Bpm
+        {
+            get { return _bpm; }
+        }
 
         [Header("General")]
         [SerializeField]
@@ -189,6 +194,9 @@ namespace Assets.Scripts
                     _lastCmd = "NO CMD";
                 }
             }
+
+            if(OnNotePlayed != null)
+                OnNotePlayed.Invoke(note);
         }
         
         /// <summary>

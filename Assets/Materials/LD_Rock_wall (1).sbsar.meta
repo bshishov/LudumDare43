@@ -36,7 +36,7 @@ ScriptedImporter:
       type=\"4\" value=\"3\" />\n  <presetinput identifier=\"Artifacts\" uid=\"1498061194\"
       type=\"3\" value=\"-0.07,0,0,0\" />\n  <presetinput identifier=\"ShapeSel\"
       uid=\"1498058645\" type=\"4\" value=\"2\" />\n  <presetinput identifier=\"ColorLight\"
-      uid=\"1498774044\" type=\"0\" value=\"0.167\" />\n </sbspreset>\n"
+      uid=\"1498774044\" type=\"0\" value=\"0.357\" />\n </sbspreset>\n"
     shaderName: Standard
     outputNames: baseColor,normal,metallic,height,ambientOcclusion
     texturePackingList:

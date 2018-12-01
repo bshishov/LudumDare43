@@ -1,89 +1,97 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
-public class HamsterController : MonoBehaviour
+namespace Assets.Scripts
 {
-
-    private Camera _camera;
-    public UnityEngine.AI.NavMeshAgent Agent;
-    public float DistanceToLooseControl = 1f;
-
-    /* store if hamster is under drum-control */
-    private bool _commanded = false;
-    /* movement anchor point */
-    private Vector3 _commandTarget = Vector3.zero;
-
-    /* random movements */
-    private float _lastRandomMovementTime = 0f;
-    private float _lastRandomMovementInterval = 0.5f;
-    private Vector3 _randomCommandTarget = Vector3.zero;
-    /* distance for ranmom movement targets */ 
-    private float _randomMovementDistance = 2.3f;
-    /* max distance from movement anchor point */
-    private float _maxRandomMovementDistance = 5f;
-
-    void Start()
+    [RequireComponent(typeof(NavMeshAgent))]
+    public class HamsterController : MonoBehaviour
     {
-        _commandTarget = this.transform.position;
-        _camera = Camera.main;
-    }
+        public float DistanceToLooseControl = 1f;
+        public bool DirectMouseMovement = false;
 
-    void Update()
-    {
-        CheckClick();
+        private Camera _camera;
 
-        if (_commanded)
+        // store if hamster is under drum-control
+        private bool _commanded = false;
+
+        // movement anchor point
+        private Vector3 _commandTarget = Vector3.zero;
+
+        // random movements
+        private float _lastRandomMovementTime = 0f;
+        private float _lastRandomMovementInterval = 0.5f;
+        private Vector3 _randomCommandTarget = Vector3.zero;
+        // distance for ranmom movement targets
+        private float _randomMovementDistance = 2.3f;
+        // max distance from movement anchor point
+        private float _maxRandomMovementDistance = 5f;
+
+        private NavMeshAgent _agent;
+
+        void Start()
         {
-            if (Agent.remainingDistance <= DistanceToLooseControl)
+            _commandTarget = this.transform.position;
+            _camera = Camera.main;
+            _agent = GetComponent<NavMeshAgent>();
+        }
+
+        void Update()
+        {
+            if(DirectMouseMovement)
+                CheckClick();
+
+            if (_commanded)
             {
-                _commanded = false;
+                if (_agent.remainingDistance <= DistanceToLooseControl)
+                {
+                    _commanded = false;
+                }
+            }
+            else
+            {
+                MakeRandomMovement();
             }
         }
-        else
-        {
-            MakeRandomMovement();
-        }
-    }
 
-    public void MakeRandomMovement()
-    {
-        if (Time.time - _lastRandomMovementTime > _lastRandomMovementInterval)
+        public void MakeRandomMovement()
         {
-            var interationCount = 0;
-            do
+            if (Time.time - _lastRandomMovementTime > _lastRandomMovementInterval)
             {
-                if (++interationCount > 100)
+                var interationCount = 0;
+                do
                 {
-                    _randomMovementDistance *= 0.1f;
-                }
-                _randomCommandTarget = Agent.transform.position + new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f)).normalized * _randomMovementDistance;
-            } while ((_randomCommandTarget - _commandTarget).magnitude > _maxRandomMovementDistance);
-            _lastRandomMovementTime = Time.time;
-            Debug.Log(new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f)).x);
-            Agent.SetDestination(_randomCommandTarget);
+                    if (++interationCount > 100)
+                    {
+                        _randomMovementDistance *= 0.1f;
+                    }
+                    _randomCommandTarget = _agent.transform.position + new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f)).normalized * _randomMovementDistance;
+                } while ((_randomCommandTarget - _commandTarget).magnitude > _maxRandomMovementDistance);
+                _lastRandomMovementTime = Time.time;
+                Debug.Log(new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f)).x);
+                _agent.SetDestination(_randomCommandTarget);
+            }
         }
-    }
 
-    public void SetDestination(Vector3 command)
-    {
-        _commanded = true;
-        _commandTarget = command;
-        Agent.SetDestination(_commandTarget);
-    }
-
-    private void CheckClick()
-    {
-        if (Input.GetMouseButtonDown(0))
+        public void SetDestination(Vector3 command)
         {
-            var ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            _commanded = true;
+            _commandTarget = command;
+            _agent.SetDestination(_commandTarget);
+        }
 
-            if (Physics.Raycast(ray, out hit))
+        private void CheckClick()
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                _commanded = true;
-                _commandTarget = hit.point;
-                Agent.SetDestination(hit.point);
+                var ray = _camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    _commanded = true;
+                    _commandTarget = hit.point;
+                    _agent.SetDestination(hit.point);
+                }
             }
         }
     }

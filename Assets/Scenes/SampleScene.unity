@@ -160,7 +160,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2641ea485696d6c43b60cef206306a48, type: 3}
+  - {fileID: 2100000, guid: ae1d3f0fbaf12c14c9fede48e8926a1e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -240,6 +240,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2581a67a057962148b38cbf82ee9c9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sequences:
+  - Name: React
+    Notes: 01000000010000000100000002000000
+  - Name: Go
+    Notes: 0100000002000000
+  - Name: Stop
+    Notes: 01000000010000000200000002000000
   SoundA:
     Clip: {fileID: 8300000, guid: c3c3326f1ae7aa54589c3cc8fb0a6a91, type: 3}
     VolumeModifier: 1

@@ -1,0 +1,108 @@
+fileFormatVersion: 2
+guid: 2641ea485696d6c43b60cef206306a48
+ScriptedImporter:
+  fileIDToRecycleName:
+    100000: LD_Rock_wall (1)/LD_Rock_wall (1)
+    400000: LD_Rock_wall (1)/LD_Rock_wall (1)/Transform
+    2100000: mat.LD_Rock_wall
+    2300000: LD_Rock_wall (1)/LD_Rock_wall (1)/MeshRenderer
+    2800000: LD_Rock_wall_baseColor
+    2800002: LD_Rock_wall_normal
+    2800004: LD_Rock_wall_metallic
+    2800006: LD_Rock_wall_height
+    2800008: LD_Rock_wall_ambientOcclusion
+    3300000: LD_Rock_wall (1)/LD_Rock_wall (1)/MeshFilter
+    11400000: sbsar
+    11400002: graph0
+    13500000: LD_Rock_wall (1)/LD_Rock_wall (1)/SphereCollider
+    100100000: LD_Rock_wall (1)
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 13
+  mGraphInstanceData:
+  - graphLabel: LD_Rock_wall
+    prototypeName: LD_Rock_wall
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://LD_Rock_wall\" label=\"\" >\n  <presetinput
+      identifier=\"$outputsize\" uid=\"741477668\" type=\"8\" value=\"10,10\" />\n
+      \ <presetinput identifier=\"$randomseed\" uid=\"2067798902\" type=\"4\" value=\"7046\"
+      />\n  <presetinput identifier=\"BrickXAmount\" uid=\"1498106915\" type=\"4\"
+      value=\"3\" />\n  <presetinput identifier=\"BrickYAmount\" uid=\"1498067247\"
+      type=\"4\" value=\"3\" />\n  <presetinput identifier=\"Artifacts\" uid=\"1498061194\"
+      type=\"3\" value=\"-0.07,0,0,0\" />\n  <presetinput identifier=\"ShapeSel\"
+      uid=\"1498058645\" type=\"4\" value=\"2\" />\n  <presetinput identifier=\"ColorLight\"
+      uid=\"1498774044\" type=\"0\" value=\"0.167\" />\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: baseColor,normal,metallic,height,ambientOcclusion
+    texturePackingList:
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    - outputName: ambientOcclusion
+      alphaSource: ambientOcclusion
+    textureParameters:
+    - textureName: LD_Rock_wall_roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Rock_wall_baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Rock_wall_normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Rock_wall_metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Rock_wall_height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Rock_wall_ambientOcclusion
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: baseColor
+      bLinear: 0
+    - outputName: normal
+      bLinear: 1
+    - outputName: roughness
+      bLinear: 1
+    - outputName: metallic
+      bLinear: 1
+    - outputName: height
+      bLinear: 1
+    - outputName: ambientOcclusion
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 1024
+      textureHeight: 1024
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {fileID: 2100000, guid: 2641ea485696d6c43b60cef206306a48, type: 3}
+    generatedTextures:
+    - {fileID: 2800000, guid: 2641ea485696d6c43b60cef206306a48, type: 3}
+    - {fileID: 2800002, guid: 2641ea485696d6c43b60cef206306a48, type: 3}
+    - {fileID: 2800004, guid: 2641ea485696d6c43b60cef206306a48, type: 3}
+    - {fileID: 2800006, guid: 2641ea485696d6c43b60cef206306a48, type: 3}
+    - {fileID: 2800008, guid: 2641ea485696d6c43b60cef206306a48, type: 3}

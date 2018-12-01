@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: 87f0cb7ffc1f00a43864d0c03d670c35
+ScriptedImporter:
+  fileIDToRecycleName:
+    100000: LD_Ground/LD_Ground
+    400000: LD_Ground/LD_Ground/Transform
+    2100000: mat.LD_Ground
+    2100002: mat.Rocks_Matrix
+    2300000: LD_Ground/LD_Ground/MeshRenderer
+    2800000: LD_Ground_baseColor
+    2800002: LD_Ground_normal
+    2800004: LD_Ground_metallic
+    2800006: LD_Ground_height
+    2800008: LD_Ground_ambientOcclusion
+    3300000: LD_Ground/LD_Ground/MeshFilter
+    11400000: graph1
+    11400002: sbsar
+    11400004: graph0
+    13500000: LD_Ground/LD_Ground/SphereCollider
+    100100000: LD_Ground
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 13
+  mGraphInstanceData:
+  - graphLabel: LD_Ground
+    prototypeName: LD_Ground
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://LD_Ground\" label=\"\" >\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: baseColor,normal,metallic,height,ambientOcclusion
+    texturePackingList:
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    - outputName: ambientOcclusion
+      alphaSource: ambientOcclusion
+    textureParameters:
+    - textureName: LD_Ground_roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Ground_baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Ground_normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Ground_metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Ground_height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: LD_Ground_ambientOcclusion
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: baseColor
+      bLinear: 0
+    - outputName: normal
+      bLinear: 1
+    - outputName: roughness
+      bLinear: 1
+    - outputName: metallic
+      bLinear: 1
+    - outputName: height
+      bLinear: 1
+    - outputName: ambientOcclusion
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {instanceID: 0}
+    generatedTextures: []
+  - graphLabel: Rocks_Matrix
+    prototypeName: Rocks_Matrix
+    graphDescIndex: 1
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://Rocks_Matrix\" label=\"\" >\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: 
+    texturePackingList:
+    - outputName: Rock_A
+      alphaSource: Rock_A
+    - outputName: Rock_B
+      alphaSource: Rock_B
+    - outputName: Rock_C
+      alphaSource: Rock_C
+    - outputName: Rock_D
+      alphaSource: Rock_D
+    textureParameters:
+    - textureName: Rocks_Matrix_UNKNOWN
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: Rock_A
+      bLinear: 1
+    - outputName: Rock_B
+      bLinear: 1
+    - outputName: Rock_C
+      bLinear: 1
+    - outputName: Rock_D
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {instanceID: 0}
+    generatedTextures: []

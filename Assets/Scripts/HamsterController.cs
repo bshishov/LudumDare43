@@ -13,6 +13,10 @@ namespace Assets.Scripts
 
         // store if hamster is under drum-control
         private bool _commanded = false;
+        private float _timeFromLastCommandLoose = 0f;
+        public float TimeToWaitAfterLastCommandLoose = 2f;
+        private float _lastCommandTime = 0f;
+        public float TimeToRunAfterCommand = 1f;
 
         // movement anchor point
         private Vector3 _commandTarget = Vector3.zero;
@@ -22,7 +26,7 @@ namespace Assets.Scripts
         private float _lastRandomMovementInterval = 0.5f;
         private Vector3 _randomCommandTarget = Vector3.zero;
         // distance for ranmom movement targets
-        private float _randomMovementDistance = 2.3f;
+        private float _randomMovementDistance = 2f;
         // max distance from movement anchor point
         private float _maxRandomMovementDistance = 5f;
 
@@ -30,7 +34,7 @@ namespace Assets.Scripts
 
         void Start()
         {
-            _commandTarget = this.transform.position;
+            _commandTarget = transform.position;
             _camera = Camera.main;
             _agent = GetComponent<NavMeshAgent>();
         }
@@ -39,52 +43,82 @@ namespace Assets.Scripts
         {
             if (DirectMouseMovement)
                 CheckClick();
-
+            
             if (_commanded)
             {
-                if (_agent.remainingDistance <= DistanceToLooseControl)
+                var timeFromLastCommandPassed = CheckInterva(_lastCommandTime, TimeToRunAfterCommand);
+                var reachedDestination = (_agent.transform.position - _commandTarget).magnitude <= DistanceToLooseControl;
+                if (timeFromLastCommandPassed || reachedDestination)
                 {
-                    _commanded = false;
+                    LooseDestination();
                 }
             }
             else
             {
-                MakeRandomMovement();
+                var timeFromLastDestinationLoosePassed = CheckInterva(_timeFromLastCommandLoose, TimeToWaitAfterLastCommandLoose);
+                var timeFromLastRandomMovementPassed = CheckInterva(_lastRandomMovementTime, _lastRandomMovementInterval);
+                if (timeFromLastDestinationLoosePassed && timeFromLastRandomMovementPassed)
+                {
+                    Debug.Log("RandonMove();");
+                    MakeRandomMovement();
+                }
             }
+        }
+
+        void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(_commandTarget, _maxRandomMovementDistance);
         }
 
         public void MakeRandomMovement()
         {
-            if (Time.time - _lastRandomMovementTime > _lastRandomMovementInterval)
-            {
-                var interationCount = 0;
-                var distanceFromNewPosition = 0f;
-                var distanceFromCurrentPosition = (_agent.transform.position - _commandTarget).magnitude;
-
-                do
-                {
-                    if (++interationCount > 5)
-                    {
-                        _randomMovementDistance *= 0.1f;
-                    }
-                    _randomCommandTarget = _agent.transform.position + new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f)).normalized * _randomMovementDistance;
-                    distanceFromNewPosition = (_randomCommandTarget - _commandTarget).magnitude;
-                } while (
-                    interationCount < 25 &&
-                    distanceFromNewPosition > _maxRandomMovementDistance &&
-                    distanceFromNewPosition > distanceFromCurrentPosition
-                );
-
-                _lastRandomMovementTime = Time.time;
-                _agent.SetDestination(_randomCommandTarget);
-            }
+            _randomCommandTarget = CalculateRandomTarget();
+            _lastRandomMovementTime = Time.time;
+            _agent.SetDestination(_randomCommandTarget);
         }
 
-        public void SetDestination(Vector3 command)
+        private Vector3 CalculateRandomTarget()
+        {
+            Vector3 newTarget;
+            var interationCount = 0;
+            var distanceFromNewPosition = 0f;
+            var distanceFromCurrentPosition = (_agent.transform.position - _commandTarget).magnitude;
+
+            do
+            {
+                if (++interationCount > 5)
+                {
+                    interationCount = 0;
+                    _randomMovementDistance *= 0.5f;
+                }
+                newTarget = _agent.transform.position + Random.insideUnitSphere * _randomMovementDistance;
+                distanceFromNewPosition = (newTarget - _commandTarget).magnitude;
+            } while (
+                _randomMovementDistance > 0.1f &&
+                distanceFromNewPosition > _maxRandomMovementDistance &&
+                distanceFromNewPosition > distanceFromCurrentPosition
+            );
+
+            return newTarget;
+        }
+
+        public void SetDestination(Vector3 command, float bmp  = 120f)
         {
             _commanded = true;
             _commandTarget = command;
+
+            _lastCommandTime = Time.time;
             _agent.SetDestination(_commandTarget);
+        }
+
+        public void LooseDestination()
+        {
+            _commanded = false;
+            var movementDirection = _commandTarget - transform.position;
+            _commandTarget = transform.position;
+            _agent.SetDestination(_commandTarget + movementDirection.normalized);
+
+            _timeFromLastCommandLoose = Time.time;
         }
 
         private void CheckClick()
@@ -96,11 +130,14 @@ namespace Assets.Scripts
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    _commanded = true;
-                    _commandTarget = hit.point;
-                    _agent.SetDestination(hit.point);
+                    SetDestination(hit.point);
                 }
             }
+        }
+
+        private bool CheckInterva(float from, float duration)
+        {
+            return from + duration - Time.time < 0;
         }
     }
 }

@@ -43,15 +43,15 @@ namespace Assets.Scripts
             }
         }
 
-        public const int MaxNotes = 8;
-        public const int NotesPerCheck = 2;
-
         [Serializable]
         public class CommandSequence
         {
             public string Name;
             public NoteType[] Notes;
         }
+
+        public const int MaxNotes = 8;
+        public const int NotesPerCheck = 2;
 
         public event Action<CommandSequence> OnCommandSequence;
         public event Action<Note> OnNotePlayed;
@@ -61,28 +61,29 @@ namespace Assets.Scripts
             get { return _bpm; }
         }
 
+        public bool IsPlaying
+        {
+            get { return _isSeqRunning; }
+        }
+
+        public float Average4NoteDelay
+        {
+            get { return _avg4Delay; }
+        }
+
         [Header("General")]
         [SerializeField]
         public CommandSequence[] Sequences;
-
-        [Header("Audio")]
-        public AudioClipWithVolume SoundA;
-        public AudioClipWithVolume SoundB;
+        public bool ShowDebugInfo = true;
 
         // Drum stuff
-        private Note[] _notes = new Note[MaxNotes];
+        private readonly Note[] _notes = new Note[MaxNotes];
         private float _bpm;
-        private float _avg4Delay;
         private bool _isSeqRunning;
+        private float _avg4Delay;
         private string _lastCmd;
-
-        // Sound settings
-        private float[] _pitchesA = new float[3] { 0.99f, 1f, 1.01f };
-        private float[] _pitchesB = new float[4] { 0.99f, 1f, 1.01f, 0.99f };
-
-        private int _aHits = 0;
-        private int _bHits = 0;
         private int _step = 0;
+
 
         void Start()
         {
@@ -100,54 +101,41 @@ namespace Assets.Scripts
             {
                 for (var i = 0; i < NotesPerCheck; i++)
                 {
-                    TapNote(NoteType.SequenceEnd);
+                    PlayNote(NoteType.SequenceEnd);
                 }
 
                 _step = 0;
             }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                _aHits = (_aHits + 1) % _pitchesA.Length;
-                SoundManager.Instance.Play(SoundA, pitch: _pitchesA[_aHits]);
-                TapNote(NoteType.A);
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                _bHits = (_bHits + 1) % _pitchesB.Length;
-                SoundManager.Instance.Play(SoundB, pitch: _pitchesB[_bHits]);
-                TapNote(NoteType.B);
-            }
-
-            if (Input.GetMouseButtonDown(2))
-                TapNote(NoteType.SequenceEnd);
+            
         }
 
         void OnGUI()
         {
-            GUI.Box(new Rect(5, 15, 250, 400), GUIContent.none);
-            GUI.Label(new Rect(10, 20, 200, 20), string.Format("BPM: {0:F2}", _bpm));
-            GUI.Label(new Rect(10, 40, 200, 20), string.Format("AVG4DEL: {0}", _avg4Delay));
-            GUI.Label(new Rect(10, 60, 200, 20), string.Format("SEQ: {0}", SequenceStartFrom()));
-            GUI.Label(new Rect(10, 80, 200, 20), string.Format("BUF: {0}", MaxNotes));
-            GUI.Label(new Rect(10, 100, 200, 20), string.Format("ISSEQ: {0}", _isSeqRunning));
-            GUI.Label(new Rect(10, 120, 200, 20), string.Format("CMD: {0}", _lastCmd));
-
-
-            for (var i = 0; i < _notes.Length; i++)
+            if (ShowDebugInfo)
             {
-                var note = _notes[MaxNotes - 1 - i];
-                var ypos = 140 + 20 * i;
-                GUI.Label(new Rect(10, ypos, 30, 20), note.KeyRepresentation());
-                GUI.Label(new Rect(30, ypos, 50, 20), note.Len.ToString());
-                GUI.Label(new Rect(100, ypos, 50, 20), string.Format("{0:F3}", note.TimeSinceLast));
-                GUI.Label(new Rect(170, ypos, 50, 20), string.Format("{0:F3}", note.Time));
+                GUI.Box(new Rect(5, 15, 250, 400), GUIContent.none);
+                GUI.Label(new Rect(10, 20, 200, 20), string.Format("BPM: {0:F2}", _bpm));
+                GUI.Label(new Rect(10, 40, 200, 20), string.Format("AVG4DEL: {0}", _avg4Delay));
+                GUI.Label(new Rect(10, 60, 200, 20), string.Format("SEQ: {0}", SequenceStartFrom()));
+                GUI.Label(new Rect(10, 80, 200, 20), string.Format("BUF: {0}", MaxNotes));
+                GUI.Label(new Rect(10, 100, 200, 20), string.Format("ISSEQ: {0}", _isSeqRunning));
+                GUI.Label(new Rect(10, 120, 200, 20), string.Format("CMD: {0}", _lastCmd));
+
+
+                for (var i = 0; i < _notes.Length; i++)
+                {
+                    var note = _notes[MaxNotes - 1 - i];
+                    var ypos = 140 + 20 * i;
+                    GUI.Label(new Rect(10, ypos, 30, 20), note.KeyRepresentation());
+                    GUI.Label(new Rect(30, ypos, 50, 20), note.Len.ToString());
+                    GUI.Label(new Rect(100, ypos, 50, 20), string.Format("{0:F3}", note.TimeSinceLast));
+                    GUI.Label(new Rect(170, ypos, 50, 20), string.Format("{0:F3}", note.Time));
+                }
             }
         }
 
         
-        void TapNote(NoteType t)
+        public void PlayNote(NoteType t)
         {
             var currentTime = Time.time;
             var lastNote = _notes[_notes.Length - 1];
@@ -325,6 +313,5 @@ namespace Assets.Scripts
 
             return true;
         }
-
     }
 }

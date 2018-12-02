@@ -6,15 +6,20 @@ namespace Assets.Scripts
     [RequireComponent(typeof(Drum))]
     public class DrumController : MonoBehaviour
     {
-        [Header("Cursor")]
-        [Range(0.5f, 10f)]
-        public float GatherRadius = 5f;
-
         [Header("Drum")]
         public float MaxEnergy = 1000f;
         public float DrainEnergyPerNote = 1f;
         public float DrainEnergyPerСommand = 2f;
 
+        [Header("Soul")]
+        public GameObject SoulPrefab;
+        public Vector3 SoulSpawnerPoint = Vector3.zero;
+
+        [Header("Audio")]
+        public AudioClipWithVolume SoundA;
+        public AudioClipWithVolume SoundB;
+
+        [Header("Camera")]
         [Range(0f, 1f)]
         public float CameraShakePerHitA = 0.2f;
         [Range(0f, 1f)]
@@ -33,10 +38,12 @@ namespace Assets.Scripts
         private float _currentEnergy;
         private Drum _drum;
         private Camera _camera;
-        
-        private bool _cursorIsHittingGround;
-        private Vector3 _cursorWorldPosition;
-        private Vector3 _gatherPosition;
+
+        // Sound settings
+        private readonly float[] _pitchesA = new float[3] { 0.99f, 1f, 1.01f };
+        private readonly float[] _pitchesB = new float[4] { 0.99f, 1f, 1.01f, 0.99f };
+        private int _aHits = 0;
+        private int _bHits = 0;
 
         void Start ()
         {
@@ -50,37 +57,33 @@ namespace Assets.Scripts
 
         void Update ()
         {
-            // Raycast cursor
-            RaycastHit hit;
-            _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f, LayerMask.GetMask("Environment"));
-            if (_cursorIsHittingGround)
+            if (Input.GetMouseButtonDown(0))
             {
-                _cursorWorldPosition = hit.point;
-                Cursor.Instance.transform.position = _cursorWorldPosition;
+                _aHits = (_aHits + 1) % _pitchesA.Length;
+                SoundManager.Instance.Play(SoundA, pitch: _pitchesA[_aHits]);
+                _drum.PlayNote(Drum.NoteType.A);
             }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                _bHits = (_bHits + 1) % _pitchesB.Length;
+                SoundManager.Instance.Play(SoundB, pitch: _pitchesB[_bHits]);
+                _drum.PlayNote(Drum.NoteType.B);
+            }
+
+            if (Input.GetMouseButtonDown(2))
+                _drum.PlayNote(Drum.NoteType.SequenceEnd);
         }
 
         private void DrumOnOnCommandSequence(Drum.CommandSequence seq)
         {
             _currentEnergy -= DrainEnergyPerСommand;
-            if (!_cursorIsHittingGround)
+            if (!Cursor.Instance.IsHittingGround)
                 return;
-
-            _gatherPosition = _cursorWorldPosition;
-
-            var colliders = Physics.OverlapSphere(_gatherPosition, GatherRadius, LayerMask.NameToLayer("Hamster"),
-                QueryTriggerInteraction.Ignore);
-
-            foreach (var hamsterCollider in colliders)
+            
+            foreach (var hamster in Cursor.Instance.FindHamsters())
             {
-                if (!hamsterCollider.CompareTag("Hamster"))
-                    continue;
-
-                var hamsterCtrl = hamsterCollider.GetComponent<HamsterController>();
-                if (hamsterCtrl != null)
-                {
-                    hamsterCtrl.SetDestination(_gatherPosition);
-                }
+                hamster.SetDestination(Cursor.Instance.transform.position);
             }
         }
 
@@ -94,21 +97,22 @@ namespace Assets.Scripts
                 if (note.Type == Drum.NoteType.B)
                     CameraController.Instance.Shake(CameraShakePerHitB);
 
+                if (SoulPrefab != null)
+                {
+                    var go = Instantiate(SoulPrefab, transform.TransformPoint(SoulSpawnerPoint), Quaternion.identity);
+                    var soul = go.GetComponent<Soul>();
+                    soul.GoToTarget(Cursor.Instance.transform);
+                }
+
                 _currentEnergy -= DrainEnergyPerNote;
             }
         }
 
         void OnDrawGizmos()
         {
-            if (_cursorIsHittingGround)
-            {
-                Gizmos.color = Color.cyan;
-                Gizmos.DrawWireSphere(_cursorWorldPosition, GatherRadius);
-                Gizmos.DrawSphere(_cursorWorldPosition, 0.5f);
-            }
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(_gatherPosition, GatherRadius);
+            // Soul spawner point
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(transform.TransformPoint(SoulSpawnerPoint), 0.1f);
         }
     }
 }

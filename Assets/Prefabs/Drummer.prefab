@@ -100,8 +100,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1226715304476588}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.12, y: -0.96, z: 3.13}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.662}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4370615181804302}
@@ -206,6 +206,14 @@ MonoBehaviour:
   MaxEnergy: 1000
   DrainEnergyPerNote: 1
   "DrainEnergyPer\u0421ommand": 2
+  SoulPrefab: {fileID: 1237733983096662, guid: 5bc94e2403dab57478eaf8b722c72159, type: 2}
+  SoulSpawnerPoint: {x: 0, y: 0, z: 0}
+  SoundA:
+    Clip: {fileID: 8300000, guid: c3c3326f1ae7aa54589c3cc8fb0a6a91, type: 3}
+    VolumeModifier: 0.8
+  SoundB:
+    Clip: {fileID: 8300000, guid: 5dff2cb4252fe6547938a839018d920c, type: 3}
+    VolumeModifier: 0.5
   CameraShakePerHitA: 0.6
   CameraShakePerHitB: 0.2
 --- !u!114 &114793813673746372
@@ -237,12 +245,7 @@ MonoBehaviour:
     Notes: 0100000002000000
   - Name: Stop
     Notes: 01000000010000000200000002000000
-  SoundA:
-    Clip: {fileID: 8300000, guid: c3c3326f1ae7aa54589c3cc8fb0a6a91, type: 3}
-    VolumeModifier: 0.8
-  SoundB:
-    Clip: {fileID: 8300000, guid: 5dff2cb4252fe6547938a839018d920c, type: 3}
-    VolumeModifier: 0.6
+  ShowDebugInfo: 1
 --- !u!135 &135925712401001236
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -13,6 +13,8 @@ namespace Assets.Scripts
         {
             _agent = GetComponent<NavMeshAgent>();
             _camera = Camera.main;
+            CameraController.Instance.SetTarget(transform);
+            CameraController.Instance.SetSecondaryTarget(Cursor.Instance.transform);
         }
         
         void Update ()

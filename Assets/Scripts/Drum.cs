@@ -126,32 +126,24 @@ namespace Assets.Scripts
 
         void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 100, 200), GUIContent.none))
-                TapNote(NoteType.A);
-
-            if (GUI.Button(new Rect(110, 10, 100, 200), GUIContent.none))
-                TapNote(NoteType.B);
-
-            GUI.Label(new Rect(10, 220, 200, 20), string.Format("BPM: {0:F2}", _bpm));
-            GUI.Label(new Rect(10, 240, 200, 20), string.Format("AVG4DEL: {0}", _avg4Delay));
-            GUI.Label(new Rect(10, 260, 200, 20), string.Format("SEQ: {0}", SequenceStartFrom()));
-            GUI.Label(new Rect(10, 280, 200, 20), string.Format("BUF: {0}", MaxNotes));
-            GUI.Label(new Rect(10, 300, 200, 20), string.Format("ISSEQ: {0}", _isSeqRunning));
-            GUI.Label(new Rect(10, 320, 200, 20), string.Format("CMD: {0}", _lastCmd));
+            GUI.Box(new Rect(5, 15, 250, 400), GUIContent.none);
+            GUI.Label(new Rect(10, 20, 200, 20), string.Format("BPM: {0:F2}", _bpm));
+            GUI.Label(new Rect(10, 40, 200, 20), string.Format("AVG4DEL: {0}", _avg4Delay));
+            GUI.Label(new Rect(10, 60, 200, 20), string.Format("SEQ: {0}", SequenceStartFrom()));
+            GUI.Label(new Rect(10, 80, 200, 20), string.Format("BUF: {0}", MaxNotes));
+            GUI.Label(new Rect(10, 100, 200, 20), string.Format("ISSEQ: {0}", _isSeqRunning));
+            GUI.Label(new Rect(10, 120, 200, 20), string.Format("CMD: {0}", _lastCmd));
 
 
             for (var i = 0; i < _notes.Length; i++)
             {
                 var note = _notes[MaxNotes - 1 - i];
-                var ypos = 340 + 20 * i;
+                var ypos = 140 + 20 * i;
                 GUI.Label(new Rect(10, ypos, 30, 20), note.KeyRepresentation());
                 GUI.Label(new Rect(30, ypos, 50, 20), note.Len.ToString());
                 GUI.Label(new Rect(100, ypos, 50, 20), string.Format("{0:F3}", note.TimeSinceLast));
                 GUI.Label(new Rect(170, ypos, 50, 20), string.Format("{0:F3}", note.Time));
             }
-
-            //var buffer = string.Join(null, this._notes.Select(n => n.KeyRepresentation()).ToArray());
-            //GUI.Label(new Rect(10, 320, 400, 20), string.Format("BUF: {0}", buffer));
         }
 
         

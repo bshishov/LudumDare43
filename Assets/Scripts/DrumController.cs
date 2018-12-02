@@ -15,6 +15,11 @@ namespace Assets.Scripts
         public float DrainEnergyPerNote = 1f;
         public float DrainEnergyPerСommand = 2f;
 
+        [Range(0f, 1f)]
+        public float CameraShakePerHitA = 0.2f;
+        [Range(0f, 1f)]
+        public float CameraShakePerHitB = 0.2f;
+
         public float CurrentEnergy
         {
             get { return _currentEnergy; }
@@ -47,7 +52,7 @@ namespace Assets.Scripts
         {
             // Raycast cursor
             RaycastHit hit;
-            _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f);
+            _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f, LayerMask.GetMask("Environment"));
             if (_cursorIsHittingGround)
             {
                 _cursorWorldPosition = hit.point;
@@ -83,6 +88,12 @@ namespace Assets.Scripts
         {
             if (note.Type != Drum.NoteType.SequenceEnd)
             {
+                if(note.Type == Drum.NoteType.A)
+                    CameraController.Instance.Shake(CameraShakePerHitA);
+
+                if (note.Type == Drum.NoteType.B)
+                    CameraController.Instance.Shake(CameraShakePerHitB);
+
                 _currentEnergy -= DrainEnergyPerNote;
             }
         }

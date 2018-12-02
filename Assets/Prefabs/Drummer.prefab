@@ -206,6 +206,8 @@ MonoBehaviour:
   MaxEnergy: 1000
   DrainEnergyPerNote: 1
   "DrainEnergyPer\u0421ommand": 2
+  CameraShakePerHitA: 0.6
+  CameraShakePerHitB: 0.2
 --- !u!114 &114793813673746372
 MonoBehaviour:
   m_ObjectHideFlags: 1

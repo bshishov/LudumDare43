@@ -58,22 +58,24 @@ namespace Assets.Scripts
             if (Time.time - _lastRandomMovementTime > _lastRandomMovementInterval)
             {
                 var interationCount = 0;
+                var distanceFromNewPosition = 0f;
+                var distanceFromCurrentPosition = (_agent.transform.position - _commandTarget).magnitude;
 
                 do
                 {
-                    if (++interationCount > 100)
+                    if (++interationCount > 5)
                     {
                         _randomMovementDistance *= 0.1f;
                     }
                     _randomCommandTarget = _agent.transform.position + new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f)).normalized * _randomMovementDistance;
+                    distanceFromNewPosition = (_randomCommandTarget - _commandTarget).magnitude;
                 } while (
-                    interationCount < 500 && 
-                    (_randomCommandTarget - _commandTarget).magnitude > _maxRandomMovementDistance &&
-                    (_agent.transform.position + _randomCommandTarget - _commandTarget).magnitude > (_agent.transform.position - _commandTarget).magnitude
+                    interationCount < 25 &&
+                    distanceFromNewPosition > _maxRandomMovementDistance &&
+                    distanceFromNewPosition > distanceFromCurrentPosition
                 );
 
                 _lastRandomMovementTime = Time.time;
-                Debug.Log(new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f)).x);
                 _agent.SetDestination(_randomCommandTarget);
             }
         }

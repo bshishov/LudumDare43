@@ -8,6 +8,7 @@ namespace Assets.Scripts
     {
         public float DistanceToLooseControl = 1f;
         public bool DirectMouseMovement = false;
+        public float SpeedAnimationModifier = 1f;
 
         private Camera _camera;
 
@@ -29,7 +30,7 @@ namespace Assets.Scripts
         private float _randomMovementDistance = 2f;
         // max distance from movement anchor point
         private float _maxRandomMovementDistance = 5f;
-
+        private Animator _animator;
         private NavMeshAgent _agent;
 
         void Start()
@@ -37,6 +38,7 @@ namespace Assets.Scripts
             _commandTarget = transform.position;
             _camera = Camera.main;
             _agent = GetComponent<NavMeshAgent>();
+            _animator = GetComponent<Animator>();
         }
 
         void Update()
@@ -63,9 +65,12 @@ namespace Assets.Scripts
                     MakeRandomMovement();
                 }
             }
+
+            if(_animator != null)
+                _animator.SetFloat("Speed", _agent.velocity.magnitude * SpeedAnimationModifier);
         }
 
-        void OnDrawGizmos()
+        void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(_commandTarget, _maxRandomMovementDistance);
         }
@@ -81,22 +86,27 @@ namespace Assets.Scripts
         {
             Vector3 newTarget;
             var interationCount = 0;
-            var distanceFromNewPosition = 0f;
-            var distanceFromCurrentPosition = (_agent.transform.position - _commandTarget).magnitude;
+            var currentRandomMovementDistance = _randomMovementDistance;
+
+            Vector3 vectorFromNewPositionToCenter;
+            var distanceFromNewPositionToCenter = 0f;
+            Vector3 vectorFromHamsterToCenter = _agent.transform.position - _commandTarget;
+            var distanceFromHamsterToCenter = vectorFromHamsterToCenter.magnitude;
 
             do
             {
-                if (++interationCount > 5)
+                if (++interationCount > 20)
                 {
                     interationCount = 0;
-                    _randomMovementDistance *= 0.5f;
+                    currentRandomMovementDistance *= 0.5f;
                 }
                 newTarget = _agent.transform.position + Random.insideUnitSphere * _randomMovementDistance;
-                distanceFromNewPosition = (newTarget - _commandTarget).magnitude;
+                vectorFromNewPositionToCenter = newTarget - _commandTarget;
+                distanceFromNewPositionToCenter = vectorFromNewPositionToCenter.magnitude;
             } while (
-                _randomMovementDistance > 0.1f &&
-                distanceFromNewPosition > _maxRandomMovementDistance &&
-                distanceFromNewPosition > distanceFromCurrentPosition
+                currentRandomMovementDistance > 0.1f &&
+                distanceFromNewPositionToCenter > _maxRandomMovementDistance &&
+                distanceFromNewPositionToCenter > distanceFromHamsterToCenter
             );
 
             return newTarget;

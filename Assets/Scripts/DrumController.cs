@@ -35,13 +35,14 @@ namespace Assets.Scripts
             get { return _currentEnergy / MaxEnergy; }
         }
 
+        private const float PitchShift = 0.2f;
         private float _currentEnergy;
         private Drum _drum;
         private Camera _camera;
 
         // Sound settings
-        private readonly float[] _pitchesA = new float[3] { 0.99f, 1f, 1.01f };
-        private readonly float[] _pitchesB = new float[4] { 0.99f, 1f, 1.01f, 0.99f };
+        private readonly float[] _pitchesA = new float[3] { 1f - PitchShift, 1f, 1 + PitchShift };
+        private readonly float[] _pitchesB = new float[4] { 1f - PitchShift, 1f, 1 + PitchShift, 1f };
         private int _aHits = 0;
         private int _bHits = 0;
 

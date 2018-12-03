@@ -115,6 +115,9 @@ namespace Assets.Scripts
             if (!Cursor.Instance.IsHittingGround)
                 return;
 
+            if (Cursor.Instance.IsInDrumZone)
+                return;
+
             if (seq.Name.Equals("Move"))
             {
                 foreach (var hamster in Cursor.Instance.FindHamsters())

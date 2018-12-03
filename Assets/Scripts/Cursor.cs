@@ -12,6 +12,11 @@ namespace Assets.Scripts
             get { return _cursorIsHittingGround; }
         }
 
+        public bool IsInDrumZone
+        {
+            get { return _drumZone != null; }
+        }
+
         [Header("Mechanics")]
         [Range(0.5f, 20f)]
         public float GatherRadius = 10f;

@@ -115,7 +115,7 @@ namespace Assets.Scripts
             if (!Cursor.Instance.IsHittingGround)
                 return;
 
-            if (Cursor.Instance.IsInDrumZone)
+            if (Cursor.Instance.IsInDrumArea)
                 return;
 
             if (seq.Name.Equals("Move"))

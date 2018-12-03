@@ -12,9 +12,9 @@ namespace Assets.Scripts
             get { return _cursorIsHittingGround; }
         }
 
-        public bool IsInDrumZone
+        public bool IsInDrumArea
         {
-            get { return _drumZone != null; }
+            get { return _drumArea != null; }
         }
 
         [Header("Mechanics")]
@@ -43,7 +43,7 @@ namespace Assets.Scripts
         private bool _cursorIsHittingGround;
         private Vector3 _mouseWorldPosition;
         private Camera _camera;
-        private GameObject _drumZone;
+        private GameObject _drumArea;
         private Vector3 _targetPosition;
 
         void Start()
@@ -75,25 +75,31 @@ namespace Assets.Scripts
                     var z = overlapColliders.FirstOrDefault(c => c.CompareTag("DrumArea"));
                     if (z != null)
                     {
-                        _drumZone = z.gameObject;
+                        if(_drumArea == null)
+                            z.gameObject.SendMessage("OnCursorEnter", SendMessageOptions.DontRequireReceiver);
+                        _drumArea = z.gameObject;
                     }
                     else
                     {
-                        _drumZone = null;
+                        if(_drumArea != null)
+                            _drumArea.SendMessage("OnCursorLeave", SendMessageOptions.DontRequireReceiver);
+                        _drumArea = null;
                     }
                 }
                 else
                 {
-                    _drumZone = null;
+                    if (_drumArea != null)
+                        _drumArea.SendMessage("OnCursorLeave", SendMessageOptions.DontRequireReceiver);
+                    _drumArea = null;
                 }
 
-                if (_drumZone == null)
+                if (_drumArea == null)
                 {
-                    SetDesiredPosition(_mouseWorldPosition);
+                    _targetPosition = _mouseWorldPosition;
                 }
                 else
                 {
-                    SetDesiredPosition(_drumZone.transform.position);
+                    _targetPosition = _drumArea.transform.position;
                 }
             }
 
@@ -113,7 +119,7 @@ namespace Assets.Scripts
                 _particles.startColor = Color.Lerp(BaseColor, _targetColor, _noteActivity);
             }
 
-            if(_drumZone != null)
+            if(_drumArea != null)
                 transform.position = Vector3.Lerp(transform.position, _targetPosition, 0.2f);
             else
             {

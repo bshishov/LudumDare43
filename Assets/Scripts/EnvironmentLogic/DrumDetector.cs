@@ -14,8 +14,6 @@ namespace Assets.Scripts.EnvironmentLogic
         public ActivatorProxy[] Targets;
 
         [Header("FX")]
-        public GameObject Particles;
-        public MeshRenderer Renderer;
         public Flame FlameFx;
         public Color ActivatedColor = Color.blue;
         public Color UnactivatedColor = Color.black;

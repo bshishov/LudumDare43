@@ -377,6 +377,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 27
       objectReference: {fileID: 0}
+    - target: {fileID: 114899727797158728, guid: 5239ba9990a66b5409890255c7c415e8,
+        type: 2}
+      propertyPath: ShowDebugInfo
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5239ba9990a66b5409890255c7c415e8, type: 2}
   m_IsPrefabAsset: 0
@@ -422,11 +427,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c94ef67183a57f74a92a7cad88a0865a, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &157547447 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4496286106076298, guid: 77821ad6058f799409dd8649465828b5,
-    type: 2}
-  m_PrefabInternal: {fileID: 500595373}
 --- !u!1001 &176408255
 Prefab:
   m_ObjectHideFlags: 0
@@ -997,6 +997,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &599071757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599071759}
+  - component: {fileID: 599071758}
+  m_Layer: 0
+  m_Name: KillerCube
+  m_TagString: Killer
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &599071758
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 599071757}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &599071759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 599071757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.18, y: 1.56, z: 2.88}
+  m_LocalScale: {x: 3.0726, y: 3.0726, z: 3.0726}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 51
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &614883808
 Prefab:
   m_ObjectHideFlags: 0
@@ -1178,7 +1219,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4781490330449774, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4781490330449774, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1186,7 +1227,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4781490330449774, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4781490330449774, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1208,11 +1249,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114709964496308376, guid: e615572cb48702245aecac81c97ac4fa,
-        type: 2}
-      propertyPath: LookObj
-      value: 
-      objectReference: {fileID: 157547447}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
   m_IsPrefabAsset: 0

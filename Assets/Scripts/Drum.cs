@@ -53,7 +53,7 @@ namespace Assets.Scripts
         }
 
         public const int MaxNotes = 8;
-        public const int NotesPerCheck = 2;
+        public const int NotesPerCheck = 1;
 
         public event Action<CommandSequence> OnCommandSequence;
         public event Action<Note> OnNotePlayed;
@@ -151,7 +151,8 @@ namespace Assets.Scripts
                 TimeSinceLast = delta,
                 Len = NoteLen.Unknown
             };
-            Debug.Log(note);
+            if(ShowDebugInfo)
+                Debug.Log(note);
             
             // Shift all notes in buffer and append new note to the end
             for (var i = 0; i < MaxNotes - 1; i++)

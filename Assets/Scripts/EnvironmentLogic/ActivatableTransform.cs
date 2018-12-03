@@ -7,6 +7,8 @@ namespace Assets.Scripts.EnvironmentLogic
         public Vector3 DeltaPosition = Vector3.zero;
         public float ActivationSpeed = 2f;
         public float DeactivationSpeed = 2f;
+        public AnimationCurve ActivationMovement = AnimationCurve.Linear(0, 0, 1, 1);
+        public AnimationCurve DeactivationMovement = AnimationCurve.Linear(0, 0, 1, 1);
 
         private float _state = 0f;
         private ActivatorProxy _activator;
@@ -29,13 +31,13 @@ namespace Assets.Scripts.EnvironmentLogic
             if (_activator.IsActivated && _state < 1f)
             {
                 _state += Time.deltaTime * DeactivationSpeed;
-                transform.position = Vector3.Lerp(_initialPosition, _targedPosition, _state);
+                transform.position = Vector3.Lerp(_initialPosition, _targedPosition, DeactivationMovement.Evaluate(_state));
             }
 
             if (!_activator.IsActivated && _state > 0f)
             {
                 _state -= Time.deltaTime * ActivationSpeed;
-                transform.position = Vector3.Lerp(_initialPosition, _targedPosition, _state);
+                transform.position = Vector3.Lerp(_initialPosition, _targedPosition, ActivationMovement.Evaluate(_state));
             }
         }
 

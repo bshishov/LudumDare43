@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hamster
   - Killer
+  - DrumArea
   layers:
   - Default
   - TransparentFX

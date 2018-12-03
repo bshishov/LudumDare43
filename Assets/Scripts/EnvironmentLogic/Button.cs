@@ -1,21 +1,40 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.EnvironmentLogic
 {
     [RequireComponent(typeof(Collider))]
-    public class Button : MonoBehaviour {
+    public class Button : MonoBehaviour
+    {
+        [Header("General")]
+        public string[] RequiredTags;
+        [Range(1, 10)]
+        public int Required = 1;
 
         public ActivatorProxy[] Targets;
+        public AudioClipWithVolume PressSound;
+
+        [Header("Visuals")]
         public float PressDepth = 0.1f;
         public float PressingSpeed = 4f;
-        public string[] RequiredTags;
-        public AudioClipWithVolume PressSound;
+
+        [Header("Indicators")]
+        public AudioClipWithVolume IndicatorActivateSound;
+        public bool UseIndicators = false;
+        public GameObject IndicatorPrefab;
+        public float IndicatorsRadius = 1f;
+        public float IndicatorOffset = 0f;
+        public float IndicatorAngleStep = 1f;
+        public float IndicatorY = 0f;
 
         private int _playersTriggered = 0;
         private float _currentState = 0f;
         private Vector3 _initialPosition;
         private Vector3 _pressedPosition;
+
+        private Flame[] _indicatorFlames;
 
         public bool IsActivated { get; private set; }
 
@@ -27,6 +46,19 @@ namespace Assets.Scripts.EnvironmentLogic
 
             if (!GetComponent<Collider>().isTrigger)
                 Debug.LogWarning("Button collider must be a trigger", this);
+
+            if (UseIndicators && IndicatorPrefab != null)
+            {
+                _indicatorFlames = new Flame[Required];
+                for (var i = 0; i < Required; i++)
+                {
+                    var localPos = GetIndicatorPosition(i);
+                    var go = GameObject.Instantiate(IndicatorPrefab, transform.TransformPoint(localPos), IndicatorPrefab.transform.rotation);
+                    go.transform.SetParent(transform, true);
+
+                    _indicatorFlames[i] = go.GetComponentInChildren<Flame>();
+                }
+            }
         }
 
         void Update()
@@ -50,7 +82,16 @@ namespace Assets.Scripts.EnvironmentLogic
             {
                 _playersTriggered++;
 
-                if (!IsActivated && _playersTriggered == 1)
+                if (UseIndicators && _indicatorFlames != null)
+                {
+                    var indicator = _indicatorFlames[_playersTriggered - 1];
+                    indicator.StartEmission();
+                    indicator.AddTrauma(1f);
+                }
+
+                SoundManager.Instance.Play(IndicatorActivateSound);
+
+                if (!IsActivated && _playersTriggered == Required)
                 {
                     SoundManager.Instance.Play(PressSound);
                     IsActivated = true;
@@ -71,7 +112,10 @@ namespace Assets.Scripts.EnvironmentLogic
             {
                 _playersTriggered--;
 
-                if (IsActivated && _playersTriggered == 0)
+                if (UseIndicators && _indicatorFlames != null)
+                    _indicatorFlames[_playersTriggered].StopEmission();
+
+                if (IsActivated && _playersTriggered < Required)
                 {
                     IsActivated = false;
                     foreach (var target in Targets)
@@ -98,6 +142,18 @@ namespace Assets.Scripts.EnvironmentLogic
                     }
                 }
             }
+
+            
+            for (var i = 0; i < Required; i++)
+            {
+                Gizmos.DrawSphere(transform.TransformPoint(GetIndicatorPosition(i)), 0.1f);
+            }
+        }
+
+        private Vector3 GetIndicatorPosition(int i)
+        {
+            var angle = IndicatorOffset + i * IndicatorAngleStep;
+            return new Vector3(IndicatorsRadius * Mathf.Sin(angle), IndicatorY, IndicatorsRadius * Mathf.Cos(angle));
         }
     }
 }

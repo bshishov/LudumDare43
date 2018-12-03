@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Utils;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(Drum))]
-    public class DrumController : MonoBehaviour
+    public class DrumController : Singleton<DrumController>
     {
         [Header("Drum")]
         public float MaxEnergy = 1000f;
@@ -33,6 +34,26 @@ namespace Assets.Scripts
         public float EnergyFraction
         {
             get { return _currentEnergy / MaxEnergy; }
+        }
+
+        public bool EnoughEnergy
+        {
+            get { return _currentEnergy > 10f; }
+        }
+
+        /// <summary>
+        /// Returns a coefficient for controlling movement and other things in range [0, 1]
+        /// Linear!
+        /// </summary>
+        public float BpmEnergyModifier
+        {
+            get
+            {
+                if(EnoughEnergy)
+                    return (_drum.Bpm - Drum.MinBpm) / (Drum.MaxBpm - Drum.MinBpm);
+
+                return 0f;
+            }
         }
 
         private const float PitchShift = 0.2f;
@@ -128,6 +149,21 @@ namespace Assets.Scripts
             // Soul spawner point
             Gizmos.color = Color.blue;
             Gizmos.DrawSphere(transform.TransformPoint(SoulSpawnerPoint), 0.1f);
+        }
+
+        void OnGUI()
+        {
+            GUI.Box(new Rect(180, 0, 200, 200), GUIContent.none);
+            GUI.Label(new Rect(200, 10, 200, 50), string.Format("Current Energy: {0}", _currentEnergy));
+            if (GUI.Button(new Rect(200, 30, 50, 50), "+"))
+            {
+                _currentEnergy += 100;
+            }
+
+            if (GUI.Button(new Rect(260, 30, 50, 50), "-"))
+            {
+                _currentEnergy -= 100;
+            }
         }
     }
 }

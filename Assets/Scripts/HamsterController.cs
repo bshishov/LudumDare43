@@ -124,7 +124,7 @@ namespace Assets.Scripts
         public void SetDestination(Vector3 command, float bpm  = 120f)
         {
             // BPM influence
-            var k = (bpm - Drum.MinBpm) / (Drum.MaxBpm - Drum.MinBpm);
+            var k = DrumController.Instance.BpmEnergyModifier;
             _agent.speed = Mathf.Lerp(MinSpeed, MaxSpeed, BpmCurve.Evaluate(k));
 
             _commanded = true;

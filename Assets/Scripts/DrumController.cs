@@ -62,6 +62,7 @@ namespace Assets.Scripts
             {
                 _aHits = (_aHits + 1) % _pitchesA.Length;
                 SoundManager.Instance.Play(SoundA, pitch: _pitchesA[_aHits]);
+		// SoundManager.Instance.Play(SoundA, pitch: Random.Range(0.85f, 1.15f)); 
                 _drum.PlayNote(Drum.NoteType.A);
             }
 
@@ -69,6 +70,7 @@ namespace Assets.Scripts
             {
                 _bHits = (_bHits + 1) % _pitchesB.Length;
                 SoundManager.Instance.Play(SoundB, pitch: _pitchesB[_bHits]);
+		// SoundManager.Instance.Play(SoundB, pitch: Random.Range(0.85f, 1.15f));
                 _drum.PlayNote(Drum.NoteType.B);
             }
 

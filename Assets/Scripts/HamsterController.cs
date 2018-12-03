@@ -8,6 +8,7 @@ namespace Assets.Scripts
     {
         public float DistanceToLooseControl = 1f;
         public bool DirectMouseMovement = false;
+        public float SpeedAnimationModifier = 1f;
 
         private Camera _camera;
 
@@ -29,7 +30,7 @@ namespace Assets.Scripts
         private float _randomMovementDistance = 2f;
         // max distance from movement anchor point
         private float _maxRandomMovementDistance = 5f;
-
+        private Animator _animator;
         private NavMeshAgent _agent;
 
         void Start()
@@ -37,6 +38,7 @@ namespace Assets.Scripts
             _commandTarget = transform.position;
             _camera = Camera.main;
             _agent = GetComponent<NavMeshAgent>();
+            _animator = GetComponent<Animator>();
         }
 
         void Update()
@@ -63,6 +65,9 @@ namespace Assets.Scripts
                     MakeRandomMovement();
                 }
             }
+
+            if(_animator != null)
+                _animator.SetFloat("Speed", _agent.velocity.magnitude * SpeedAnimationModifier);
         }
 
         void OnDrawGizmosSelected()

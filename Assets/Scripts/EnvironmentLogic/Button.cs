@@ -82,7 +82,7 @@ namespace Assets.Scripts.EnvironmentLogic
             {
                 _playersTriggered++;
 
-                if (UseIndicators && _indicatorFlames != null)
+                if (UseIndicators && _indicatorFlames != null && _playersTriggered <= Required)
                 {
                     var indicator = _indicatorFlames[_playersTriggered - 1];
                     indicator.StartEmission();
@@ -112,7 +112,7 @@ namespace Assets.Scripts.EnvironmentLogic
             {
                 _playersTriggered--;
 
-                if (UseIndicators && _indicatorFlames != null)
+                if (UseIndicators && _indicatorFlames != null && _playersTriggered < Required)
                     _indicatorFlames[_playersTriggered].StopEmission();
 
                 if (IsActivated && _playersTriggered < Required)

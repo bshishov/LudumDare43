@@ -38,7 +38,8 @@ namespace Assets.Scripts
         private bool _cursorIsHittingGround;
         private Vector3 _mouseWorldPosition;
         private Camera _camera;
-
+        private GameObject _drumZone;
+        private Vector3 _targetPosition;
 
         void Start()
         {
@@ -61,7 +62,34 @@ namespace Assets.Scripts
             if (_cursorIsHittingGround)
             {
                 _mouseWorldPosition = hit.point;
-                SetDesiredPosition(_mouseWorldPosition);
+                
+                // Drum zone collisions check
+                var overlapColliders = Physics.OverlapSphere(_mouseWorldPosition, 1f);
+                if (overlapColliders != null && overlapColliders.Length > 0)
+                {
+                    var z = overlapColliders.FirstOrDefault(c => c.CompareTag("DrumArea"));
+                    if (z != null)
+                    {
+                        _drumZone = z.gameObject;
+                    }
+                    else
+                    {
+                        _drumZone = null;
+                    }
+                }
+                else
+                {
+                    _drumZone = null;
+                }
+
+                if (_drumZone == null)
+                {
+                    SetDesiredPosition(_mouseWorldPosition);
+                }
+                else
+                {
+                    SetDesiredPosition(_drumZone.transform.position);
+                }
             }
 
             // Impact Effects
@@ -78,6 +106,13 @@ namespace Assets.Scripts
                 _particles.startSizeMultiplier = 1 + _noteActivity * ScaleMod;
                 _particles.startSpeedMultiplier = 1 + _noteActivity * SpeedMod;
                 _particles.startColor = Color.Lerp(BaseColor, _targetColor, _noteActivity);
+            }
+
+            if(_drumZone != null)
+                transform.position = Vector3.Lerp(transform.position, _targetPosition, 0.2f);
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, _targetPosition, 0.9f);
             }
         }
 
@@ -103,7 +138,8 @@ namespace Assets.Scripts
 
         public void SetDesiredPosition(Vector3 targetPosition)
         {
-            transform.position = targetPosition;
+            _targetPosition = targetPosition;
+            //transform.position = targetPosition;
         }
 
         void OnDrawGizmos()

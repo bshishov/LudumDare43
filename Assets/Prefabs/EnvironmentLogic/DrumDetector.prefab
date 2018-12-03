@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 23803271359213704}
   - component: {fileID: 64085385807169674}
   - component: {fileID: 114674378852400860}
+  - component: {fileID: 135930985459667452}
   m_Layer: 0
   m_Name: DrumDetector
-  m_TagString: Untagged
+  m_TagString: DrumArea
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,6 +175,18 @@ MonoBehaviour:
   NoteHitColorB: {r: 1, g: 0, b: 1, a: 1}
   NoteImpact: 0.4
   SuccessImpact: 1
+--- !u!135 &135930985459667452
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130425200752426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0.35869622, z: 0}
 --- !u!198 &198104701725116788
 ParticleSystem:
   m_ObjectHideFlags: 1

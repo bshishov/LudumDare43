@@ -83,10 +83,22 @@ namespace Assets.Scripts
             _currentEnergy -= DrainEnergyPerСommand;
             if (!Cursor.Instance.IsHittingGround)
                 return;
-            
-            foreach (var hamster in Cursor.Instance.FindHamsters())
+
+            if (seq.Name.Equals("Move"))
             {
-                hamster.SetDestination(Cursor.Instance.transform.position);
+                foreach (var hamster in Cursor.Instance.FindHamsters())
+                {
+                    hamster.SetDestination(Cursor.Instance.transform.position, _drum.Bpm);
+                }
+            }
+
+            if (seq.Name.Equals("Sacrifice"))
+            {
+                var nearestHamster = Cursor.Instance.FindNearest();
+                if (nearestHamster != null)
+                {
+                    nearestHamster.SetDestination(Cursor.Instance.transform.position, _drum.Bpm);
+                }
             }
         }
 

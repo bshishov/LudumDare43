@@ -6,9 +6,17 @@ namespace Assets.Scripts
     [RequireComponent(typeof(NavMeshAgent))]
     public class HamsterController : MonoBehaviour
     {
+        [Header("Movement")]
         public float DistanceToLooseControl = 1f;
         public bool DirectMouseMovement = false;
         public float SpeedAnimationModifier = 1f;
+        public float DefaultSpeed = 3.5f;
+
+        [Header("BPM influence")]
+        public float MinSpeed = 1f;
+        public float MaxSpeed = 6f;
+        public AnimationCurve BpmCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
 
         private Camera _camera;
 
@@ -39,6 +47,7 @@ namespace Assets.Scripts
             _camera = Camera.main;
             _agent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
+            _agent.speed = DefaultSpeed;
         }
 
         void Update()
@@ -112,8 +121,12 @@ namespace Assets.Scripts
             return newTarget;
         }
 
-        public void SetDestination(Vector3 command, float bmp  = 120f)
+        public void SetDestination(Vector3 command, float bpm  = 120f)
         {
+            // BPM influence
+            var k = (bpm - Drum.MinBpm) / (Drum.MaxBpm - Drum.MinBpm);
+            _agent.speed = Mathf.Lerp(MinSpeed, MaxSpeed, BpmCurve.Evaluate(k));
+
             _commanded = true;
             _commandTarget = command;
 
@@ -129,6 +142,8 @@ namespace Assets.Scripts
             _agent.SetDestination(_commandTarget + movementDirection.normalized);
 
             _timeFromLastCommandLoose = Time.time;
+
+            _agent.speed = DefaultSpeed;
         }
 
         private void CheckClick()

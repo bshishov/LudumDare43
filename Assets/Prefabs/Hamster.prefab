@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 136718280754353902}
   - component: {fileID: 195696619570607298}
   - component: {fileID: 114541943250562968}
+  - component: {fileID: 114709964496308376}
   m_Layer: 0
   m_Name: Hamster
   m_TagString: Hamster
@@ -997,8 +998,49 @@ MonoBehaviour:
   DistanceToLooseControl: 1
   DirectMouseMovement: 0
   SpeedAnimationModifier: 1
+  DefaultSpeed: 1
+  MinSpeed: 1
+  MaxSpeed: 6
+  BpmCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   TimeToWaitAfterLastCommandLoose: 2
   TimeToRunAfterCommand: 1
+--- !u!114 &114709964496308376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1177184799825246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1e40fa70f3a5d4ca43682ef3f2cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IkActive: 1
+  LookObj: {fileID: 0}
+  LookWeight: 1
 --- !u!135 &135037531417237702
 SphereCollider:
   m_ObjectHideFlags: 1

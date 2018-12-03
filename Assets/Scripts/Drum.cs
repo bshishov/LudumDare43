@@ -7,6 +7,8 @@ namespace Assets.Scripts
 {
     public class Drum : MonoBehaviour
     {
+        public const float MaxBpm = 1000f;
+        public const float MinBpm = 100f;
         public enum NoteType { SequenceEnd, A, B, C }
         public enum NoteLen { Fourth, Eight, Unknown }
 

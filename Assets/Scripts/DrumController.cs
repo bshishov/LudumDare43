@@ -59,7 +59,6 @@ namespace Assets.Scripts
         private const float PitchShift = 0.2f;
         private float _currentEnergy;
         private Drum _drum;
-        private Camera _camera;
 
         // Sound settings
        // private readonly float[] _pitchesA = new float[3] { 1f - PitchShift, 1f, 1 + PitchShift };
@@ -86,7 +85,6 @@ namespace Assets.Scripts
             _drum.OnNotePlayed += DrumOnOnNotePlayed;
 
             _currentEnergy = MaxEnergy;
-            _camera = GameObject.FindObjectOfType<Camera>();
         }
 
         void Update ()

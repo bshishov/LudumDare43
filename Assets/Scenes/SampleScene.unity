@@ -2409,6 +2409,11 @@ Prefab:
       propertyPath: RotationTime
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 114166996124957746, guid: 8a56ba35e42efae40913b45cc63300e2,
+        type: 2}
+      propertyPath: TraumaDecayStep
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a56ba35e42efae40913b45cc63300e2, type: 2}
   m_IsPrefabAsset: 0

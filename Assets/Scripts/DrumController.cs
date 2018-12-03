@@ -101,7 +101,7 @@ namespace Assets.Scripts
 
         private void DrumOnOnCommandSequence(Drum.CommandSequence seq)
         {
-            _currentEnergy -= DrainEnergyPerСommand;
+            DecreaseEnergy(DrainEnergyPerСommand);
             if (!Cursor.Instance.IsHittingGround)
                 return;
 
@@ -140,7 +140,7 @@ namespace Assets.Scripts
                     soul.GoToTarget(Cursor.Instance.transform);
                 }
 
-                _currentEnergy -= DrainEnergyPerNote;
+                DecreaseEnergy(DrainEnergyPerNote);
             }
         }
 
@@ -156,14 +156,20 @@ namespace Assets.Scripts
             GUI.Box(new Rect(180, 0, 200, 200), GUIContent.none);
             GUI.Label(new Rect(200, 10, 200, 50), string.Format("Current Energy: {0}", _currentEnergy));
             if (GUI.Button(new Rect(200, 30, 50, 50), "+"))
-            {
-                _currentEnergy += 100;
-            }
+                IncreaseEnergy(100f);
 
             if (GUI.Button(new Rect(260, 30, 50, 50), "-"))
-            {
-                _currentEnergy -= 100;
-            }
+                DecreaseEnergy(100f);
+        }
+
+        public void DecreaseEnergy(float amount)
+        {
+            _currentEnergy = Mathf.Clamp(_currentEnergy - amount, 0, MaxEnergy);
+        }
+
+        public void IncreaseEnergy(float amount)
+        {
+            _currentEnergy = Mathf.Clamp(_currentEnergy + amount, 0, MaxEnergy);
         }
     }
 }

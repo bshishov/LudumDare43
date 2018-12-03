@@ -208,10 +208,10 @@ MonoBehaviour:
   SoulPrefab: {fileID: 1237733983096662, guid: 5bc94e2403dab57478eaf8b722c72159, type: 2}
   SoulSpawnerPoint: {x: 0, y: 0, z: 0}
   SoundA:
-    Clip: {fileID: 8300000, guid: c3c3326f1ae7aa54589c3cc8fb0a6a91, type: 3}
+    Clip: {fileID: 8300000, guid: d02b8bb10d9e2254581bce8bbed577cf, type: 3}
     VolumeModifier: 0.8
   SoundB:
-    Clip: {fileID: 8300000, guid: 5dff2cb4252fe6547938a839018d920c, type: 3}
+    Clip: {fileID: 8300000, guid: 12015dc0de3eb5242aa5a5b372b7765d, type: 3}
     VolumeModifier: 0.5
   CameraShakePerHitA: 0.6
   CameraShakePerHitB: 0.2

@@ -382,6 +382,16 @@ Prefab:
       propertyPath: ShowDebugInfo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114214055250311972, guid: 5239ba9990a66b5409890255c7c415e8,
+        type: 2}
+      propertyPath: SoundA.VolumeModifier
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114214055250311972, guid: 5239ba9990a66b5409890255c7c415e8,
+        type: 2}
+      propertyPath: SoundB.VolumeModifier
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5239ba9990a66b5409890255c7c415e8, type: 2}
   m_IsPrefabAsset: 0

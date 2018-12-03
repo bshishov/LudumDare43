@@ -62,8 +62,20 @@ namespace Assets.Scripts
         private Camera _camera;
 
         // Sound settings
-        private readonly float[] _pitchesA = new float[3] { 1f - PitchShift, 1f, 1 + PitchShift };
-        private readonly float[] _pitchesB = new float[4] { 1f - PitchShift, 1f, 1 + PitchShift, 1f };
+       // private readonly float[] _pitchesA = new float[3] { 1f - PitchShift, 1f, 1 + PitchShift };
+       // private readonly float[] _pitchesB = new float[4] { 1f - PitchShift, 1f, 1 + PitchShift, 1f };
+
+	private readonly float[] _pitchesA = new float[8] { 1f, 
+							    1f - PitchShift, 1f + PitchShift,  
+							    1f - PitchShift, 1f + PitchShift,
+							    1f - PitchShift, 1f + PitchShift, 
+							    1f };
+
+        private readonly float[] _pitchesB = new float[8] { 1f ,
+							    1f, 1f + 2*PitchShift, 
+							    1f, 1f + 2*PitchShift, 
+							    1f, 1f + 2*PitchShift,
+							    1f };
         private int _aHits = 0;
         private int _bHits = 0;
 

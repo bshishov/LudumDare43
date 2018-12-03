@@ -136,9 +136,9 @@ MonoBehaviour:
   SecondaryTargetWeight: 0.05
   CameraTransform: {fileID: 4882602148551362}
   EnableCameraShake: 1
-  TraumaDecayStep: 0.05
-  MaxPosOffset: {x: 0.1, y: 0.1, z: 0.1}
-  MaxRotAngleOffset: {x: 2, y: 2, z: 2}
+  TraumaDecayStep: 0.06
+  MaxPosOffset: {x: 0.05, y: 0.2, z: 0.05}
+  MaxRotAngleOffset: {x: 1, y: 2, z: 1}
 --- !u!114 &114350645303501738
 MonoBehaviour:
   m_ObjectHideFlags: 1

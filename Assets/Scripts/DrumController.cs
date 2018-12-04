@@ -166,13 +166,14 @@ namespace Assets.Scripts
 
         void OnGUI()
         {
+            /*
             GUI.Box(new Rect(180, 0, 200, 200), GUIContent.none);
             GUI.Label(new Rect(200, 10, 200, 50), string.Format("Current Energy: {0}", _currentEnergy));
             if (GUI.Button(new Rect(200, 30, 50, 50), "+"))
                 IncreaseEnergy(100f);
 
             if (GUI.Button(new Rect(260, 30, 50, 50), "-"))
-                DecreaseEnergy(100f);
+                DecreaseEnergy(100f);*/
         }
 
         public void DecreaseEnergy(float amount)

@@ -47,6 +47,7 @@ namespace Assets.Scripts
         {
             IsAlive = false;
             DrumController.Instance.enabled = false;
+            LevelManager.Instance.Restart();
 
             if (_ragdollController != null)
                 _ragdollController.EnableRagdoll();

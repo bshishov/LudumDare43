@@ -1174,7 +1174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9046dbb4b73c7342898b84bfcabf7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxEnergy: 1000
+  MaxEnergy: 200
   DrainEnergyPerNote: 1
   "DrainEnergyPer\u0421ommand": 2
   SoulPrefab: {fileID: 1237733983096662, guid: 5bc94e2403dab57478eaf8b722c72159, type: 2}

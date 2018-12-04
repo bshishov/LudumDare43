@@ -175,11 +175,18 @@ namespace Assets.Scripts
         public HamsterController FindNearest(float radiusMul = 1f)
         {
             var cursorPos = transform.position;
-            var hamsterCol = FindNearObjectsWithTag("Hamster", radiusMul)
-                .Aggregate((h1, h2) => Vector3.Distance(h2.transform.position, cursorPos) > Vector3.Distance(h1.transform.position, cursorPos) ? h1 : h2);
+            var hamsterCols = FindNearObjectsWithTag("Hamster", radiusMul).ToList();
+            if (hamsterCols.Count > 0)
+            {
+                var hamsterCol = hamsterCols.Aggregate((h1, h2) =>
+                    Vector3.Distance(h2.transform.position, cursorPos) >
+                    Vector3.Distance(h1.transform.position, cursorPos)
+                        ? h1
+                        : h2);
 
-            if (hamsterCol != null)
-                return hamsterCol.GetComponent<HamsterController>();
+                if (hamsterCol != null)
+                    return hamsterCol.GetComponent<HamsterController>();
+            }
 
             return null;
         }

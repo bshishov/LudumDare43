@@ -109,9 +109,12 @@ namespace Assets.Scripts.EnvironmentLogic
 
         void LoadNextScene()
         {
+            
             // TODO: Load scene properly
             if(!string.IsNullOrEmpty(NextLevelName))
-                SceneManager.LoadScene(NextLevelName);
+                LevelManager.Instance.LoadLevel(NextLevelName);
+            else
+                Debug.LogWarning("No next level provided");
         }
     }
 }

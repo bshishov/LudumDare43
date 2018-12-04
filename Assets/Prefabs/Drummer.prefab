@@ -1218,10 +1218,10 @@ MonoBehaviour:
   Sequences:
   - Name: Sacrifice
     Notes: 01000000010000000100000002000000
+  - Name: Restart
+    Notes: 010000000100000002000000020000000100000002000000
   - Name: Move
     Notes: 0100000002000000
-  - Name: Stop
-    Notes: 01000000010000000200000002000000
   ShowDebugInfo: 0
 --- !u!114 &114793813673746372
 MonoBehaviour:

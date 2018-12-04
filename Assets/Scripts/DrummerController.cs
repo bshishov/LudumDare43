@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Utils;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.Scripts
 {
-    public class DrummerController : MonoBehaviour
+    public class DrummerController : Singleton<DrummerController>
     {
         public bool IsAlive { get; private set; }
         private NavMeshAgent _agent;

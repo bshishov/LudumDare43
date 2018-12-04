@@ -74,6 +74,8 @@ GameObject:
   - component: {fileID: 4290781134635118}
   - component: {fileID: 135129118628085334}
   - component: {fileID: 114550720178581726}
+  - component: {fileID: 114976569272495014}
+  - component: {fileID: 114810186956547774}
   m_Layer: 0
   m_Name: SacrificeAltar
   m_TagString: DrumArea
@@ -358,10 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efe0b6fcc267ad419de8070e2935897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequence:
-    Name: Sacrifice
-    Notes: 01000000010000000100000002000000
-  MinBpm: 100
   Decay: 0.1
   RotationSpeed: 1
   SacrificeRange: 2
@@ -369,6 +367,47 @@ MonoBehaviour:
   Sphere: {fileID: 4610953381949176}
   Ring1: {fileID: 4147175707607356}
   Ring2: {fileID: 4529276325795424}
+--- !u!114 &114810186956547774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924150561619494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91ed7eab83e08240a2ec6bae9e5dd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sequence:
+    Name: 
+    Notes: 01000000010000000100000002000000
+  MinBpm: 100
+  HideCursor: 0
+  OneTime: 0
+  Targets:
+  - {fileID: 114976569272495014}
+  FlameFx: {fileID: 0}
+  ActivatedColor: {r: 0, g: 0, b: 1, a: 1}
+  UnactivatedColor: {r: 0, g: 0, b: 0, a: 1}
+  NoteHitColorA: {r: 1, g: 0, b: 0, a: 1}
+  NoteHitColorB: {r: 1, g: 0, b: 1, a: 1}
+  NoteImpact: 0.5
+  SuccessImpact: 0.5
+--- !u!114 &114976569272495014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924150561619494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4059eb154b406429ce1582fc2345ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoldActivation: 0
+  Inverted: 0
+  TimeBeforeActivationMessage: 0
+  TimeBeforeDeactivationMessage: 0
 --- !u!135 &135129118628085334
 SphereCollider:
   m_ObjectHideFlags: 1

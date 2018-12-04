@@ -134,6 +134,11 @@ namespace Assets.Scripts
                     nearestHamster.SetDestination(Cursor.Instance.transform.position, _drum.Bpm);
                 }
             }
+
+            if (seq.Name.Equals("Restart"))
+            {
+                DrummerController.Instance.Die();
+            }
         }
 
         private void DrumOnOnNotePlayed(Drum.Note note)

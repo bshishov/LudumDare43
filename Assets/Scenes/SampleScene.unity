@@ -3628,16 +3628,6 @@ Prefab:
       propertyPath: m_Name
       value: HumsterDrummer
       objectReference: {fileID: 0}
-    - target: {fileID: 114793813673746372, guid: 5239ba9990a66b5409890255c7c415e8,
-        type: 2}
-      propertyPath: HandMovementTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114123023609646100, guid: 5239ba9990a66b5409890255c7c415e8,
-        type: 2}
-      propertyPath: IkActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5239ba9990a66b5409890255c7c415e8, type: 2}
   m_IsPrefabAsset: 0

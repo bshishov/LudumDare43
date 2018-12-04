@@ -1160,9 +1160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c561e3df6f53f44bcd4aa85741a737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IkActive: 0
+  IkActive: 1
   LookObj: {fileID: 0}
   LookWeight: 0.5
+  LeftHandWeight: 0.5
+  RightHandWeight: 0.5
+  LeftHandTargetPosition: {x: 0, y: 0, z: 0}
+  RightHandTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114597594186374030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1237,6 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc81ae875c114046a339a126c190833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HandMovementTime: 0.1
 --- !u!135 &135293518955469848
 SphereCollider:
   m_ObjectHideFlags: 1

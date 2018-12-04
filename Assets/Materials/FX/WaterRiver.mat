@@ -39,12 +39,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FlowMap:
-        m_Texture: {fileID: 2800000, guid: 8e6838e9d003c2d4b93886b0868b2b26, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: f126662d2b78acf4b8c6ce950ea829e6, type: 3}
-        m_Scale: {x: 0.01, y: 0.01}
+        m_Scale: {x: 0.1, y: 0.1}
         m_Offset: {x: 0.49, y: 0.59}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -63,7 +63,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EdgeBlend: 3.36
+    - _EdgeBlend: 3.1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -78,7 +78,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.4575472, g: 0.6777849, b: 1, a: 1}
-    - _EdgeColor: {r: 0, g: 0.84761906, b: 1, a: 1}
+    - _EdgeColor: {r: 0.8915094, g: 0.9834073, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlowDirection: {r: 0, g: 0, b: -0.9, a: 0}
+    - _FlowDirection: {r: 0, g: 0, b: 2.26, a: 1}
     - _Tint: {r: 0, g: 0.41960785, b: 0.4627451, a: 0.25882354}

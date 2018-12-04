@@ -4,11 +4,10 @@ namespace Assets.Scripts.EnvironmentLogic
 {
     public class DrumDetector : MonoBehaviour
     {
-        public Drum.CommandSequence Sequence;
-        [Range(0f, 5f)]
-        public float Radius = 3f;
-        public bool Listen = false;
+        public Drum.CommandSequence Sequence;  
         public float MinBpm = 100f;
+        public bool HideCursor = false;
+        public bool OneTime = true;
 
         [Header("Activation")]
         public ActivatorProxy[] Targets;
@@ -24,14 +23,13 @@ namespace Assets.Scripts.EnvironmentLogic
 
         private bool _isActivated;
         private Drum _drum;
+        private bool _cursorEntered;
 
         void Start ()
         {
             _drum = FindObjectOfType<Drum>();
             if(_drum == null)
                 Debug.LogError("[DRUM DETECTOR] Can't find drum!");
-            else
-                _drum.OnNotePlayed += DrumOnOnNotePlayed;
 
             if (FlameFx != null)
                 FlameFx.BaseColor = UnactivatedColor;
@@ -39,15 +37,18 @@ namespace Assets.Scripts.EnvironmentLogic
 
         private void DrumOnOnNotePlayed(Drum.Note note)
         {
-            var distanceToCursor = Vector3.Distance(transform.position, Cursor.Instance.transform.position);
-            if (!_isActivated && Listen && distanceToCursor < Radius)
+            if (_cursorEntered && !_isActivated)
             {
                 ReactToNote(note);
                 // If sequence match
                 if (_drum.CommandSequenceAtTheEnd(Sequence) && _drum.Bpm > MinBpm)
                 {
+                    Debug.Log(string.Format("[DRUM DETECTOR] [{0}] Success!", gameObject.name));
                     ReactToSuccessfulCommand();
-                    _isActivated = true;
+
+                    if(OneTime)
+                        _isActivated = true;
+
                     SendActivationEvents();
                 }
             }
@@ -81,6 +82,25 @@ namespace Assets.Scripts.EnvironmentLogic
             }
         }
 
+        public void OnCursorEnter()
+        {
+            Debug.Log("CURSOR ENTER");
+            _cursorEntered = true;
+            _drum.OnNotePlayed += DrumOnOnNotePlayed;
+
+            if(HideCursor)
+                Cursor.Instance.Show();
+        }
+
+        public void OnCursorLeave()
+        {
+            _cursorEntered = false;
+            _drum.OnNotePlayed -= DrumOnOnNotePlayed;
+
+            if (HideCursor)
+                Cursor.Instance.Hide();
+        }
+
         /// <summary>
         /// FX
         /// </summary>
@@ -110,8 +130,6 @@ namespace Assets.Scripts.EnvironmentLogic
 
         void OnDrawGizmosSelected()
         {
-            Gizmos.DrawWireSphere(transform.position, Radius);
-
             if (Targets != null)
             {
                 foreach (var target in Targets)
@@ -123,7 +141,6 @@ namespace Assets.Scripts.EnvironmentLogic
                     }
                 }
             }
-           
         }
     }
 }

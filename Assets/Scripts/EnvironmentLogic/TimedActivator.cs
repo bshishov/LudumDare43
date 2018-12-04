@@ -71,12 +71,15 @@ namespace Assets.Scripts.EnvironmentLogic
 
         void OnDrawGizmosSelected()
         {
-            foreach (var target in Targets)
+            if (Targets != null)
             {
-                if (target != null && target != gameObject)
+                foreach (var target in Targets)
                 {
-                    Gizmos.color = Color.yellow;
-                    Gizmos.DrawLine(transform.position, target.transform.position);
+                    if (target != null && target != gameObject)
+                    {
+                        Gizmos.color = Color.yellow;
+                        Gizmos.DrawLine(transform.position, target.transform.position);
+                    }
                 }
             }
         }

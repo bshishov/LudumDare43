@@ -7,8 +7,11 @@ namespace Assets.Scripts
         [Header("IK")]
         public bool IkActive = false;
         public Transform LookObj = null;
-        [Range(0f, 1f)]
-        public float LookWeight = 0.5f;
+        [Range(0f, 1f)] public float LookWeight = 0.5f;
+        [Range(0f, 1f)] public float LeftHandWeight = 0.5f;
+        [Range(0f, 1f)] public float RightHandWeight = 0.5f;
+        public Vector3 LeftHandTargetPosition;
+        public Vector3 RightHandTargetPosition;
 
         private Animator _animator;
 
@@ -33,22 +36,21 @@ namespace Assets.Scripts
                         _animator.SetLookAtPosition(LookObj.position);
                     }
 
-                    /*
-                    // Set the right hand target position and rotation, if one has been assigned
-                    if (LookObj != null)
-                    {
-                        _animator.SetIKPositionWeight(AvatarIKGoal.RightHand, LookWeight);
-                        _animator.SetIKRotationWeight(AvatarIKGoal.RightHand, LookWeight);
-                        _animator.SetIKPosition(AvatarIKGoal.RightHand, LookObj.position);
-                        _animator.SetIKRotation(AvatarIKGoal.RightHand, LookObj.rotation);
-                    }*/
+
+                    // Right hand
+                    _animator.SetIKPositionWeight(AvatarIKGoal.RightHand, RightHandWeight);
+                    _animator.SetIKPosition(AvatarIKGoal.RightHand, RightHandTargetPosition);
+
+                    // Left hand
+                    _animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, LeftHandWeight);
+                    _animator.SetIKPosition(AvatarIKGoal.LeftHand, LeftHandTargetPosition);
                 }
 
                 //if the IK is not active, set the position and rotation of the hand and head back to the original position
                 else
                 {
                     _animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-                    _animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
+                    _animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
                     _animator.SetLookAtWeight(0);
                 }
             }

@@ -232,9 +232,9 @@ MonoBehaviour:
   Renderer: {fileID: 23776459278257906}
   Particles: {fileID: 198978974708058370}
   TraumaDecay: 0.02
-  ScaleMod: 1.5
-  SpeedMod: 10
-  BaseColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  ScaleMod: 0.5
+  SpeedMod: 5
+  BaseColor: {r: 1, g: 0.5801887, b: 0.8024418, a: 1}
   ColorA: {r: 1, g: 0, b: 0, a: 1}
   ColorB: {r: 1, g: 0, b: 1, a: 1}
   ImpactA: 0.656

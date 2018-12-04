@@ -11,10 +11,14 @@ namespace Assets.Scripts
         public float MaxEnergy = 1000f;
         public float DrainEnergyPerNote = 1f;
         public float DrainEnergyPerСommand = 2f;
+        public Transform DrumMeshTransform;
+
+        public Vector3 DrumHitCenter = Vector3.zero;
+        public Vector3 LeftHandSourcePosition = Vector3.zero;
+        public Vector3 RightHandSourcePosition = Vector3.zero;
 
         [Header("Soul")]
         public GameObject SoulPrefab;
-        public Vector3 SoulSpawnerPoint = Vector3.zero;
 
         [Header("Audio")]
         public AudioClipWithVolume SoundA;
@@ -153,9 +157,9 @@ namespace Assets.Scripts
 
                 if (SoulPrefab != null)
                 {
-                    var go = Instantiate(SoulPrefab, transform.TransformPoint(SoulSpawnerPoint), Quaternion.identity);
+                    var go = Instantiate(SoulPrefab, transform.TransformPoint(DrumHitCenter), Quaternion.identity);
                     var soul = go.GetComponent<Soul>();
-                    soul.GoToTarget(Cursor.Instance.transform);
+                    soul.GoToTarget(Cursor.Instance.transform, note.Type);
                 }
 
                 DecreaseEnergy(DrainEnergyPerNote);
@@ -166,7 +170,18 @@ namespace Assets.Scripts
         {
             // Soul spawner point
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(transform.TransformPoint(SoulSpawnerPoint), 0.1f);
+            var c = transform.TransformPoint(DrumHitCenter);
+            var lh = transform.TransformPoint(LeftHandSourcePosition);
+            var rh = transform.TransformPoint(RightHandSourcePosition);
+
+            Gizmos.DrawSphere(c, 0.1f);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(lh, 0.1f);
+            Gizmos.DrawSphere(rh, 0.1f);
+
+            Gizmos.DrawLine(c, lh);
+            Gizmos.DrawLine(c, rh);
         }
 
         void OnGUI()

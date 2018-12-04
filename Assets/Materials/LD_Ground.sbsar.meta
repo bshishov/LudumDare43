@@ -30,9 +30,14 @@ ScriptedImporter:
     graphDescIndex: 0
     generateAllOutputs: 0
     generateMipMaps: 1
-    preset: " <sbspreset pkgurl=\"pkg://LD_Ground\" label=\"\" >\n  <presetinput identifier=\"RockSat\"
-      uid=\"705883448\" type=\"0\" value=\"0.611\" />\n  <presetinput identifier=\"GroundSat\"
-      uid=\"705883575\" type=\"0\" value=\"0.612\" />\n </sbspreset>\n"
+    preset: " <sbspreset pkgurl=\"pkg://LD_Ground\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
+      uid=\"1600944070\" type=\"8\" value=\"9,9\" />\n  <presetinput identifier=\"$randomseed\"
+      uid=\"136208788\" type=\"4\" value=\"1968\" />\n  <presetinput identifier=\"RockSat\"
+      uid=\"705883448\" type=\"0\" value=\"0.653\" />\n  <presetinput identifier=\"RockLight\"
+      uid=\"705883471\" type=\"0\" value=\"0.5\" />\n  <presetinput identifier=\"GroundSat\"
+      uid=\"705883575\" type=\"0\" value=\"0.612\" />\n  <presetinput identifier=\"Normal\"
+      uid=\"705882655\" type=\"0\" value=\"3\" />\n  <presetinput identifier=\"Rough\"
+      uid=\"705864165\" type=\"0\" value=\"0.9\" />\n </sbspreset>\n"
     shaderName: Standard
     outputNames: baseColor,normal,metallic,height,ambientOcclusion
     texturePackingList:
@@ -91,17 +96,12 @@ ScriptedImporter:
     - label: 
       bLockRatio: 1
       bHighQuality: 0
-      textureWidth: 256
-      textureHeight: 256
+      textureWidth: 512
+      textureHeight: 512
       textureFormat: 0
       bGenerateOnLoad: 1
     material: {fileID: 2100000, guid: 87f0cb7ffc1f00a43864d0c03d670c35, type: 3}
-    generatedTextures:
-    - {fileID: 2800000, guid: 87f0cb7ffc1f00a43864d0c03d670c35, type: 3}
-    - {fileID: 2800002, guid: 87f0cb7ffc1f00a43864d0c03d670c35, type: 3}
-    - {fileID: 2800004, guid: 87f0cb7ffc1f00a43864d0c03d670c35, type: 3}
-    - {fileID: 2800006, guid: 87f0cb7ffc1f00a43864d0c03d670c35, type: 3}
-    - {fileID: 2800008, guid: 87f0cb7ffc1f00a43864d0c03d670c35, type: 3}
+    generatedTextures: []
   - graphLabel: Rocks_Matrix
     prototypeName: Rocks_Matrix
     graphDescIndex: 1

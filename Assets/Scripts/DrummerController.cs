@@ -6,23 +6,33 @@ namespace Assets.Scripts
 {
     public class DrummerController : Singleton<DrummerController>
     {
+        public float HandMovementTime = 0.2f;
         public bool IsAlive { get; private set; }
         private NavMeshAgent _agent;
         private Camera _camera;
         private Animator _animator;
         private RagdollController _ragdollController;
+        private IKController _ikController;
 
+        private Vector3 _rhVelocity;
+        private Vector3 _lhVelocity;
 
-        // Use this for initialization
         void Start ()
         {
             IsAlive = true;
+            _ikController = GetComponent<IKController>();
             _animator = GetComponent<Animator>();
             _agent = GetComponent<NavMeshAgent>();
             _camera = Camera.main;
             _ragdollController = GetComponent<RagdollController>();
             CameraController.Instance.SetTarget(transform);
             CameraController.Instance.SetSecondaryTarget(Cursor.Instance.transform);
+
+            if (_ikController != null)
+            {
+                _ikController.IkActive = true;
+                _ikController.LookObj = Cursor.Instance.transform;
+            }
         }
         
         void Update ()
@@ -42,6 +52,29 @@ namespace Assets.Scripts
 
             _agent.destination = transform.position + movement.normalized;
             _animator.SetFloat("Speed", _agent.velocity.magnitude);
+
+
+            // HAND IK
+            if (_ikController != null)
+            {
+                var dc = DrumController.Instance;
+
+                var lfDcLocalTarget = dc.LeftHandSourcePosition;
+                var rfDcLocalTarget = dc.RightHandSourcePosition;
+
+                if (Input.GetMouseButton(0))
+                    lfDcLocalTarget = dc.DrumHitCenter;
+
+                if (Input.GetMouseButton(1))
+                    rfDcLocalTarget = dc.DrumHitCenter;
+
+                _ikController.LeftHandTargetPosition = Vector3.SmoothDamp(_ikController.LeftHandTargetPosition,
+                    dc.transform.TransformPoint(lfDcLocalTarget),
+                    ref _lhVelocity, HandMovementTime);
+                _ikController.RightHandTargetPosition = Vector3.SmoothDamp(_ikController.RightHandTargetPosition,
+                    dc.transform.TransformPoint(rfDcLocalTarget),
+                    ref _rhVelocity, HandMovementTime);
+            }
         }
 
         public void Die()

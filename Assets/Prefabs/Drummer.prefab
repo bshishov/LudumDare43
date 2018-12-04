@@ -1177,8 +1177,11 @@ MonoBehaviour:
   MaxEnergy: 200
   DrainEnergyPerNote: 1
   "DrainEnergyPer\u0421ommand": 2
+  DrumMeshTransform: {fileID: 0}
+  DrumHitCenter: {x: 0, y: 0.12, z: 0.44}
+  LeftHandSourcePosition: {x: -0.31, y: 0.4, z: 0.42}
+  RightHandSourcePosition: {x: 0.31, y: 0.4, z: 0.42}
   SoulPrefab: {fileID: 1237733983096662, guid: 5bc94e2403dab57478eaf8b722c72159, type: 2}
-  SoulSpawnerPoint: {x: 0, y: 0.19, z: 0.5}
   SoundA:
     Clip: {fileID: 8300000, guid: d02b8bb10d9e2254581bce8bbed577cf, type: 3}
     VolumeModifier: 0.3

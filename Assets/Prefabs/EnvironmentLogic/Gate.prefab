@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 65640107657803820}
   - component: {fileID: 114683288360313962}
   - component: {fileID: 114790505445520838}
-  - component: {fileID: 114636007109369594}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -204,23 +203,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 1.5}
   m_Center: {x: 0, y: 2, z: 0}
---- !u!114 &114636007109369594
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1848141226696706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aaaa993b78f42641bc2f3956823b063, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActivateSound:
-    Clip: {fileID: 8300000, guid: c3c3326f1ae7aa54589c3cc8fb0a6a91, type: 3}
-    VolumeModifier: 1
-  DeactivateSound:
-    Clip: {fileID: 0}
-    VolumeModifier: 1
 --- !u!114 &114683288360313962
 MonoBehaviour:
   m_ObjectHideFlags: 1

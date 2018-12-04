@@ -110,7 +110,7 @@ namespace Assets.Scripts
             if (Renderer != null)
                 Renderer.material.color = Color.Lerp(Color.white, _targetColor, _noteActivity);
 
-            transform.localScale = _initialScale + Vector3.one * _noteActivity;
+            //transform.localScale = _initialScale + Vector3.one * _noteActivity;
 
             if (Particles != null)
             {

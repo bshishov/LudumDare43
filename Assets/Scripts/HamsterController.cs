@@ -132,8 +132,11 @@ namespace Assets.Scripts
             var k = DrumController.Instance.BpmEnergyModifier;
             _agent.speed = Mathf.Lerp(MinSpeed, MaxSpeed, BpmCurve.Evaluate(k));
 
-            if(!_commanded)
-                SoundManager.Instance.Play(ReactSound, pitch: Random.Range(1, 1.05f), delay: Random.Range(0, 0.5f));
+            if (!_commanded)
+            {
+                SoundManager.Instance.Play(ReactSound, pitch: Random.Range(1, 1.05f), delay: Random.Range(0, 0.5f))
+                    .AttachToObject(transform);
+            }
 
             _commanded = true;
             _commandTarget = command;
@@ -179,7 +182,8 @@ namespace Assets.Scripts
             if (_ragdollController != null)
                 _ragdollController.EnableRagdoll();
 
-            SoundManager.Instance.Play(DeathSound);
+            SoundManager.Instance.Play(DeathSound)
+                .AttachToObject(transform);
             Debug.Log("[Hamster] Death");
         }
 

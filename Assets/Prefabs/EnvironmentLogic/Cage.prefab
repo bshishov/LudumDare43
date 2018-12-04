@@ -239,12 +239,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aaaa993b78f42641bc2f3956823b063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttachToObject: 1
   ActivateSound:
     Clip: {fileID: 8300000, guid: bb4b5a18a3a88c04dbe354963765943d, type: 3}
-    VolumeModifier: 0.4
+    VolumeModifier: 0.3
+    Pitch: 1
   DeactivateSound:
     Clip: {fileID: 8300000, guid: bb4b5a18a3a88c04dbe354963765943d, type: 3}
-    VolumeModifier: 0.3
+    VolumeModifier: 0.25
+    Pitch: 0.9
 --- !u!114 &114736220409354742
 MonoBehaviour:
   m_ObjectHideFlags: 1

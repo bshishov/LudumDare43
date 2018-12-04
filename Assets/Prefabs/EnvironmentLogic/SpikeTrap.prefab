@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114951807874014586}
   - component: {fileID: 114257904069065790}
   - component: {fileID: 65500485579770082}
+  - component: {fileID: 114967088201266620}
   m_Layer: 0
   m_Name: mesh_SpikeTrap_Spikes
   m_TagString: Killer
@@ -290,3 +291,23 @@ MonoBehaviour:
   Inverted: 0
   TimeBeforeActivationMessage: 0
   TimeBeforeDeactivationMessage: 0
+--- !u!114 &114967088201266620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1626249669625740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aaaa993b78f42641bc2f3956823b063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttachToObject: 1
+  ActivateSound:
+    Clip: {fileID: 8300000, guid: 5d264e7881522a0419aec085fde8c773, type: 3}
+    VolumeModifier: 0.25
+    Pitch: 1
+  DeactivateSound:
+    Clip: {fileID: 8300000, guid: 5d264e7881522a0419aec085fde8c773, type: 3}
+    VolumeModifier: 0.15
+    Pitch: 0.9

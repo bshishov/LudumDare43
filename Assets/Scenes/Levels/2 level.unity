@@ -6340,7 +6340,7 @@ Prefab:
     - target: {fileID: 114750101000655794, guid: 97c5d46143bf3624fafe9fd63a8ec65c,
         type: 2}
       propertyPath: NextLevelName
-      value: Scenes/Levels/Level 21
+      value: Scenes/Levels/Level 22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97c5d46143bf3624fafe9fd63a8ec65c, type: 2}

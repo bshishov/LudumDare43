@@ -1015,8 +1015,8 @@ MonoBehaviour:
   DistanceToLooseControl: 1
   DirectMouseMovement: 0
   SpeedAnimationModifier: 1
-  DefaultSpeed: 2
-  MinSpeed: 0
+  DefaultSpeed: 1
+  MinSpeed: 0.5
   MaxSpeed: 9
   BpmCurve:
     serializedVersion: 2

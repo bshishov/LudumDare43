@@ -82,6 +82,7 @@ namespace Assets.Scripts.EnvironmentLogic
             {
                 _playersTriggered++;
 
+                // Indicators update
                 if (UseIndicators && _indicatorFlames != null && _playersTriggered <= Required)
                 {
                     var indicator = _indicatorFlames[_playersTriggered - 1];
@@ -91,16 +92,15 @@ namespace Assets.Scripts.EnvironmentLogic
 
                 SoundManager.Instance.Play(IndicatorActivateSound);
 
-                if (!IsActivated && _playersTriggered == Required)
+                if (!IsActivated && _playersTriggered >= Required)
                 {
                     SoundManager.Instance.Play(PressSound);
                     IsActivated = true;
+                    
                     foreach (var target in Targets)
                     {
                         if (target != null)
-                        {
                             target.Activate();
-                        }
                     }
                 }
             }
@@ -118,12 +118,11 @@ namespace Assets.Scripts.EnvironmentLogic
                 if (IsActivated && _playersTriggered < Required)
                 {
                     IsActivated = false;
+                    
                     foreach (var target in Targets)
                     {
                         if (target != null)
-                        {
                             target.Deactivate();
-                        }
                     }
                 }
             }

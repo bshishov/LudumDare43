@@ -50,8 +50,11 @@ namespace Assets.Scripts
             side.y = 0f;
             movement += side.normalized * Input.GetAxis("Horizontal");
 
-            _agent.destination = transform.position + movement.normalized;
-            _animator.SetFloat("Speed", _agent.velocity.magnitude);
+            if (_agent.enabled)
+            {
+                _agent.destination = transform.position + movement.normalized;
+                _animator.SetFloat("Speed", _agent.velocity.magnitude);
+            }
 
 
             // HAND IK

@@ -153,6 +153,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 144264101158683928, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0016939926
+      objectReference: {fileID: 0}
+    - target: {fileID: 144403085791908222, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0017306327
+      objectReference: {fileID: 0}
+    - target: {fileID: 144669692049843588, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0016939924
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0017306136
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00005793514
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
   m_IsPrefabAsset: 0
@@ -765,6 +790,31 @@ Prefab:
     - target: {fileID: 1177184799825246, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_Name
       value: Hamster (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144264101158683928, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0016939926
+      objectReference: {fileID: 0}
+    - target: {fileID: 144403085791908222, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0017306327
+      objectReference: {fileID: 0}
+    - target: {fileID: 144669692049843588, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0016939924
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0017306136
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00005793514
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
@@ -1495,6 +1545,31 @@ Prefab:
       propertyPath: m_Name
       value: Hamster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0017306136
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00005793514
+      objectReference: {fileID: 0}
+    - target: {fileID: 144669692049843588, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0016939924
+      objectReference: {fileID: 0}
+    - target: {fileID: 144264101158683928, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0016939926
+      objectReference: {fileID: 0}
+    - target: {fileID: 144403085791908222, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0017306327
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
   m_IsPrefabAsset: 0
@@ -1718,6 +1793,31 @@ Prefab:
     - target: {fileID: 1177184799825246, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_Name
       value: Hamster (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144403085791908222, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0017306327
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0017306136
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00005793514
+      objectReference: {fileID: 0}
+    - target: {fileID: 144669692049843588, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0016939924
+      objectReference: {fileID: 0}
+    - target: {fileID: 144264101158683928, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0016939926
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
@@ -1957,6 +2057,31 @@ Prefab:
     - target: {fileID: 1177184799825246, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_Name
       value: Hamster (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144264101158683928, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0016939926
+      objectReference: {fileID: 0}
+    - target: {fileID: 144403085791908222, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0017306327
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0017306136
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00005793514
+      objectReference: {fileID: 0}
+    - target: {fileID: 144669692049843588, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0016939924
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
@@ -3223,6 +3348,31 @@ Prefab:
       propertyPath: m_Name
       value: Hamster (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0017306136
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00005793514
+      objectReference: {fileID: 0}
+    - target: {fileID: 144403085791908222, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0017306327
+      objectReference: {fileID: 0}
+    - target: {fileID: 144264101158683928, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0016939926
+      objectReference: {fileID: 0}
+    - target: {fileID: 144669692049843588, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0016939924
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
   m_IsPrefabAsset: 0
@@ -3314,6 +3464,31 @@ Prefab:
     - target: {fileID: 1177184799825246, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_Name
       value: Hamster (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144669692049843588, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0016939924
+      objectReference: {fileID: 0}
+    - target: {fileID: 144264101158683928, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0016939926
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0017306136
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00005793514
+      objectReference: {fileID: 0}
+    - target: {fileID: 144403085791908222, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0017306327
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
@@ -3706,6 +3881,26 @@ Prefab:
     - target: {fileID: 1177184799825246, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
       propertyPath: m_Name
       value: Hamster (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144669692049843588, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0016939924
+      objectReference: {fileID: 0}
+    - target: {fileID: 144264101158683928, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0016939926
+      objectReference: {fileID: 0}
+    - target: {fileID: 144403085791908222, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0017306327
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203459713430574, guid: e615572cb48702245aecac81c97ac4fa,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0017306136
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e615572cb48702245aecac81c97ac4fa, type: 2}
@@ -5690,9 +5885,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeOffset: 0
-  ActivateAtTime: 1
+  ActivateAtTime: 2
   DeactivateAtTime: 5
-  TotalDuration: 7
+  TotalDuration: 6
   Targets:
   - {fileID: 1622010069}
   Loop: 1
@@ -6140,7 +6335,7 @@ Prefab:
     - target: {fileID: 114750101000655794, guid: 97c5d46143bf3624fafe9fd63a8ec65c,
         type: 2}
       propertyPath: Required
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114750101000655794, guid: 97c5d46143bf3624fafe9fd63a8ec65c,
         type: 2}
@@ -6675,9 +6870,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeOffset: 0
-  ActivateAtTime: 1
+  ActivateAtTime: 2
   DeactivateAtTime: 5
-  TotalDuration: 7
+  TotalDuration: 6
   Targets:
   - {fileID: 2014345831}
   Loop: 1

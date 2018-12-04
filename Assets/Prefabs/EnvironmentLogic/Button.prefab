@@ -229,16 +229,17 @@ MonoBehaviour:
   - Hamster
   - Player
   Required: 4
-  Targets:
-  - {fileID: 0}
+  Targets: []
   PressSound:
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: e38ed8fc1cc15ec4bb24527ba680059c, type: 3}
     VolumeModifier: 1
+    Pitch: 1
   PressDepth: 0.1
   PressingSpeed: 4
   IndicatorActivateSound:
-    Clip: {fileID: 0}
-    VolumeModifier: 1
+    Clip: {fileID: 8300000, guid: b6a1d75339cea914a8f79a41b1a49c39, type: 3}
+    VolumeModifier: 0.05
+    Pitch: 1
   UseIndicators: 1
   IndicatorPrefab: {fileID: 1153380334908492, guid: 7102378cc9e25b44caf47c9a4317cd37,
     type: 2}

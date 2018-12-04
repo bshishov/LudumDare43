@@ -20,6 +20,7 @@ namespace Assets.Scripts.EnvironmentLogic
         public Color NoteHitColorB = Color.magenta;
         [Range(0, 1)] public float NoteImpact = 0.5f;
         [Range(0, 1)] public float SuccessImpact = 0.5f;
+        public AudioClipWithVolume SuccessPatternSound;
 
         private bool _isActivated;
         private Drum _drum;
@@ -126,6 +127,8 @@ namespace Assets.Scripts.EnvironmentLogic
                 FlameFx.BaseColor = ActivatedColor;
                 FlameFx.AddTrauma(SuccessImpact, ActivatedColor);
             }
+
+            SoundManager.Instance.Play(SuccessPatternSound);
         }
 
         void OnDrawGizmosSelected()

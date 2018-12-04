@@ -88,9 +88,8 @@ namespace Assets.Scripts.EnvironmentLogic
                     var indicator = _indicatorFlames[_playersTriggered - 1];
                     indicator.StartEmission();
                     indicator.AddTrauma(1f);
+                    SoundManager.Instance.Play(IndicatorActivateSound);
                 }
-
-                SoundManager.Instance.Play(IndicatorActivateSound);
 
                 if (!IsActivated && _playersTriggered >= Required)
                 {

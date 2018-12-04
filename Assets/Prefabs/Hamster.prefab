@@ -1042,6 +1042,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  ReactSound:
+    Clip: {fileID: 8300000, guid: 5439532a9be63a14f900296bd5543a33, type: 3}
+    VolumeModifier: 1
+    Pitch: 1.5
+  DeathSound:
+    Clip: {fileID: 8300000, guid: e37116f21999baf4c905f5162eec9b71, type: 3}
+    VolumeModifier: 1
+    Pitch: 1.8
   TimeToWaitAfterLastCommandLoose: 3
   TimeToRunAfterCommand: 2
 --- !u!114 &114709964496308376

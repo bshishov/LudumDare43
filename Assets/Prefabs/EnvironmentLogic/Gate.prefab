@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 65640107657803820}
   - component: {fileID: 114683288360313962}
   - component: {fileID: 114790505445520838}
+  - component: {fileID: 114595479796430302}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -203,6 +204,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 1.5}
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &114595479796430302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1848141226696706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aaaa993b78f42641bc2f3956823b063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivateSound:
+    Clip: {fileID: 8300000, guid: 963dd032e78e6bc4ba4a0edb1642f82f, type: 3}
+    VolumeModifier: 0.7
+  DeactivateSound:
+    Clip: {fileID: 8300000, guid: 963dd032e78e6bc4ba4a0edb1642f82f, type: 3}
+    VolumeModifier: 0.7
 --- !u!114 &114683288360313962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,8 +248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeltaPosition: {x: 0, y: -3.99, z: 0}
-  ActivationSpeed: 3
-  DeactivationSpeed: 3
+  ActivationSpeed: 0.9
+  DeactivationSpeed: 0.9
   ActivationMovement:
     serializedVersion: 2
     m_Curve:

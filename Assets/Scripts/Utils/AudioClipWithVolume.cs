@@ -9,6 +9,8 @@ public class AudioClipWithVolume
 
     [Range(0f, 1.5f)]
     public float VolumeModifier = 1f;
+
+    public float Pitch = 1f;
 }
 
 public static class AudioSourceExtensions

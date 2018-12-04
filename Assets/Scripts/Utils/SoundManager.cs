@@ -62,7 +62,7 @@ using UnityEngine;
             }
         }
 
-        public const int MaxSounds = 24;
+        public const int MaxSounds = 32;
 
 
         private readonly List<SoundHandler> _handlers = new List<SoundHandler>();
@@ -153,7 +153,7 @@ using UnityEngine;
         {
             if (clip == null)
                 return null;
-            return Play(clip.Clip, clip.VolumeModifier, loop, pitch, ignoreListenerPause, delay);
+            return Play(clip.Clip, clip.VolumeModifier, loop, clip.Pitch * pitch, ignoreListenerPause, delay);
         }
 
         public SoundHandler PlayMusic(AudioClipWithVolume clip, bool loop = true, float pitch = 1f,

@@ -17,6 +17,10 @@ namespace Assets.Scripts
         public float MaxSpeed = 6f;
         public AnimationCurve BpmCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
+        [Header("Sounds")]
+        public AudioClipWithVolume ReactSound;
+        public AudioClipWithVolume DeathSound;
+
 
         private Camera _camera;
 
@@ -128,11 +132,15 @@ namespace Assets.Scripts
             var k = DrumController.Instance.BpmEnergyModifier;
             _agent.speed = Mathf.Lerp(MinSpeed, MaxSpeed, BpmCurve.Evaluate(k));
 
+            if(!_commanded)
+                SoundManager.Instance.Play(ReactSound, pitch: Random.Range(1, 1.05f), delay: Random.Range(0, 0.5f));
+
             _commanded = true;
             _commandTarget = command;
 
             _lastCommandTime = Time.time;
             _agent.SetDestination(_commandTarget);
+            
         }
 
         public void LooseDestination()
@@ -171,6 +179,7 @@ namespace Assets.Scripts
             if (_ragdollController != null)
                 _ragdollController.EnableRagdoll();
 
+            SoundManager.Instance.Play(DeathSound);
             Debug.Log("[Hamster] Death");
         }
 

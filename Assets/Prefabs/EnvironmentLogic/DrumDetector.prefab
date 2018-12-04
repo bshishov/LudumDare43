@@ -162,12 +162,10 @@ MonoBehaviour:
   Sequence:
     Name: Activate
     Notes: 02000000020000000100000001000000
-  Radius: 3
-  Listen: 1
   MinBpm: 100
+  HideCursor: 0
+  OneTime: 1
   Targets: []
-  Particles: {fileID: 0}
-  Renderer: {fileID: 0}
   FlameFx: {fileID: 114477255437466218}
   ActivatedColor: {r: 0, g: 0.7193136, b: 1, a: 1}
   UnactivatedColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
@@ -175,6 +173,10 @@ MonoBehaviour:
   NoteHitColorB: {r: 1, g: 0, b: 1, a: 1}
   NoteImpact: 0.4
   SuccessImpact: 1
+  SuccessPatternSound:
+    Clip: {fileID: 8300000, guid: b6a1d75339cea914a8f79a41b1a49c39, type: 3}
+    VolumeModifier: 0.3
+    Pitch: 1
 --- !u!135 &135930985459667452
 SphereCollider:
   m_ObjectHideFlags: 1

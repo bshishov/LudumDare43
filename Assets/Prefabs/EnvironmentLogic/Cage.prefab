@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 65259862067866840}
   - component: {fileID: 114736220409354742}
   - component: {fileID: 114893192327421774}
+  - component: {fileID: 114394938205779820}
   m_Layer: 0
   m_Name: mesh_Cage
   m_TagString: Untagged
@@ -227,6 +228,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2689242, y: 5.4430394, z: 0.527997}
   m_Center: {x: 0, y: -0.68722653, z: -2.718039}
+--- !u!114 &114394938205779820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992084861752510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aaaa993b78f42641bc2f3956823b063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivateSound:
+    Clip: {fileID: 8300000, guid: bb4b5a18a3a88c04dbe354963765943d, type: 3}
+    VolumeModifier: 0.4
+  DeactivateSound:
+    Clip: {fileID: 8300000, guid: bb4b5a18a3a88c04dbe354963765943d, type: 3}
+    VolumeModifier: 0.3
 --- !u!114 &114736220409354742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -240,8 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HoldActivation: 1
   Inverted: 0
-  TimeBeforeActivationMessage: 0
-  TimeBeforeDeactivationMessage: 0
+  TimeBeforeActivationMessage: 0.1
+  TimeBeforeDeactivationMessage: 0.1
 --- !u!114 &114893192327421774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,8 +272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeltaPosition: {x: 0, y: -5.1, z: 0}
-  ActivationSpeed: 4
-  DeactivationSpeed: 4
+  ActivationSpeed: 0.8
+  DeactivationSpeed: 0.8
   ActivationMovement:
     serializedVersion: 2
     m_Curve:

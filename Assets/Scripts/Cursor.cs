@@ -12,6 +12,11 @@ namespace Assets.Scripts
             get { return _cursorIsHittingGround; }
         }
 
+        public bool IsInDrumArea
+        {
+            get { return _drumArea != null; }
+        }
+
         [Header("Mechanics")]
         [Range(0.5f, 20f)]
         public float GatherRadius = 10f;
@@ -38,7 +43,8 @@ namespace Assets.Scripts
         private bool _cursorIsHittingGround;
         private Vector3 _mouseWorldPosition;
         private Camera _camera;
-
+        private GameObject _drumArea;
+        private Vector3 _targetPosition;
 
         void Start()
         {
@@ -61,7 +67,40 @@ namespace Assets.Scripts
             if (_cursorIsHittingGround)
             {
                 _mouseWorldPosition = hit.point;
-                SetDesiredPosition(_mouseWorldPosition);
+                
+                // Drum zone collisions check
+                var overlapColliders = Physics.OverlapSphere(_mouseWorldPosition, 1f);
+                if (overlapColliders != null && overlapColliders.Length > 0)
+                {
+                    var z = overlapColliders.FirstOrDefault(c => c.CompareTag("DrumArea"));
+                    if (z != null)
+                    {
+                        if(_drumArea == null)
+                            z.gameObject.SendMessage("OnCursorEnter", SendMessageOptions.DontRequireReceiver);
+                        _drumArea = z.gameObject;
+                    }
+                    else
+                    {
+                        if(_drumArea != null)
+                            _drumArea.SendMessage("OnCursorLeave", SendMessageOptions.DontRequireReceiver);
+                        _drumArea = null;
+                    }
+                }
+                else
+                {
+                    if (_drumArea != null)
+                        _drumArea.SendMessage("OnCursorLeave", SendMessageOptions.DontRequireReceiver);
+                    _drumArea = null;
+                }
+
+                if (_drumArea == null)
+                {
+                    _targetPosition = _mouseWorldPosition;
+                }
+                else
+                {
+                    _targetPosition = _drumArea.transform.position;
+                }
             }
 
             // Impact Effects
@@ -78,6 +117,13 @@ namespace Assets.Scripts
                 _particles.startSizeMultiplier = 1 + _noteActivity * ScaleMod;
                 _particles.startSpeedMultiplier = 1 + _noteActivity * SpeedMod;
                 _particles.startColor = Color.Lerp(BaseColor, _targetColor, _noteActivity);
+            }
+
+            if(_drumArea != null)
+                transform.position = Vector3.Lerp(transform.position, _targetPosition, 0.2f);
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, _targetPosition, 0.9f);
             }
         }
 
@@ -103,7 +149,8 @@ namespace Assets.Scripts
 
         public void SetDesiredPosition(Vector3 targetPosition)
         {
-            transform.position = targetPosition;
+            _targetPosition = targetPosition;
+            //transform.position = targetPosition;
         }
 
         void OnDrawGizmos()
@@ -123,6 +170,18 @@ namespace Assets.Scripts
         {
             return FindNearObjectsWithTag("Hamster", radiusMul)
                 .Select(c => c.GetComponent<HamsterController>());
+        }
+
+        public HamsterController FindNearest(float radiusMul = 1f)
+        {
+            var cursorPos = transform.position;
+            var hamsterCol = FindNearObjectsWithTag("Hamster", radiusMul)
+                .Aggregate((h1, h2) => Vector3.Distance(h2.transform.position, cursorPos) > Vector3.Distance(h1.transform.position, cursorPos) ? h1 : h2);
+
+            if (hamsterCol != null)
+                return hamsterCol.GetComponent<HamsterController>();
+
+            return null;
         }
     }
 }

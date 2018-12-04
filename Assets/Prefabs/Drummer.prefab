@@ -209,10 +209,10 @@ MonoBehaviour:
   SoulSpawnerPoint: {x: 0, y: 0, z: 0}
   SoundA:
     Clip: {fileID: 8300000, guid: d02b8bb10d9e2254581bce8bbed577cf, type: 3}
-    VolumeModifier: 0.8
+    VolumeModifier: 0.3
   SoundB:
     Clip: {fileID: 8300000, guid: 12015dc0de3eb5242aa5a5b372b7765d, type: 3}
-    VolumeModifier: 0.5
+    VolumeModifier: 0.3
   CameraShakePerHitA: 0.6
   CameraShakePerHitB: 0.2
 --- !u!114 &114793813673746372
@@ -238,9 +238,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sequences:
-  - Name: React
+  - Name: Sacrifice
     Notes: 01000000010000000100000002000000
-  - Name: Go
+  - Name: Move
     Notes: 0100000002000000
   - Name: Stop
     Notes: 01000000010000000200000002000000

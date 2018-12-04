@@ -6,9 +6,17 @@ namespace Assets.Scripts
     [RequireComponent(typeof(NavMeshAgent))]
     public class HamsterController : MonoBehaviour
     {
+        [Header("Movement")]
         public float DistanceToLooseControl = 1f;
         public bool DirectMouseMovement = false;
         public float SpeedAnimationModifier = 1f;
+        public float DefaultSpeed = 3.5f;
+
+        [Header("BPM influence")]
+        public float MinSpeed = 1f;
+        public float MaxSpeed = 6f;
+        public AnimationCurve BpmCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
 
         private Camera _camera;
 
@@ -32,6 +40,7 @@ namespace Assets.Scripts
         private float _maxRandomMovementDistance = 5f;
         private Animator _animator;
         private NavMeshAgent _agent;
+        private RagdollController _ragdollController;
 
         void Start()
         {
@@ -39,6 +48,8 @@ namespace Assets.Scripts
             _camera = Camera.main;
             _agent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
+            _ragdollController = GetComponent<RagdollController>();
+            _agent.speed = DefaultSpeed;
         }
 
         void Update()
@@ -112,8 +123,12 @@ namespace Assets.Scripts
             return newTarget;
         }
 
-        public void SetDestination(Vector3 command, float bmp  = 120f)
+        public void SetDestination(Vector3 command, float bpm  = 120f)
         {
+            // BPM influence
+            var k = DrumController.Instance.BpmEnergyModifier;
+            _agent.speed = Mathf.Lerp(MinSpeed, MaxSpeed, BpmCurve.Evaluate(k));
+
             _commanded = true;
             _commandTarget = command;
 
@@ -129,6 +144,8 @@ namespace Assets.Scripts
             _agent.SetDestination(_commandTarget + movementDirection.normalized);
 
             _timeFromLastCommandLoose = Time.time;
+
+            _agent.speed = DefaultSpeed;
         }
 
         private void CheckClick()
@@ -148,6 +165,32 @@ namespace Assets.Scripts
         private bool CheckInterva(float from, float duration)
         {
             return from + duration - Time.time < 0;
+        }
+
+        public void Die()
+        {
+            if (_ragdollController != null)
+                _ragdollController.EnableRagdoll();
+
+            Debug.Log("[Hamster] Death");
+        }
+
+        void OnTriggerEnter(Collider col)
+        {
+            Debug.Log(string.Format("[Hamster] trigger with {0}", col.name));
+            if (col.CompareTag("Killer"))
+            {
+                Die();
+            }
+        }
+
+        void OnCollisionEnter(Collision col)
+        {
+            Debug.Log(string.Format("[Hamster] collision with {0}", col.collider.name));
+            if (col.collider.CompareTag("Killer"))
+            {
+                Die();
+            }
         }
     }
 }

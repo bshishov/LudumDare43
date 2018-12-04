@@ -183,5 +183,17 @@ namespace Assets.Scripts
 
             return null;
         }
+
+        public void Hide()
+        {
+            if (Particles != null && Particles.isPlaying)
+                Particles.Stop();
+        }
+
+        public void Show()
+        {
+            if(Particles != null && !Particles.isPlaying)
+                Particles.Play();
+        }
     }
 }

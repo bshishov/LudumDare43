@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.EnvironmentLogic
 {
@@ -15,6 +16,8 @@ namespace Assets.Scripts.EnvironmentLogic
         public bool Inverted = false;
         public float TimeBeforeActivationMessage;
         public float TimeBeforeDeactivationMessage;
+        public event Action Activated;
+        public event Action Deactivated;
 
         private int _counter = 0;
         private float _deactivatingTime;
@@ -106,11 +109,15 @@ namespace Assets.Scripts.EnvironmentLogic
             {
                 IsActivated = true;
                 gameObject.SendMessage(ProxyActivateEvent, SendMessageOptions.DontRequireReceiver);
+                if(Activated != null)
+                    Activated.Invoke();
             }
             else
             {
                 IsActivated = false;
                 gameObject.SendMessage(ProxyDeActivateEvent, SendMessageOptions.DontRequireReceiver);
+                if (Deactivated != null)
+                    Deactivated.Invoke();
             }
         }
     

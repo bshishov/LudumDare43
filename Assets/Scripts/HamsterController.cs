@@ -72,7 +72,6 @@ namespace Assets.Scripts
                 var timeFromLastRandomMovementPassed = CheckInterva(_lastRandomMovementTime, _lastRandomMovementInterval);
                 if (timeFromLastDestinationLoosePassed && timeFromLastRandomMovementPassed)
                 {
-                    Debug.Log("RandonMove();");
                     MakeRandomMovement();
                 }
             }

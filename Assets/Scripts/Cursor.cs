@@ -43,6 +43,7 @@ namespace Assets.Scripts
         private Camera _camera;
         private GameObject _drumArea;
         private Vector3 _targetPosition;
+        private bool _cursorIsHittingGround;
 
         void Start()
         {
@@ -58,10 +59,10 @@ namespace Assets.Scripts
         void Update()
         {
             RaycastHit hit;
-            var groundHit = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f,
+            _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f,
                 LayerMask.GetMask("Environment"));
 
-            if (groundHit)
+            if (_cursorIsHittingGround)
             {
                 _mouseWorldPosition = hit.point;
                 

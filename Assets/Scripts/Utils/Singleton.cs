@@ -17,7 +17,7 @@ namespace Assets.Scripts.Utils
 
                     if (_instance == null)
                     {
-                        Debug.LogError("An instance of " + typeof(T) +
+                        Debug.LogWarning("An instance of " + typeof(T) +
                                        " is needed in the scene, but there is none.");
                     }
                 }

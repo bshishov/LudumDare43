@@ -455,7 +455,7 @@ GameObject:
   m_Layer: 0
   m_Name: Drummer
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1189,9 +1189,11 @@ MonoBehaviour:
   SoundA:
     Clip: {fileID: 8300000, guid: d02b8bb10d9e2254581bce8bbed577cf, type: 3}
     VolumeModifier: 0.3
+    Pitch: 1
   SoundB:
     Clip: {fileID: 8300000, guid: 12015dc0de3eb5242aa5a5b372b7765d, type: 3}
     VolumeModifier: 0.3
+    Pitch: 1
   CameraShakePerHitA: 0.6
   CameraShakePerHitB: 0.2
 --- !u!114 &114601142685042996

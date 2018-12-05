@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1031242453065256}
+  m_IsPrefabAsset: 1
+--- !u!1 &1031242453065256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4601904350541962}
+  - component: {fileID: 114212084527412376}
+  - component: {fileID: 135885772492215744}
+  - component: {fileID: 114462558228557642}
+  - component: {fileID: 114750101000655794}
+  m_Layer: 0
+  m_Name: LegacyAltarAscend
+  m_TagString: DrumArea
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1070378124224746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4380919603152394}
+  - component: {fileID: 33527835622469204}
+  - component: {fileID: 23740537805726258}
+  - component: {fileID: 65905563519157582}
+  m_Layer: 9
+  m_Name: mesh_Altar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &4380919603152394
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070378124224746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4601904350541962}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4601904350541962
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031242453065256}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -31.69, y: 3.3883843e-16, z: -20.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4380919603152394}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23740537805726258
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070378124224746}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 31a136c682f03eb4f92d756c4c6da069, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33527835622469204
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070378124224746}
+  m_Mesh: {fileID: 4300000, guid: bcb1d3ba2387e924d9d6e4e766eeee09, type: 3}
+--- !u!65 &65905563519157582
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070378124224746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.231151, y: 0.6224637, z: 5.2544804}
+  m_Center: {x: -0.016595602, y: -0.109738685, z: -0.019221663}
+--- !u!114 &114212084527412376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031242453065256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91ed7eab83e08240a2ec6bae9e5dd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sequence:
+    Name: Ascend
+    Notes: 02000000020000000200000001000000
+  MinBpm: 100
+  HideCursor: 0
+  OneTime: 0
+  Targets:
+  - {fileID: 114462558228557642}
+  FlameFx: {fileID: 0}
+  ActivatedColor: {r: 0, g: 0, b: 1, a: 1}
+  UnactivatedColor: {r: 0, g: 0, b: 0, a: 1}
+  NoteHitColorA: {r: 1, g: 0, b: 0, a: 1}
+  NoteHitColorB: {r: 1, g: 0, b: 1, a: 1}
+  NoteImpact: 0.5
+  SuccessImpact: 0.5
+  SuccessPatternSound:
+    Clip: {fileID: 0}
+    VolumeModifier: 1
+    MixerGroup: {fileID: 0}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
+--- !u!114 &114462558228557642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031242453065256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4059eb154b406429ce1582fc2345ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoldActivation: 0
+  Inverted: 0
+  TimeBeforeActivationMessage: 0
+  TimeBeforeDeactivationMessage: 0
+--- !u!114 &114750101000655794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031242453065256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744e9534ed4e9ed42b539d6f2f691c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Required: 5
+  Decay: 0.1
+  Range: 2
+  NextLevelName: 
+  Particles: {fileID: 0}
+  SizeMultiplier: 2
+  AscendSound:
+    Clip: {fileID: 0}
+    VolumeModifier: 1
+    MixerGroup: {fileID: 0}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
+--- !u!135 &135885772492215744
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031242453065256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}

@@ -13,32 +13,57 @@ namespace Assets.Scripts.EnvironmentLogic
         public float Range = 2f;
         public string NextLevelName;
 
+        [Header("FX")]
+        public ParticleSystem Particles;
+
+        public float SizeMultiplier = 2f;
+        public Sound AscendSound;
+
         private ActivatorProxy _activator;
         private bool _altarActive;
         private float _trauma = 0f;
         private readonly List<Collider> _hamstersInRange = new List<Collider>();
         private int _ascended = 0;
+        private ParticleSystem.MainModule _particlesMain;
+        private float _defaultParticleSize;
 
         void Start ()
         {
             _activator = GetComponent<ActivatorProxy>();
             _activator.Activated += ActivatorOnActivated;
+
+            if (Particles != null)
+            {
+                _particlesMain = Particles.main;
+                _defaultParticleSize = _particlesMain.startSizeMultiplier;
+            }
         }
 
         private void ActivatorOnActivated()
         {
             var nearestHamster = Cursor.Instance.FindNearest();
             if (nearestHamster != null)
-                nearestHamster.SetDestination(transform.position);
+                nearestHamster.SetDestination(transform.position, bypassEnergyCheck: true);
 
+            if(Particles != null && !Particles.isPlaying)
+                Particles.Play();
             _trauma += 0.8f;
         }
 
         IEnumerator AscendAnimation(HamsterController hc)
         {
             yield return new WaitForSeconds(0.1f);
+            SoundManager.Instance.Play(AscendSound);
             var rc = hc.GetComponent<HamsterController>();
             rc.enabled = false;
+
+            // Disable all hamster colliders
+            foreach (var hCollider in rc.GetComponentsInChildren<Collider>())
+            {
+                hCollider.enabled = false;
+            }
+            
+            //rc.tag = "Untagged";
 
             var ik = hc.GetComponent<IKController>();
             if (ik != null)
@@ -92,6 +117,14 @@ namespace Assets.Scripts.EnvironmentLogic
                         _hamstersInRange.Remove(col);
                 }
             }
+            else
+            {
+                // Stop particles if they are playing and altar is not active
+                if(Particles != null && Particles.isPlaying)
+                    Particles.Stop();
+            }
+
+            _particlesMain.startSizeMultiplier = _defaultParticleSize + SizeMultiplier * _trauma;
         }
 
 

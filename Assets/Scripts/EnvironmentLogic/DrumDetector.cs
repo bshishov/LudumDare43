@@ -29,10 +29,6 @@ namespace Assets.Scripts.EnvironmentLogic
 
         void Start ()
         {
-            _drum = FindObjectOfType<Drum>();
-            if(_drum == null)
-                Debug.LogError("[DRUM DETECTOR] Can't find drum!");
-
             if (FlameFx != null)
                 FlameFx.BaseColor = UnactivatedColor;
         }
@@ -86,6 +82,13 @@ namespace Assets.Scripts.EnvironmentLogic
 
         public void OnCursorEnter()
         {
+            if (_drum == null)
+            {
+                _drum = FindObjectOfType<Drum>();
+                if (_drum == null)
+                    Debug.LogError("[DRUM DETECTOR] Can't find drum!");
+            }
+
             _cursorEntered = true;
             _drum.OnNotePlayed += DrumOnOnNotePlayed;
 

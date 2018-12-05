@@ -31,7 +31,7 @@ namespace Assets.Scripts.EnvironmentLogic
         {
             var nearestHamster = Cursor.Instance.FindNearest();
             if (nearestHamster != null)
-                nearestHamster.SetDestination(transform.position);
+                nearestHamster.SetDestination(transform.position, bypassEnergyCheck: true);
 
             _trauma += 0.8f;
         }

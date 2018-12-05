@@ -17,6 +17,9 @@ namespace Assets.Scripts
         private Vector3 _rhVelocity;
         private Vector3 _lhVelocity;
 
+        private Cursor _cursor;
+        private DrumController _drumController;
+
         void Start ()
         {
             IsAlive = true;
@@ -26,12 +29,19 @@ namespace Assets.Scripts
             _camera = Camera.main;
             _ragdollController = GetComponent<RagdollController>();
             CameraController.Instance.SetTarget(transform);
-            CameraController.Instance.SetSecondaryTarget(Cursor.Instance.transform);
 
-            if (_ikController != null)
+            _cursor = Cursor.Instance;
+            _drumController = DrumController.Instance;
+
+            if (_cursor != null)
             {
-                _ikController.IkActive = true;
-                _ikController.LookObj = Cursor.Instance.transform;
+                CameraController.Instance.SetSecondaryTarget(Cursor.Instance.transform);
+
+                if (_ikController != null)
+                {
+                    _ikController.IkActive = true;
+                    _ikController.LookObj = _cursor.transform;
+                }
             }
         }
         
@@ -60,23 +70,24 @@ namespace Assets.Scripts
             // HAND IK
             if (_ikController != null)
             {
-                var dc = DrumController.Instance;
+                if (_drumController != null)
+                {
+                    var lfDcLocalTarget = _drumController.LeftHandSourcePosition;
+                    var rfDcLocalTarget = _drumController.RightHandSourcePosition;
 
-                var lfDcLocalTarget = dc.LeftHandSourcePosition;
-                var rfDcLocalTarget = dc.RightHandSourcePosition;
+                    if (Input.GetMouseButton(0))
+                        lfDcLocalTarget = _drumController.DrumHitCenter;
 
-                if (Input.GetMouseButton(0))
-                    lfDcLocalTarget = dc.DrumHitCenter;
+                    if (Input.GetMouseButton(1))
+                        rfDcLocalTarget = _drumController.DrumHitCenter;
 
-                if (Input.GetMouseButton(1))
-                    rfDcLocalTarget = dc.DrumHitCenter;
-
-                _ikController.LeftHandTargetPosition = Vector3.SmoothDamp(_ikController.LeftHandTargetPosition,
-                    dc.transform.TransformPoint(lfDcLocalTarget),
-                    ref _lhVelocity, HandMovementTime);
-                _ikController.RightHandTargetPosition = Vector3.SmoothDamp(_ikController.RightHandTargetPosition,
-                    dc.transform.TransformPoint(rfDcLocalTarget),
-                    ref _rhVelocity, HandMovementTime);
+                    _ikController.LeftHandTargetPosition = Vector3.SmoothDamp(_ikController.LeftHandTargetPosition,
+                        _drumController.transform.TransformPoint(lfDcLocalTarget),
+                        ref _lhVelocity, HandMovementTime);
+                    _ikController.RightHandTargetPosition = Vector3.SmoothDamp(_ikController.RightHandTargetPosition,
+                        _drumController.transform.TransformPoint(rfDcLocalTarget),
+                        ref _rhVelocity, HandMovementTime);
+                }
             }
         }
 

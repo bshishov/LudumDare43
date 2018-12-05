@@ -14,7 +14,7 @@ public class Sound
     public bool IgnoreListenerPause = false;
 
     [Header("Pitch")]
-    [Range(0.5f, 1.5f)] public float Pitch = 1f;
+    [Range(0.5f, 2f)] public float Pitch = 1f;
     public bool RandomizePitch = false;
     [Range(0f, 0.2f)]
     public float MaxPitchShift = 0.05f;

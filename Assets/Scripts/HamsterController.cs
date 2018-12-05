@@ -18,10 +18,8 @@ namespace Assets.Scripts
         public AnimationCurve BpmCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
         [Header("Sounds")]
-        public AudioClipWithVolume ReactSound;
-        public AudioClipWithVolume DeathSound;
-        public Sound TestSound;
-
+        public Sound ReactSound;
+        public Sound DeathSound;
 
         private Camera _camera;
 
@@ -127,15 +125,17 @@ namespace Assets.Scripts
             return newTarget;
         }
 
-        public void SetDestination(Vector3 command, float bpm  = 120f)
+        public void SetDestination(Vector3 command, float bpm  = 120f, bool bypassEnergyCheck=false)
         {
             // BPM influence
             var k = DrumController.Instance.BpmEnergyModifier;
+            if (bypassEnergyCheck)
+                k = 1f;
             _agent.speed = Mathf.Lerp(MinSpeed, MaxSpeed, BpmCurve.Evaluate(k));
 
             if (!_commanded)
             {
-                var sound = SoundManager.Instance.Play(ReactSound, pitch: Random.Range(1, 1.05f), delay: Random.Range(0, 0.5f));
+                var sound = SoundManager.Instance.Play(ReactSound);
                 if(sound != null)
                     sound.AttachToObject(transform);
             }

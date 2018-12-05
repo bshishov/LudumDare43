@@ -20,6 +20,7 @@ namespace Assets.Scripts
         [Header("Sounds")]
         public AudioClipWithVolume ReactSound;
         public AudioClipWithVolume DeathSound;
+        public Sound TestSound;
 
 
         private Camera _camera;
@@ -38,7 +39,7 @@ namespace Assets.Scripts
         private float _lastRandomMovementTime = 0f;
         private float _lastRandomMovementInterval = 0.5f;
         private Vector3 _randomCommandTarget = Vector3.zero;
-        // distance for ranmom movement targets
+        // distance for random movement targets
         private float _randomMovementDistance = 2f;
         // max distance from movement anchor point
         private float _maxRandomMovementDistance = 5f;
@@ -134,8 +135,9 @@ namespace Assets.Scripts
 
             if (!_commanded)
             {
-                SoundManager.Instance.Play(ReactSound, pitch: Random.Range(1, 1.05f), delay: Random.Range(0, 0.5f))
-                    .AttachToObject(transform);
+                var sound = SoundManager.Instance.Play(ReactSound, pitch: Random.Range(1, 1.05f), delay: Random.Range(0, 0.5f));
+                if(sound != null)
+                    sound.AttachToObject(transform);
             }
 
             _commanded = true;

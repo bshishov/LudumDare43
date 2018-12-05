@@ -22,7 +22,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpikeTrap
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114257904069065790}
   - component: {fileID: 65500485579770082}
   - component: {fileID: 114967088201266620}
+  - component: {fileID: 65091396543567264}
   m_Layer: 0
   m_Name: mesh_SpikeTrap_Spikes
   m_TagString: Killer
@@ -190,6 +191,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626249669625740}
   m_Mesh: {fileID: 4300000, guid: 4a17d4501217ddc4c85382d9d1b82e5d, type: 3}
+--- !u!65 &65091396543567264
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1626249669625740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0.0017741919, y: 0.66556394, z: -0.000018775463}
 --- !u!65 &65097005840431782
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -306,8 +319,26 @@ MonoBehaviour:
   ActivateSound:
     Clip: {fileID: 8300000, guid: 5d264e7881522a0419aec085fde8c773, type: 3}
     VolumeModifier: 0.25
+    MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
     Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 1
+    MaxAdditionalDelay: 0.5
   DeactivateSound:
     Clip: {fileID: 8300000, guid: 5d264e7881522a0419aec085fde8c773, type: 3}
     VolumeModifier: 0.15
+    MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
     Pitch: 0.9
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 1
+    MaxAdditionalDelay: 0.5

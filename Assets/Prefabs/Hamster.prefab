@@ -1050,6 +1050,18 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: e37116f21999baf4c905f5162eec9b71, type: 3}
     VolumeModifier: 1
     Pitch: 1.8
+  TestSound:
+    Clip: {fileID: 0}
+    VolumeModifier: 1
+    MixerGroup: {fileID: 0}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
   TimeToWaitAfterLastCommandLoose: 3
   TimeToRunAfterCommand: 2
 --- !u!114 &114709964496308376

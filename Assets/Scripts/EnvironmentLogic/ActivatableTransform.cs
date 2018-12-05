@@ -4,6 +4,7 @@ namespace Assets.Scripts.EnvironmentLogic
 {
     public class ActivatableTransform : MonoBehaviour
     {
+        public Transform TargetTransform;
         public Vector3 DeltaPosition = Vector3.zero;
         public float ActivationSpeed = 2f;
         public float DeactivationSpeed = 2f;
@@ -17,7 +18,11 @@ namespace Assets.Scripts.EnvironmentLogic
 
         void Awake()
         {
-            _initialPosition = transform.position;
+            // If target is not set then select self object
+            if (TargetTransform == null)
+                TargetTransform = transform;
+
+            _initialPosition = TargetTransform.position;
             _targedPosition = _initialPosition + DeltaPosition;
         }
 
@@ -31,33 +36,36 @@ namespace Assets.Scripts.EnvironmentLogic
             if (_activator.IsActivated && _state < 1f)
             {
                 _state += Time.deltaTime * DeactivationSpeed;
-                transform.position = Vector3.Lerp(_initialPosition, _targedPosition, DeactivationMovement.Evaluate(_state));
+                TargetTransform.position = Vector3.Lerp(_initialPosition, _targedPosition, DeactivationMovement.Evaluate(_state));
             }
 
             if (!_activator.IsActivated && _state > 0f)
             {
                 _state -= Time.deltaTime * ActivationSpeed;
-                transform.position = Vector3.Lerp(_initialPosition, _targedPosition, ActivationMovement.Evaluate(_state));
+                TargetTransform.position = Vector3.Lerp(_initialPosition, _targedPosition, ActivationMovement.Evaluate(_state));
             }
         }
 
         void OnDrawGizmosSelected()
         {
-            var meshFilter = GetComponent<MeshFilter>();
+            var t = transform;
+            if (TargetTransform != null)
+                t = TargetTransform;
+            var meshFilter = t.GetComponent<MeshFilter>();
             if (meshFilter != null)
             {
                 if (Application.isPlaying)
-                    Gizmos.DrawWireMesh(GetComponent<MeshFilter>().sharedMesh, _targedPosition,
-                        transform.rotation, transform.localScale);
+                    Gizmos.DrawWireMesh(meshFilter.sharedMesh, _targedPosition,
+                        t.rotation, t.localScale);
                 else
-                    Gizmos.DrawWireMesh(GetComponent<MeshFilter>().sharedMesh, transform.position + DeltaPosition,
-                        transform.rotation, transform.localScale);
+                    Gizmos.DrawWireMesh(meshFilter.sharedMesh, t.position + DeltaPosition,
+                        t.rotation, t.localScale);
             }
 
             if (Application.isPlaying)
                 Gizmos.DrawLine(_initialPosition, _targedPosition);
             else
-                Gizmos.DrawLine(transform.position, transform.position + DeltaPosition);
+                Gizmos.DrawLine(t.position, t.position + DeltaPosition);
         }
     }
 }

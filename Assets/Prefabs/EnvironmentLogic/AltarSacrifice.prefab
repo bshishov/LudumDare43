@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 114976569272495014}
   - component: {fileID: 114810186956547774}
   m_Layer: 0
-  m_Name: SacrificeAltar
+  m_Name: AltarSacrifice
   m_TagString: DrumArea
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -396,7 +396,15 @@ MonoBehaviour:
   SuccessPatternSound:
     Clip: {fileID: 0}
     VolumeModifier: 1
+    MixerGroup: {fileID: 0}
+    Loop: 0
+    IgnoreListenerPause: 0
     Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
 --- !u!114 &114976569272495014
 MonoBehaviour:
   m_ObjectHideFlags: 1

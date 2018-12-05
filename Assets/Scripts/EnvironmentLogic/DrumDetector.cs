@@ -4,6 +4,7 @@ namespace Assets.Scripts.EnvironmentLogic
 {
     public class DrumDetector : MonoBehaviour
     {
+        [Header("General")]
         public Drum.CommandSequence Sequence;  
         public float MinBpm = 100f;
         public bool HideCursor = false;
@@ -20,7 +21,7 @@ namespace Assets.Scripts.EnvironmentLogic
         public Color NoteHitColorB = Color.magenta;
         [Range(0, 1)] public float NoteImpact = 0.5f;
         [Range(0, 1)] public float SuccessImpact = 0.5f;
-        public AudioClipWithVolume SuccessPatternSound;
+        public Sound SuccessPatternSound;
 
         private bool _isActivated;
         private Drum _drum;

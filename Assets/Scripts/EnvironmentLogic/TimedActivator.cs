@@ -4,12 +4,13 @@ namespace Assets.Scripts.EnvironmentLogic
 {
     public class TimedActivator : MonoBehaviour
     {
+        public ActivatorProxy[] Targets;
+
+        [Header("Timings")]
         public float TimeOffset = 0f;
         public float ActivateAtTime = 1f;
         public float DeactivateAtTime = 2f;
         public float TotalDuration = 4f;
-
-        public ActivatorProxy[] Targets;
         public bool Loop = true;
 
         private float _currentTime = 0f;

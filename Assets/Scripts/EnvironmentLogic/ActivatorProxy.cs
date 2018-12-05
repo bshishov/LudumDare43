@@ -93,11 +93,13 @@ namespace Assets.Scripts.EnvironmentLogic
             }
         }
 
+        [ContextMenu("Activate")]
         public void Activate()
         {
             OnActivate();
         }
 
+        [ContextMenu("Deactivate")]
         public void Deactivate()
         {
             OnDeactivate();

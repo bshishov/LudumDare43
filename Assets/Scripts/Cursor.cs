@@ -38,9 +38,7 @@ namespace Assets.Scripts
         private float _noteActivity = 0f;
         private Color _targetColor;
         private float _trauma;
-        private Vector3 _initialScale;
         ParticleSystem.MainModule _particles;
-        private bool _cursorIsHittingGround;
         private Vector3 _mouseWorldPosition;
         private Camera _camera;
         private GameObject _drumArea;
@@ -50,7 +48,6 @@ namespace Assets.Scripts
         {
             _drum = FindObjectOfType<Drum>();
             _drum.OnNotePlayed += DrumOnOnNotePlayed;
-            _initialScale = transform.localScale;
 
             if (Particles != null)
                 _particles = Particles.main;
@@ -61,10 +58,10 @@ namespace Assets.Scripts
         void Update()
         {
             RaycastHit hit;
-            _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f,
+            var groundHit = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f,
                 LayerMask.GetMask("Environment"));
 
-            if (_cursorIsHittingGround)
+            if (groundHit)
             {
                 _mouseWorldPosition = hit.point;
                 

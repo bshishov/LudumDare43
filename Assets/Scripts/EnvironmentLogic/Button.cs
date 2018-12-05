@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.EnvironmentLogic
@@ -8,17 +6,21 @@ namespace Assets.Scripts.EnvironmentLogic
     [RequireComponent(typeof(Collider))]
     public class Button : MonoBehaviour
     {
+        public bool IsActivated { get; private set; }
+
         [Header("General")]
         public string[] RequiredTags;
         [Range(1, 10)]
         public int Required = 1;
-
         public ActivatorProxy[] Targets;
-        public AudioClipWithVolume PressSound;
+        public Transform ButtonPlateTransform;
 
         [Header("Visuals")]
         public float PressDepth = 0.1f;
         public float PressingSpeed = 4f;
+
+        [Header("Audio")]
+        public AudioClipWithVolume PressSound;
 
         [Header("Indicators")]
         public AudioClipWithVolume IndicatorActivateSound;
@@ -36,12 +38,14 @@ namespace Assets.Scripts.EnvironmentLogic
 
         private Flame[] _indicatorFlames;
 
-        public bool IsActivated { get; private set; }
-
         void Start()
         {
-            _initialPosition = transform.position;
-            _pressedPosition = transform.position + Vector3.down * PressDepth;
+            // If not set - use self as a transform
+            if (ButtonPlateTransform == null)
+                ButtonPlateTransform = transform;
+
+            _initialPosition = ButtonPlateTransform.position;
+            _pressedPosition = ButtonPlateTransform.position + Vector3.down * PressDepth;
             IsActivated = false;
 
             if (!GetComponent<Collider>().isTrigger)
@@ -63,16 +67,18 @@ namespace Assets.Scripts.EnvironmentLogic
 
         void Update()
         {
+            // Button plate movement when activating
             if (IsActivated && _currentState < 1f)
             {
                 _currentState += Time.deltaTime * PressingSpeed;
-                transform.position = Vector3.Lerp(_initialPosition, _pressedPosition, _currentState);
+                ButtonPlateTransform.position = Vector3.Lerp(_initialPosition, _pressedPosition, _currentState);
             }
 
+            // Button plate movement when deactivating
             if (!IsActivated && _currentState > 0f)
             {
                 _currentState -= Time.deltaTime * PressingSpeed;
-                transform.position = Vector3.Lerp(_initialPosition, _pressedPosition, _currentState);
+                ButtonPlateTransform.position = Vector3.Lerp(_initialPosition, _pressedPosition, _currentState);
             }
         }
 
@@ -141,10 +147,13 @@ namespace Assets.Scripts.EnvironmentLogic
                 }
             }
 
-            
-            for (var i = 0; i < Required; i++)
+
+            if (UseIndicators)
             {
-                Gizmos.DrawSphere(transform.TransformPoint(GetIndicatorPosition(i)), 0.1f);
+                for (var i = 0; i < Required; i++)
+                {
+                    Gizmos.DrawSphere(transform.TransformPoint(GetIndicatorPosition(i)), 0.1f);
+                }
             }
         }
 

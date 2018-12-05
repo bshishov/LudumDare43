@@ -193,8 +193,8 @@ MonoBehaviour:
   Particles: {fileID: 198076319120702140}
   SizeMultiplier: 2
   AscendSound:
-    Clip: {fileID: 8300000, guid: a8b11f7bc4e076943a2096c7f363684e, type: 3}
-    VolumeModifier: 1.2
+    Clip: {fileID: 8300000, guid: 92ed2c8f0e50c5e44a6c143bc434e87a, type: 3}
+    VolumeModifier: 1.5
     MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
       type: 2}
     Loop: 0

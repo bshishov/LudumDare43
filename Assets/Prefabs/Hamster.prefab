@@ -1044,19 +1044,25 @@ MonoBehaviour:
     m_RotationOrder: 4
   ReactSound:
     Clip: {fileID: 8300000, guid: a8b11f7bc4e076943a2096c7f363684e, type: 3}
-    VolumeModifier: 1
-    Pitch: 1.5
-  DeathSound:
-    Clip: {fileID: 8300000, guid: e37116f21999baf4c905f5162eec9b71, type: 3}
-    VolumeModifier: 1
-    Pitch: 1.8
-  TestSound:
-    Clip: {fileID: 0}
-    VolumeModifier: 1
-    MixerGroup: {fileID: 0}
+    VolumeModifier: 1.2
+    MixerGroup: {fileID: 243984890780874304, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
     Loop: 0
     IgnoreListenerPause: 0
-    Pitch: 1
+    Pitch: 1.5
+    RandomizePitch: 1
+    MaxPitchShift: 0.15
+    Delay: 0
+    RandomizeDelay: 1
+    MaxAdditionalDelay: 0.5
+  DeathSound:
+    Clip: {fileID: 8300000, guid: e37116f21999baf4c905f5162eec9b71, type: 3}
+    VolumeModifier: 1.2
+    MixerGroup: {fileID: 243984890780874304, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 1.8
     RandomizePitch: 0
     MaxPitchShift: 0.05
     Delay: 0

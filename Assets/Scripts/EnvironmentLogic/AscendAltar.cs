@@ -124,7 +124,8 @@ namespace Assets.Scripts.EnvironmentLogic
                     Particles.Stop();
             }
 
-            _particlesMain.startSizeMultiplier = _defaultParticleSize + SizeMultiplier * _trauma;
+            if(Particles != null)
+                _particlesMain.startSizeMultiplier = _defaultParticleSize + SizeMultiplier * _trauma;
         }
 
 

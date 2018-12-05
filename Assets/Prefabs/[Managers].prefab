@@ -59,7 +59,6 @@ GameObject:
   - component: {fileID: 114571752771731694}
   - component: {fileID: 225914281964520732}
   - component: {fileID: 114470809559349218}
-  - component: {fileID: 114502375789856962}
   m_Layer: 5
   m_Name: ScreenFader
   m_TagString: Untagged
@@ -127,6 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4767814257921928}
+  - component: {fileID: 114125633623181996}
   m_Layer: 5
   m_Name: '[Managers]'
   m_TagString: Untagged
@@ -162,6 +162,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114125633623181996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1754004679211178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a62a5283e5c57e4fa8b1892d2e27b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScreenFader: {fileID: 114470809559349218}
+  Music:
+    Clip: {fileID: 8300000, guid: ff7af29635cf8e74680707c90bc1402a, type: 3}
+    VolumeModifier: 0.3
+    Pitch: 1
 --- !u!114 &114141545620547896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,18 +286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeTime: 1
   Initial: 0
---- !u!114 &114502375789856962
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1188262698818030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a62a5283e5c57e4fa8b1892d2e27b30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScreenFader: {fileID: 114470809559349218}
 --- !u!114 &114571752771731694
 MonoBehaviour:
   m_ObjectHideFlags: 1

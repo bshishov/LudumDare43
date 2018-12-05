@@ -45,6 +45,7 @@ namespace Assets.Scripts.Intro
         private CameraController _camera;
         private Color _defaultImageColor;
         private float _defaultFadeTime;
+        private float _defaultMusicVolume;
 
         void Start ()
         {
@@ -94,11 +95,15 @@ namespace Assets.Scripts.Intro
                     _step = (_step + 1) % _melody.Length;
                 }
 
-                if (d >= 0.9f)
+                if (distanceToPlayer < 2.5f)
                 {
                     _state = State.Activating;
                     Activate();
                 }
+
+                var music = SoundManager.Instance.MusicHandler;
+                if (music != null && music.IsActive)
+                    music.Volume = _defaultMusicVolume * (1f - d);
             }
         }
 
@@ -106,6 +111,10 @@ namespace Assets.Scripts.Intro
         {
             if (_player == null && col.CompareTag("Player"))
                 _player = col.gameObject;
+
+            var music = SoundManager.Instance.MusicHandler;
+            if (music != null)
+                _defaultMusicVolume = music.Volume;
         }
 
         private void StateChanged()
@@ -133,6 +142,10 @@ namespace Assets.Scripts.Intro
                 if (ObjectsToSpawn != null)
                     foreach (var o in ObjectsToSpawn)
                         GameObject.Instantiate(o, transform.position, Quaternion.identity);
+
+                var music = SoundManager.Instance.MusicHandler;
+                if(music.IsActive)
+                    music.Stop();
 
                 Debug.Log("!!!!!!!!!!! STUFF IS HAPPENING !!!!!!!!!!!!");
                 _state = State.Activated;

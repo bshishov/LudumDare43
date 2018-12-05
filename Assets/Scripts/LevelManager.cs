@@ -8,6 +8,7 @@ namespace Assets.Scripts
     public class LevelManager : Singleton<LevelManager>
     {
         public UICanvasGroupFader ScreenFader;
+        public AudioClipWithVolume Music;
         private string _nextLevelRequest;
 
         void Start ()
@@ -17,6 +18,8 @@ namespace Assets.Scripts
 
             ScreenFader.StateChanged += StateChanged;
             ScreenFader.FadeOut();
+
+            SoundManager.Instance.PlayMusic(Music);
         }
 
         private void StateChanged()

@@ -85,7 +85,6 @@ namespace Assets.Scripts.EnvironmentLogic
 
         public void OnCursorEnter()
         {
-            Debug.Log("CURSOR ENTER");
             _cursorEntered = true;
             _drum.OnNotePlayed += DrumOnOnNotePlayed;
 

@@ -19,10 +19,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4563729134769384}
+  - component: {fileID: 65252796063961964}
+  - component: {fileID: 114995896360541092}
   m_Layer: 9
   m_Name: Button
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -54,8 +56,6 @@ GameObject:
   - component: {fileID: 4728140962758832}
   - component: {fileID: 33651335978489294}
   - component: {fileID: 23961314007901074}
-  - component: {fileID: 114816717585291178}
-  - component: {fileID: 65383198808562966}
   m_Layer: 9
   m_Name: mesh_Button
   m_TagString: Untagged
@@ -69,15 +69,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1100342632256266}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -13.4, y: 0, z: -1.27}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4728140962758832}
   - {fileID: 4968752471096686}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4728140962758832
 Transform:
   m_ObjectHideFlags: 1
@@ -202,24 +202,24 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 9720e593f687ceb45a06d496fb1152e8, type: 3}
---- !u!65 &65383198808562966
+--- !u!65 &65252796063961964
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1848611899225284}
+  m_GameObject: {fileID: 1100342632256266}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.0103662, y: 0.5461899, z: 2.8594387}
+  m_Size: {x: 3, y: 0.5, z: 3}
   m_Center: {x: -0.07774401, y: 0.07172048, z: 0.0812726}
---- !u!114 &114816717585291178
+--- !u!114 &114995896360541092
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1848611899225284}
+  m_GameObject: {fileID: 1100342632256266}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4674cc7e9b76be34e8ddadb7b44a0d7f, type: 3}
@@ -228,14 +228,15 @@ MonoBehaviour:
   RequiredTags:
   - Hamster
   - Player
-  Required: 4
+  Required: 1
   Targets: []
+  ButtonPlateTransform: {fileID: 4728140962758832}
+  PressDepth: 0.1
+  PressingSpeed: 4
   PressSound:
     Clip: {fileID: 8300000, guid: e38ed8fc1cc15ec4bb24527ba680059c, type: 3}
     VolumeModifier: 1
     Pitch: 1
-  PressDepth: 0.1
-  PressingSpeed: 4
   IndicatorActivateSound:
     Clip: {fileID: 8300000, guid: b6a1d75339cea914a8f79a41b1a49c39, type: 3}
     VolumeModifier: 0.05
@@ -246,4 +247,4 @@ MonoBehaviour:
   IndicatorsRadius: 2.9
   IndicatorOffset: 1.45
   IndicatorAngleStep: 1.62
-  IndicatorY: -0.06
+  IndicatorY: 0.05

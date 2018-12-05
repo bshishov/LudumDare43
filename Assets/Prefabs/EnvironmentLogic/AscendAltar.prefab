@@ -26,7 +26,7 @@ GameObject:
   m_Layer: 0
   m_Name: AscendAltar
   m_TagString: DrumArea
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -155,6 +155,10 @@ MonoBehaviour:
   NoteHitColorB: {r: 1, g: 0, b: 1, a: 1}
   NoteImpact: 0.5
   SuccessImpact: 0.5
+  SuccessPatternSound:
+    Clip: {fileID: 0}
+    VolumeModifier: 1
+    Pitch: 1
 --- !u!114 &114462558228557642
 MonoBehaviour:
   m_ObjectHideFlags: 1

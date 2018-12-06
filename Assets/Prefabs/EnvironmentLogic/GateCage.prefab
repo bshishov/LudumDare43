@@ -63,7 +63,7 @@ GameObject:
   m_Layer: 0
   m_Name: GateCage
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -243,7 +243,8 @@ MonoBehaviour:
   ActivateSound:
     Clip: {fileID: 8300000, guid: bb4b5a18a3a88c04dbe354963765943d, type: 3}
     VolumeModifier: 0.3
-    MixerGroup: {fileID: 0}
+    MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
     Loop: 0
     IgnoreListenerPause: 0
     Pitch: 1

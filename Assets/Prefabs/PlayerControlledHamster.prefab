@@ -273,10 +273,11 @@ GameObject:
   - component: {fileID: 54383487170646628}
   - component: {fileID: 114738510849091892}
   - component: {fileID: 114175759617642194}
+  - component: {fileID: 114537879749104876}
   m_Layer: 0
   m_Name: PlayerControlledHamster
   m_TagString: Player
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1030,6 +1031,31 @@ MonoBehaviour:
   DefaultBody: {fileID: 0}
   YFix: 0.05
   EnableCheats: 1
+--- !u!114 &114537879749104876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1517968182572640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195664170f04bb94e9bce6212cad83a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepSize: 1
+  StepSound:
+    Clip: {fileID: 8300000, guid: a693b0d296fd9c04d8595ee26446f6ce, type: 3}
+    VolumeModifier: 0.5
+    MixerGroup: {fileID: 243984890780874304, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 0.989
+    RandomizePitch: 1
+    MaxPitchShift: 0.2
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
 --- !u!114 &114738510849091892
 MonoBehaviour:
   m_ObjectHideFlags: 1

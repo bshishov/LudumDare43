@@ -20,5 +20,5 @@ MonoBehaviour:
     Limit: 4
   - MixerGroup: {fileID: 243984890780874304, guid: 9a58a68bbb187a940b649df73338cb06,
       type: 2}
-    Limit: 16
+    Limit: 8
   DefaultLimit: 10

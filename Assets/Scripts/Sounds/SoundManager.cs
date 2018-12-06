@@ -53,6 +53,8 @@ public class SoundManager : MonoBehaviour
             }
         }
 
+        public Transform AttachedTo { get; private set; }
+
         public SoundHandler(AudioSource source)
         {
             Source = source;
@@ -64,8 +66,17 @@ public class SoundManager : MonoBehaviour
                 Source.Stop();
         }
 
-        public void AttachToObject(Transform transform1)
+        public void AttachToObject(Transform transform1, 
+            float spatialBlend = 0.7f, 
+            float minDistance = 15f,
+            float maxDistance = 40f)
         {
+            AttachedTo = transform1;
+            Source.spatialBlend = spatialBlend;
+            Source.rolloffMode = AudioRolloffMode.Linear;
+            Source.minDistance = minDistance;
+            Source.maxDistance = maxDistance;
+            Source.dopplerLevel = 0f;
         }
     }
 
@@ -77,6 +88,7 @@ public class SoundManager : MonoBehaviour
     private readonly List<SoundHandler> _handlers = new List<SoundHandler>();
     private readonly Dictionary<AudioMixerGroup, int> _groupCounter = new Dictionary<AudioMixerGroup, int>();
     private static SoundManager _instance;
+    private List<SoundHandler> _inactiveHandlers = new List<SoundHandler>();
 
     public static SoundManager Instance
     {
@@ -120,8 +132,20 @@ public class SoundManager : MonoBehaviour
 
     void Update()
     {
-        var inactiveHandlers = _handlers.Where(h => !h.IsActive).ToList();
-        foreach (var handler in inactiveHandlers)
+        foreach (var handler in _handlers)
+        {
+            if (!handler.IsActive)
+            {
+                _inactiveHandlers.Add(handler);
+            }
+            else
+            {
+                if (handler.AttachedTo != null)
+                    handler.Source.transform.position = handler.AttachedTo.transform.position;
+            }
+        }
+        
+        foreach (var handler in _inactiveHandlers)
         {
             var sourceGroup = handler.Source.outputAudioMixerGroup;
             if (sourceGroup != null && _groupCounter.ContainsKey(sourceGroup))
@@ -129,6 +153,8 @@ public class SoundManager : MonoBehaviour
             Destroy(handler.Source.gameObject);
             _handlers.Remove(handler);
         }
+
+        _inactiveHandlers.Clear();
     }
 
     public SoundHandler Play(AudioClip clip, float volume = 1f, bool loop = false, float pitch = 1f,
@@ -213,6 +239,16 @@ public class SoundManager : MonoBehaviour
         return handler;
     }
 
+    public SoundHandler Play(Sound sound, Transform attachTo)
+    {
+        var s = Play(sound);
+        if (s != null)
+            s.AttachToObject(attachTo);
+
+        return s;
+    }
+
+
     public SoundHandler PlayMusic(AudioClipWithVolume clip, bool loop = true, float pitch = 1f,
         bool ignoreListenerPause = false, float delay = 0f)
     {
@@ -225,7 +261,6 @@ public class SoundManager : MonoBehaviour
 
         if (MusicHandler != null)
         {
-            Debug.Log(clip.VolumeModifier);
             MusicHandler.Source.clip = clip.Clip;
             //MusicHandler.Volume = clip.VolumeModifier;
             MusicHandler.Source.volume = clip.VolumeModifier;

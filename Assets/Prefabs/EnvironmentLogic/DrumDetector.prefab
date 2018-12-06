@@ -27,7 +27,7 @@ GameObject:
   m_Layer: 0
   m_Name: DrumDetector
   m_TagString: DrumArea
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -167,6 +167,7 @@ MonoBehaviour:
   OneTime: 1
   Targets: []
   FlameFx: {fileID: 114477255437466218}
+  ActiveCursorColor: {r: 1, g: 1, b: 1, a: 1}
   ActivatedColor: {r: 0, g: 0.7193136, b: 1, a: 1}
   UnactivatedColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
   NoteHitColorA: {r: 1, g: 0, b: 0, a: 1}
@@ -176,7 +177,16 @@ MonoBehaviour:
   SuccessPatternSound:
     Clip: {fileID: 8300000, guid: b6a1d75339cea914a8f79a41b1a49c39, type: 3}
     VolumeModifier: 0.3
+    MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
     Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
 --- !u!135 &135930985459667452
 SphereCollider:
   m_ObjectHideFlags: 1

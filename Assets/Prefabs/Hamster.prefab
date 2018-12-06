@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 114709964496308376}
   - component: {fileID: 54629983091140908}
   - component: {fileID: 114836026557067066}
+  - component: {fileID: 114253990018257768}
   m_Layer: 0
   m_Name: Hamster
   m_TagString: Hamster
@@ -1001,6 +1002,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114253990018257768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1177184799825246}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195664170f04bb94e9bce6212cad83a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepSize: 0.8
+  StepSound:
+    Clip: {fileID: 8300000, guid: a693b0d296fd9c04d8595ee26446f6ce, type: 3}
+    VolumeModifier: 0.2
+    MixerGroup: {fileID: 243984890780874304, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 0.989
+    RandomizePitch: 1
+    MaxPitchShift: 0.2
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
 --- !u!114 &114541943250562968
 MonoBehaviour:
   m_ObjectHideFlags: 1

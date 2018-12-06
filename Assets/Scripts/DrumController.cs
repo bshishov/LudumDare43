@@ -21,8 +21,8 @@ namespace Assets.Scripts
         public GameObject SoulPrefab;
 
         [Header("Audio")]
-        public AudioClipWithVolume SoundA;
-        public AudioClipWithVolume SoundB;
+        public Sound SoundA;
+        public Sound SoundB;
 
         [Header("Camera")]
         [Range(0f, 1f)]
@@ -64,11 +64,8 @@ namespace Assets.Scripts
         private float _currentEnergy;
         private Drum _drum;
 
-        // Sound settings
-       // private readonly float[] _pitchesA = new float[3] { 1f - PitchShift, 1f, 1 + PitchShift };
-       // private readonly float[] _pitchesB = new float[4] { 1f - PitchShift, 1f, 1 + PitchShift, 1f };
-
-	private readonly float[] _pitchesA = new float[8] { 1f, 
+        // Sound settings (melody)
+	    private readonly float[] _pitchesA = new float[8] { 1f, 
 							    1f - PitchShift, 1f + PitchShift,  
 							    1f - PitchShift, 1f + PitchShift,
 							    1f - PitchShift, 1f + PitchShift, 
@@ -89,6 +86,9 @@ namespace Assets.Scripts
             _drum.OnNotePlayed += DrumOnOnNotePlayed;
 
             _currentEnergy = MaxEnergy;
+
+            if (DrumMeshTransform == null)
+                DrumMeshTransform = transform;
         }
 
         void Update ()
@@ -96,16 +96,27 @@ namespace Assets.Scripts
             if (Input.GetMouseButtonDown(0))
             {
                 _aHits = (_aHits + 1) % _pitchesA.Length;
-                SoundManager.Instance.Play(SoundA, pitch: _pitchesA[_aHits]);
-		// SoundManager.Instance.Play(SoundA, pitch: Random.Range(0.85f, 1.15f)); 
+                var s = SoundManager.Instance.Play(SoundA);
+                if (s != null)
+                {
+                    s.Pitch = _pitchesA[_aHits];
+                    s.AttachToObject(transform);
+                }
+
                 _drum.PlayNote(Drum.NoteType.A);
             }
 
             if (Input.GetMouseButtonDown(1))
             {
                 _bHits = (_bHits + 1) % _pitchesB.Length;
-                SoundManager.Instance.Play(SoundB, pitch: _pitchesB[_bHits]);
-		// SoundManager.Instance.Play(SoundB, pitch: Random.Range(0.85f, 1.15f));
+
+                var s = SoundManager.Instance.Play(SoundB);
+                if (s != null)
+                {
+                    s.Pitch = _pitchesB[_bHits];
+                    s.AttachToObject(transform);
+                }
+
                 _drum.PlayNote(Drum.NoteType.B);
             }
 
@@ -157,7 +168,7 @@ namespace Assets.Scripts
 
                 if (SoulPrefab != null)
                 {
-                    var go = Instantiate(SoulPrefab, transform.TransformPoint(DrumHitCenter), Quaternion.identity);
+                    var go = Instantiate(SoulPrefab, DrumMeshTransform.TransformPoint(DrumHitCenter), Quaternion.identity);
                     var soul = go.GetComponent<Soul>();
                     soul.GoToTarget(Cursor.Instance.transform, note.Type);
                 }
@@ -170,9 +181,14 @@ namespace Assets.Scripts
         {
             // Soul spawner point
             Gizmos.color = Color.blue;
-            var c = transform.TransformPoint(DrumHitCenter);
-            var lh = transform.TransformPoint(LeftHandSourcePosition);
-            var rh = transform.TransformPoint(RightHandSourcePosition);
+
+            var t = DrumMeshTransform;
+            if (t == null)
+                t = transform;
+
+            var c = t.TransformPoint(DrumHitCenter);
+            var lh = t.TransformPoint(LeftHandSourcePosition);
+            var rh = t.TransformPoint(RightHandSourcePosition);
 
             Gizmos.DrawSphere(c, 0.1f);
 

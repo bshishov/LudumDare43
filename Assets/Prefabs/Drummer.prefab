@@ -84,8 +84,6 @@ GameObject:
   - component: {fileID: 4258686323999744}
   - component: {fileID: 33705652164852506}
   - component: {fileID: 23077987180418080}
-  - component: {fileID: 114597594186374030}
-  - component: {fileID: 114724121198235670}
   m_Layer: 0
   m_Name: mesh_Drum
   m_TagString: Untagged
@@ -452,10 +450,13 @@ GameObject:
   - component: {fileID: 54575303912453388}
   - component: {fileID: 114793813673746372}
   - component: {fileID: 114123023609646100}
+  - component: {fileID: 114778837174870522}
+  - component: {fileID: 114304868290847858}
+  - component: {fileID: 114082992923389400}
   m_Layer: 0
   m_Name: Drummer
   m_TagString: Player
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -671,8 +672,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1831027208742082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.21, y: 0.96, z: 9.73}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4277186705045186}
   - {fileID: 4791760387806166}
@@ -1149,6 +1150,53 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114082992923389400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831027208742082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9046dbb4b73c7342898b84bfcabf7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxEnergy: 200
+  DrainEnergyPerNote: 1
+  "DrainEnergyPer\u0421ommand": 2
+  DrumMeshTransform: {fileID: 4258686323999744}
+  DrumHitCenter: {x: 0, y: 0.12, z: 0.44}
+  LeftHandSourcePosition: {x: -0.31, y: 0.4, z: 0.42}
+  RightHandSourcePosition: {x: 0.31, y: 0.4, z: 0.42}
+  SoulPrefab: {fileID: 1237733983096662, guid: 5bc94e2403dab57478eaf8b722c72159, type: 2}
+  SoundA:
+    Clip: {fileID: 8300000, guid: d02b8bb10d9e2254581bce8bbed577cf, type: 3}
+    VolumeModifier: 0.3
+    MixerGroup: {fileID: 243188504907842294, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
+  SoundB:
+    Clip: {fileID: 8300000, guid: 12015dc0de3eb5242aa5a5b372b7765d, type: 3}
+    VolumeModifier: 0.3
+    MixerGroup: {fileID: 243188504907842294, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
+  CameraShakePerHitA: 0.6
+  CameraShakePerHitB: 0.2
 --- !u!114 &114123023609646100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1167,35 +1215,25 @@ MonoBehaviour:
   RightHandWeight: 0.5
   LeftHandTargetPosition: {x: 0, y: 0, z: 0}
   RightHandTargetPosition: {x: 0, y: 0, z: 0}
---- !u!114 &114597594186374030
+--- !u!114 &114304868290847858
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1079840671330318}
+  m_GameObject: {fileID: 1831027208742082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9046dbb4b73c7342898b84bfcabf7b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2581a67a057962148b38cbf82ee9c9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxEnergy: 200
-  DrainEnergyPerNote: 1
-  "DrainEnergyPer\u0421ommand": 2
-  DrumMeshTransform: {fileID: 0}
-  DrumHitCenter: {x: 0, y: 0.12, z: 0.44}
-  LeftHandSourcePosition: {x: -0.31, y: 0.4, z: 0.42}
-  RightHandSourcePosition: {x: 0.31, y: 0.4, z: 0.42}
-  SoulPrefab: {fileID: 1237733983096662, guid: 5bc94e2403dab57478eaf8b722c72159, type: 2}
-  SoundA:
-    Clip: {fileID: 8300000, guid: d02b8bb10d9e2254581bce8bbed577cf, type: 3}
-    VolumeModifier: 0.3
-    Pitch: 1
-  SoundB:
-    Clip: {fileID: 8300000, guid: 12015dc0de3eb5242aa5a5b372b7765d, type: 3}
-    VolumeModifier: 0.3
-    Pitch: 1
-  CameraShakePerHitA: 0.6
-  CameraShakePerHitB: 0.2
+  Sequences:
+  - Name: Sacrifice
+    Notes: 01000000010000000100000002000000
+  - Name: Restart
+    Notes: 010000000100000002000000020000000100000002000000
+  - Name: Move
+    Notes: 0100000002000000
+  ShowDebugInfo: 0
 --- !u!114 &114601142685042996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1213,25 +1251,31 @@ MonoBehaviour:
   DefaultBody: {fileID: 0}
   YFix: 0.05
   EnableCheats: 1
---- !u!114 &114724121198235670
+--- !u!114 &114778837174870522
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1079840671330318}
+  m_GameObject: {fileID: 1831027208742082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2581a67a057962148b38cbf82ee9c9cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 195664170f04bb94e9bce6212cad83a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sequences:
-  - Name: Sacrifice
-    Notes: 01000000010000000100000002000000
-  - Name: Restart
-    Notes: 010000000100000002000000020000000100000002000000
-  - Name: Move
-    Notes: 0100000002000000
-  ShowDebugInfo: 0
+  StepSize: 1
+  StepSound:
+    Clip: {fileID: 8300000, guid: a693b0d296fd9c04d8595ee26446f6ce, type: 3}
+    VolumeModifier: 0.5
+    MixerGroup: {fileID: 243984890780874304, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
+    Pitch: 0.989
+    RandomizePitch: 1
+    MaxPitchShift: 0.2
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
 --- !u!114 &114793813673746372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1407,7 +1451,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 5.54905e-12, y: 0.006697678, z: 0.000023275152}
+  m_ConnectedAnchor: {x: 5.549484e-12, y: 0.006697679, z: 0.000023276549}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1451,7 +1495,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0017306167, y: -0.0015009434, z: 0.000057930367}
+  m_ConnectedAnchor: {x: 0.001730611, y: -0.0015009427, z: 0.000057933976}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1495,7 +1539,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0016939957, y: 0.005458468, z: 0.0006358908}
+  m_ConnectedAnchor: {x: 0.001694, y: 0.005458469, z: 0.00063589314}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1539,7 +1583,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0017306326, y: -0.0015009415, z: 0.000057923382}
+  m_ConnectedAnchor: {x: -0.0017306281, y: -0.0015009413, z: 0.00005792606}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1583,7 +1627,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0016939954, y: 0.0054584662, z: 0.00063589175}
+  m_ConnectedAnchor: {x: -0.0016939997, y: 0.005458467, z: 0.0006358941}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:

@@ -20,10 +20,10 @@ namespace Assets.Scripts.EnvironmentLogic
         public float PressingSpeed = 4f;
 
         [Header("Audio")]
-        public AudioClipWithVolume PressSound;
+        public Sound PressSound;
 
         [Header("Indicators")]
-        public AudioClipWithVolume IndicatorActivateSound;
+        public Sound IndicatorActivateSound;
         public bool UseIndicators = false;
         public GameObject IndicatorPrefab;
         public float IndicatorsRadius = 1f;
@@ -94,12 +94,20 @@ namespace Assets.Scripts.EnvironmentLogic
                     var indicator = _indicatorFlames[_playersTriggered - 1];
                     indicator.StartEmission();
                     indicator.AddTrauma(1f);
-                    SoundManager.Instance.Play(IndicatorActivateSound);
+                    var s = SoundManager.Instance.Play(IndicatorActivateSound);
+                    if (s != null)
+                    {
+                        s.AttachToObject(transform);
+                    }
                 }
 
                 if (!IsActivated && _playersTriggered >= Required)
                 {
-                    SoundManager.Instance.Play(PressSound);
+                    var s = SoundManager.Instance.Play(PressSound);
+                    if (s != null)
+                    {
+                        s.AttachToObject(transform);
+                    }
                     IsActivated = true;
                     
                     foreach (var target in Targets)

@@ -235,12 +235,30 @@ MonoBehaviour:
   PressingSpeed: 4
   PressSound:
     Clip: {fileID: 8300000, guid: e38ed8fc1cc15ec4bb24527ba680059c, type: 3}
-    VolumeModifier: 1
+    VolumeModifier: 1.5
+    MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
     Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
   IndicatorActivateSound:
     Clip: {fileID: 8300000, guid: b6a1d75339cea914a8f79a41b1a49c39, type: 3}
     VolumeModifier: 0.05
+    MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
+    Loop: 0
+    IgnoreListenerPause: 0
     Pitch: 1
+    RandomizePitch: 0
+    MaxPitchShift: 0.05
+    Delay: 0
+    RandomizeDelay: 0
+    MaxAdditionalDelay: 0
   UseIndicators: 1
   IndicatorPrefab: {fileID: 1153380334908492, guid: 7102378cc9e25b44caf47c9a4317cd37,
     type: 2}

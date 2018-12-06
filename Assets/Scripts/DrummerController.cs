@@ -81,12 +81,17 @@ namespace Assets.Scripts
                     if (Input.GetMouseButton(1))
                         rfDcLocalTarget = _drumController.DrumHitCenter;
 
-                    _ikController.LeftHandTargetPosition = Vector3.SmoothDamp(_ikController.LeftHandTargetPosition,
-                        _drumController.transform.TransformPoint(lfDcLocalTarget),
-                        ref _lhVelocity, HandMovementTime);
-                    _ikController.RightHandTargetPosition = Vector3.SmoothDamp(_ikController.RightHandTargetPosition,
-                        _drumController.transform.TransformPoint(rfDcLocalTarget),
-                        ref _rhVelocity, HandMovementTime);
+                    _ikController.LeftHandTargetPosition = Vector3.SmoothDamp(
+                        _ikController.LeftHandTargetPosition,
+                        _drumController.DrumMeshTransform.TransformPoint(lfDcLocalTarget),
+                        ref _lhVelocity, 
+                        HandMovementTime);
+
+                    _ikController.RightHandTargetPosition = Vector3.SmoothDamp(
+                        _ikController.RightHandTargetPosition,
+                        _drumController.DrumMeshTransform.TransformPoint(rfDcLocalTarget),
+                        ref _rhVelocity, 
+                        HandMovementTime);
                 }
             }
         }
@@ -94,7 +99,7 @@ namespace Assets.Scripts
         public void Die()
         {
             IsAlive = false;
-            DrumController.Instance.enabled = false;
+            _drumController.enabled = false;
             LevelManager.Instance.Restart();
 
             if (_ragdollController != null)

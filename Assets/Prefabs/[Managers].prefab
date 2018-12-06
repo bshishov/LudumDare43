@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222718656421876208}
   - component: {fileID: 114359529809626736}
   - component: {fileID: 114989056246113250}
+  - component: {fileID: 114112681134182536}
   m_Layer: 5
   m_Name: ProgressBarPanel
   m_TagString: Untagged
@@ -234,6 +235,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114112681134182536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010552286860130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814939c5aa24d58498963020c1fcc748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetTransform: {fileID: 224490827990349858}
+  ShakeDecay: 3
+  ShakeAmplitude: 5
 --- !u!114 &114115422528574060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,9 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FillTransform: {fileID: 224984803654945582}
+  Shaker: {fileID: 0}
   Initial: 1
   ChangeTime: 0.5
-  Amplitude: 50
 --- !u!114 &114145139392280744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -641,9 +656,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FillTransform: {fileID: 224984803654945582}
+  Shaker: {fileID: 114112681134182536}
   Initial: 1
   ChangeTime: 0.5
-  Amplitude: 50
 --- !u!222 &222006765631316396
 CanvasRenderer:
   m_ObjectHideFlags: 1

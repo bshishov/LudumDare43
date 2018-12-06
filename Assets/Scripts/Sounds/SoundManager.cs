@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -85,10 +84,11 @@ public class SoundManager : MonoBehaviour
     public SoundHandler MusicHandler;
     public MixerGroupLimitSettings LimitSettings;
 
+    private static SoundManager _instance;
+
     private readonly List<SoundHandler> _handlers = new List<SoundHandler>();
     private readonly Dictionary<AudioMixerGroup, int> _groupCounter = new Dictionary<AudioMixerGroup, int>();
-    private static SoundManager _instance;
-    private List<SoundHandler> _inactiveHandlers = new List<SoundHandler>();
+    private readonly List<SoundHandler> _inactiveHandlers = new List<SoundHandler>();
 
     public static SoundManager Instance
     {

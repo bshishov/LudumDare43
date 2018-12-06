@@ -8,6 +8,11 @@ namespace Assets.Scripts.EnvironmentLogic
     [RequireComponent(typeof(ActivatorProxy))]
     public class AscendAltar : MonoBehaviour
     {
+        public int Ascended
+        {
+            get { return _ascended; }
+        }
+
         public int Required = 5;
         public float Decay = 0.1f;
         public float Range = 2f;

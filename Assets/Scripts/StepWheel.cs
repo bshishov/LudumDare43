@@ -8,6 +8,7 @@ public class StepWheel : MonoBehaviour
 {
     public float StepSize;
     public Sound StepSound;
+    public ParticleSystem Particles;
 
     private NavMeshAgent _agent;
     private float _t;
@@ -44,5 +45,8 @@ public class StepWheel : MonoBehaviour
         {
             s.AttachToObject(transform);
         }
+
+        if(Particles != null)
+            Particles.Emit(1);
     }
 }

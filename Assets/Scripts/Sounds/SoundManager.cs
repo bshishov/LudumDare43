@@ -86,9 +86,9 @@ public class SoundManager : MonoBehaviour
 
     private static SoundManager _instance;
 
-    private readonly List<SoundHandler> _handlers = new List<SoundHandler>();
-    private readonly Dictionary<AudioMixerGroup, int> _groupCounter = new Dictionary<AudioMixerGroup, int>();
-    private readonly List<SoundHandler> _inactiveHandlers = new List<SoundHandler>();
+    private List<SoundHandler> _handlers = new List<SoundHandler>();
+    private Dictionary<AudioMixerGroup, int> _groupCounter = new Dictionary<AudioMixerGroup, int>();
+    private List<SoundHandler> _inactiveHandlers = new List<SoundHandler>();
 
     public static SoundManager Instance
     {
@@ -205,25 +205,22 @@ public class SoundManager : MonoBehaviour
     {
         if (sound == null)
             return null;
-        
-        if (sound.MixerGroup != null && LimitSettings != null)
+
+        var isLimiting = sound.MixerGroup != null && LimitSettings != null;
+        var isInGroup = false;
+        var soundsInGroup = 0;
+
+        if (isLimiting)
         {
-            if (_groupCounter.ContainsKey(sound.MixerGroup))
+            isInGroup = _groupCounter.ContainsKey(sound.MixerGroup);
+            if (isInGroup)
             {
-                var soundsOfSameGroup = _groupCounter[sound.MixerGroup];
-                if (soundsOfSameGroup >= LimitSettings.GetLimit(sound.MixerGroup))
+                soundsInGroup = _groupCounter[sound.MixerGroup];
+                if (soundsInGroup >= LimitSettings.GetLimit(sound.MixerGroup))
                 {
                     //Debug.Log(string.Format("[SoundManager] Too many sounds for group {0}", sound.MixerGroup));
                     return null;
                 }
-
-                // There are sounds in group so increment by one
-                _groupCounter[sound.MixerGroup] = soundsOfSameGroup + 1;
-            }
-            else
-            {
-                // First sound in group
-                _groupCounter.Add(sound.MixerGroup, 1);
             }
         }
 
@@ -236,6 +233,21 @@ public class SoundManager : MonoBehaviour
             delay += Random.value * sound.MaxAdditionalDelay;
 
         var handler = Play(sound.Clip, sound.VolumeModifier, sound.Loop, pitch, sound.IgnoreListenerPause, delay, sound.MixerGroup);
+
+        if (handler != null)
+        {
+            if (isInGroup)
+            {
+                // There are sounds in group so increment by one
+                _groupCounter[sound.MixerGroup] = soundsInGroup + 1;
+            }
+            else
+            { 
+                // First sound in group
+                _groupCounter.Add(sound.MixerGroup, 1);
+            }
+        }
+
         return handler;
     }
 
@@ -274,5 +286,22 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(handler.Source.gameObject);
         MusicHandler = handler;
         return handler;
+    }
+
+    void OnGUI()
+    {
+#if DEBUG
+        /*
+        if(_groupCounter == null)
+            return;
+        
+        var h = 10;
+        foreach (var kvp in _groupCounter)
+        {
+            GUI.Label(new Rect(10, h, 400, 20), string.Format("{0}: {1}", kvp.Key.name, kvp.Value));
+            h += 20;
+        }
+        */
+#endif
     }
 }

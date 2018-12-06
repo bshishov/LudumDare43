@@ -15,6 +15,7 @@ namespace Assets.Scripts.EnvironmentLogic
 
         [Header("FX")]
         public Flame FlameFx;
+        public Color ActiveCursorColor = Color.white;
         public Color ActivatedColor = Color.blue;
         public Color UnactivatedColor = Color.black;
         public Color NoteHitColorA = Color.red;
@@ -92,7 +93,10 @@ namespace Assets.Scripts.EnvironmentLogic
             _cursorEntered = true;
             _drum.OnNotePlayed += DrumOnOnNotePlayed;
 
-            if(HideCursor)
+            if (FlameFx != null)
+                FlameFx.BaseColor = ActiveCursorColor;
+
+            if (HideCursor)
                 Cursor.Instance.Show();
         }
 
@@ -100,6 +104,14 @@ namespace Assets.Scripts.EnvironmentLogic
         {
             _cursorEntered = false;
             _drum.OnNotePlayed -= DrumOnOnNotePlayed;
+
+            if (FlameFx != null)
+            {
+                if (!_isActivated)
+                    FlameFx.BaseColor = UnactivatedColor;
+                else
+                    FlameFx.BaseColor = ActivatedColor;
+            }
 
             if (HideCursor)
                 Cursor.Instance.Hide();

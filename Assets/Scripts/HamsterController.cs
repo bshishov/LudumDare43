@@ -16,6 +16,8 @@ namespace Assets.Scripts
         public float MinSpeed = 1f;
         public float MaxSpeed = 6f;
         public AnimationCurve BpmCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        public float TimeToWaitAfterLastCommandLoose = 2f;
+        public float TimeToRunAfterCommand = 1f;
 
         [Header("Sounds")]
         public Sound ReactSound;
@@ -26,19 +28,19 @@ namespace Assets.Scripts
         // store if hamster is under drum-control
         private bool _commanded = false;
         private float _timeFromLastCommandLoose = 0f;
-        public float TimeToWaitAfterLastCommandLoose = 2f;
         private float _lastCommandTime = 0f;
-        public float TimeToRunAfterCommand = 1f;
 
         // movement anchor point
         private Vector3 _commandTarget = Vector3.zero;
 
         // random movements
         private float _lastRandomMovementTime = 0f;
-        private float _lastRandomMovementInterval = 0.5f;
+        private float _lastRandomMovementInterval = 2.5f;
         private Vector3 _randomCommandTarget = Vector3.zero;
+
         // distance for random movement targets
         private float _randomMovementDistance = 2f;
+
         // max distance from movement anchor point
         private float _maxRandomMovementDistance = 5f;
         private Animator _animator;

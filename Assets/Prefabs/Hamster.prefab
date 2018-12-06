@@ -110,7 +110,7 @@ GameObject:
   m_Layer: 0
   m_Name: Hamster
   m_TagString: Hamster
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1042,6 +1042,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  TimeToWaitAfterLastCommandLoose: 3
+  TimeToRunAfterCommand: 2
   ReactSound:
     Clip: {fileID: 8300000, guid: a8b11f7bc4e076943a2096c7f363684e, type: 3}
     VolumeModifier: 1.2
@@ -1068,8 +1070,6 @@ MonoBehaviour:
     Delay: 0
     RandomizeDelay: 0
     MaxAdditionalDelay: 0
-  TimeToWaitAfterLastCommandLoose: 3
-  TimeToRunAfterCommand: 2
 --- !u!114 &114709964496308376
 MonoBehaviour:
   m_ObjectHideFlags: 1

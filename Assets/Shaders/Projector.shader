@@ -5,6 +5,9 @@
 		_Color("Color", Color) = (0.26,0.19,0.16,0.0)
 		_ShadowTex("Cookie", 2D) = "gray" {}
 		_FalloffTex("FallOff", 2D) = "white" {}
+		_ClipStart("Clip Start", Range(0.0, 1.0)) = 0.2
+		_ClipEnd("Clip End", Range(0.0, 1.0)) = 0.8		
+
 	}
 	Subshader{
 		Tags {"Queue" = "Transparent"}
@@ -31,6 +34,8 @@
 
 			float4x4 unity_Projector;
 			float4x4 unity_ProjectorClip;
+			fixed _ClipStart;
+			fixed _ClipEnd;
 
 			vertex_out vert(float4 vertex : POSITION, float3 normal : NORMAL)
 			{
@@ -56,6 +61,11 @@
 
 				fixed4 texF = tex2Dproj(_FalloffTex, UNITY_PROJ_COORD(i.uvFalloff));
 				fixed4 res = lerp(fixed4(1,1,1,0), texS, texF.a * i.intensity);
+				//clip(0.5 - saturate(UNITY_PROJ_COORD(i.uvFalloff).z));
+				fixed p = saturate(UNITY_PROJ_COORD(i.uvFalloff).z);
+				clip(p - _ClipStart);
+				clip(_ClipEnd - p);
+				//return saturate(UNITY_PROJ_COORD(i.uvFalloff).z);
 
 				UNITY_APPLY_FOG_COLOR(i.fogCoord, res, fixed4(1,1,1,1));
 

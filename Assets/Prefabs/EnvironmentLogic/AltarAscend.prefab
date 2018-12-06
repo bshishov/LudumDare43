@@ -26,7 +26,7 @@ GameObject:
   m_Layer: 0
   m_Name: AltarAscend
   m_TagString: DrumArea
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Required: 5
-  Decay: 0.5
+  Decay: 0.4
   Range: 2
   NextLevelName: 
   Particles: {fileID: 198076319120702140}
@@ -225,6 +225,7 @@ MonoBehaviour:
   Targets:
   - {fileID: 114282016584844978}
   FlameFx: {fileID: 0}
+  ActiveCursorColor: {r: 1, g: 1, b: 1, a: 1}
   ActivatedColor: {r: 0, g: 0, b: 1, a: 1}
   UnactivatedColor: {r: 0, g: 0, b: 0, a: 1}
   NoteHitColorA: {r: 1, g: 0, b: 0, a: 1}

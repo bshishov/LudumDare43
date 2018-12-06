@@ -137,9 +137,7 @@ namespace Assets.Scripts
 
             if (!_commanded)
             {
-                var sound = SoundManager.Instance.Play(ReactSound);
-                if(sound != null)
-                    sound.AttachToObject(transform);
+                SoundManager.Instance.Play(ReactSound, transform);
             }
 
             _commanded = true;
@@ -186,8 +184,7 @@ namespace Assets.Scripts
             if (_ragdollController != null)
                 _ragdollController.EnableRagdoll();
 
-            SoundManager.Instance.Play(DeathSound)
-                .AttachToObject(transform);
+            SoundManager.Instance.Play(DeathSound, transform);
             Debug.Log("[Hamster] Death");
         }
 

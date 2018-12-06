@@ -144,7 +144,7 @@ namespace Assets.Scripts.Intro
                         GameObject.Instantiate(o, transform.position, Quaternion.identity);
 
                 var music = SoundManager.Instance.MusicHandler;
-                if(music.IsActive)
+                if(music != null && music.IsActive)
                     music.Stop();
 
                 Debug.Log("!!!!!!!!!!! STUFF IS HAPPENING !!!!!!!!!!!!");

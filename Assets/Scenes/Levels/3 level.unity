@@ -2530,6 +2530,11 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: 0.000023277014
       objectReference: {fileID: 0}
+    - target: {fileID: 114082992923389400, guid: 5239ba9990a66b5409890255c7c415e8,
+        type: 2}
+      propertyPath: MaxEnergy
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5239ba9990a66b5409890255c7c415e8, type: 2}
   m_IsPrefabAsset: 0

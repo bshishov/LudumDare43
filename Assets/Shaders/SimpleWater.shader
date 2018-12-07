@@ -91,8 +91,8 @@
 			float2 flowDir = tex2D(_FlowMap, i.uvOriginal).r * _FlowDirection.xz;
 
 
-			float phase0 = frac(_Time[1] * 0.5f + 0.5f);
-			float phase1 = frac(_Time[1] * 0.5f + 1.0f);
+			float phase0 = frac(_FlowDirection.w * _Time[1] * 0.5f + 0.5f);
+			float phase1 = frac(_FlowDirection.w * _Time[1] * 0.5f + 1.0f);
 
 			fixed4 tex0 = tex2D(_MainTex, i.uv + flowDir.xy * phase0);
 			fixed4 tex1 = tex2D(_MainTex, i.uv + flowDir.xy * phase1);

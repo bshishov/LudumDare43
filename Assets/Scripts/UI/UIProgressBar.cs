@@ -5,6 +5,7 @@ namespace Assets.Scripts.UI
     public class UIProgressBar : MonoBehaviour
     {
         public RectTransform FillTransform;
+        public UIShaker Shaker;
 
         public float Value
         {
@@ -18,22 +19,20 @@ namespace Assets.Scripts.UI
                 }
             }
         }
+
         public float Initial = 1f;
         public float ChangeTime = 0.5f;
-        public float Amplitude = 2f;
 
         private float _value;
         private float _target;
         private Vector2 _initialSize;
         private float _velocity;
-        private Vector3 _localPos;
         private DrumController _drumController;
 
-        void Awake()
+        void Start()
         {
             _initialSize = FillTransform.sizeDelta;
             Value = Initial;
-            _localPos = transform.localPosition;
 
             _drumController = FindObjectOfType<DrumController>();
             if (_drumController == null)
@@ -51,8 +50,8 @@ namespace Assets.Scripts.UI
 
             Value = Mathf.SmoothDamp(_value, _target, ref _velocity, ChangeTime);
 
-            transform.localPosition =
-                _localPos + new Vector3(_velocity * Random.Range(-Amplitude, Amplitude), _velocity * Random.Range(-Amplitude, Amplitude), 0);
+            if(Shaker != null)
+                Shaker.Shake(Mathf.Abs(_velocity));
         }
     }
 }

@@ -2440,11 +2440,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4370615181804302, guid: 5239ba9990a66b5409890255c7c415e8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -20.18
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4370615181804302, guid: 5239ba9990a66b5409890255c7c415e8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.96
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4370615181804302, guid: 5239ba9990a66b5409890255c7c415e8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4840,7 +4840,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 07421e3efc4b03243ad3c97a2ba4aec2, type: 2}
+  - {fileID: 2100000, guid: 435a6c2974eba5b409d6798db157e60d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1399235197}
-  m_IndirectSpecularColor: {r: 0.174288, g: 0.21796247, b: 0.30017948, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5564,7 +5564,7 @@ Prefab:
     - target: {fileID: 114310853043892472, guid: a9f2709678a9603498422539802aa776,
         type: 2}
       propertyPath: NextLevelName
-      value: Scenes/Levels/Level 25
+      value: Scenes/Levels/Level 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f2709678a9603498422539802aa776, type: 2}

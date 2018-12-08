@@ -19,8 +19,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4496286106076298}
-  - component: {fileID: 33953052045249460}
-  - component: {fileID: 23776459278257906}
   - component: {fileID: 114722847794088196}
   - component: {fileID: 96226746286271400}
   m_Layer: 0
@@ -104,48 +102,6 @@ Transform:
   m_Father: {fileID: 4496286106076298}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
---- !u!23 &23776459278257906
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1020351319504016}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &33953052045249460
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1020351319504016}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!96 &96226746286271400
 TrailRenderer:
   serializedVersion: 2
@@ -259,16 +215,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GatherRadius: 8
-  Renderer: {fileID: 23776459278257906}
+  Renderer: {fileID: 0}
   Particles: {fileID: 198978974708058370}
-  TraumaDecay: 0.02
-  ScaleMod: 0.5
+  TraumaDecay: 0.01
+  ScaleMod: 1
   SpeedMod: 5
-  BaseColor: {r: 1, g: 0.5801887, b: 0.8024418, a: 1}
+  BaseColor: {r: 0.3584906, g: 0, b: 0, a: 1}
   ColorA: {r: 1, g: 0, b: 0, a: 1}
   ColorB: {r: 1, g: 0, b: 1, a: 1}
-  ImpactA: 0.656
-  ImpactB: 0.459
+  ImpactA: 1
+  ImpactB: 1
 --- !u!119 &119604173998674312
 Projector:
   m_ObjectHideFlags: 1
@@ -535,7 +491,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2

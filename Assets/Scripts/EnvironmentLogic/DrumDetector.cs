@@ -72,7 +72,7 @@ namespace Assets.Scripts.EnvironmentLogic
             
             _drum.OnNotePlayed += DrumOnOnNotePlayed;
 
-            if (FlameFx != null)
+            if (FlameFx != null && !_isActivated)
                 FlameFx.BaseColor = ActiveCursorColor;
         }
 

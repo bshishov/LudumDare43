@@ -151,13 +151,13 @@ namespace Assets.Scripts
 
         public void Hide()
         {
-            if (Particles != null && Particles.isPlaying)
+            if (Particles != null)
                 Particles.Stop();
         }
 
         public void Show()
         {
-            if(Particles != null && !Particles.isPlaying)
+            if(Particles != null)
                 Particles.Play();
         }
 
@@ -192,6 +192,7 @@ namespace Assets.Scripts
                 {
                     if (_activeDrumArea.HideCursor)
                         this.Show();
+                    
                     _activeDrumArea.OnCursorExit(this);
                 }
 

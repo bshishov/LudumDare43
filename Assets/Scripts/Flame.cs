@@ -58,14 +58,12 @@ namespace Assets.Scripts
 
         public void StopEmission()
         {
-            if(_particleSystem.isPlaying)
-                _particleSystem.Stop();
+            _particleSystem.Stop();
         }
 
         public void StartEmission()
         {
-            if (!_particleSystem.isPlaying)
-                _particleSystem.Play();
+            _particleSystem.Play();
         }
     }
 }

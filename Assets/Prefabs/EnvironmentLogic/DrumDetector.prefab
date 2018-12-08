@@ -186,7 +186,7 @@ MonoBehaviour:
   UnactivatedColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
   NoteHitColorA: {r: 1, g: 0, b: 0, a: 1}
   NoteHitColorB: {r: 1, g: 0, b: 1, a: 1}
-  NoteImpact: 0.4
+  NoteImpact: 1
   SuccessImpact: 1
   SuccessPatternSound:
     Clip: {fileID: 8300000, guid: b6a1d75339cea914a8f79a41b1a49c39, type: 3}

@@ -69,7 +69,7 @@
 
 				UNITY_APPLY_FOG_COLOR(i.fogCoord, res, fixed4(1,1,1,1));
 
-				return fixed4(texS.rgb * texS.rgb * _Color.rgb * 4, texS.r * _Color.a);
+				return fixed4(texS.rgb * texS.rgb * _Color.rgb * 4, texS.r * _Color.a * 4);
 				
 				return res;
 			}

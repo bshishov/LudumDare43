@@ -7,12 +7,13 @@ namespace Assets.Scripts.EnvironmentLogic
     [RequireComponent(typeof(ActivatorProxy))]
     public class SacrificeAltar : MonoBehaviour
     {
-        public float Decay = 0.1f;
-        public float RotationSpeed = 1f;
+        [Header("Mechanics")]
         public float SacrificeRange = 2f;
         public float EnergyPerHamster = 10f;
 
         [Header("Visuals")]
+        public float Decay = 0.1f;
+        public float RotationSpeed = 1f;
         public Transform Sphere;
         public Transform Ring1;
         public Transform Ring2;
@@ -33,7 +34,7 @@ namespace Assets.Scripts.EnvironmentLogic
             if (nearestHamster != null)
                 nearestHamster.SetDestination(transform.position, bypassEnergyCheck: true);
 
-            _trauma += 0.8f;
+            _trauma += 1f;
         }
 
         void Update ()

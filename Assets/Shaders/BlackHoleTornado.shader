@@ -61,7 +61,7 @@
 				fixed4 col = tex2D(_MainTex, i.uv) * _Color * 2;
 				col.a = col.r * noise.r;
 				col.rgb = col.a * col.a * col.rgb * noise2.r; // +(1 - col.a);
-				return col;
+				return col * 4;
 				//return saturate(col - noise.r * noise.r);
 			}
 			ENDCG

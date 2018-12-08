@@ -25,7 +25,7 @@ namespace Assets.Scripts.EnvironmentLogic
             if(UsePhysics)
                 _rigidbody.AddTorque(Axis * RotationSpeed * Time.deltaTime);
             else
-                transform.Rotate(Vector3.up, RotationSpeed * Time.deltaTime);
+                transform.Rotate(Axis, RotationSpeed * Time.deltaTime);
         }
     }
 }

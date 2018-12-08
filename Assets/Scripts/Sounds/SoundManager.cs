@@ -43,6 +43,8 @@ public class SoundManager : MonoBehaviour
         {
             get
             {
+                if (Source == null)
+                    return false;
                 if (Source.clip != null)
                 {
                     if (Source.clip.loadState == AudioDataLoadState.Loading)

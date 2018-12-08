@@ -93,7 +93,7 @@ namespace Assets.Scripts
 
         void Update ()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(Common.Controls.LeftMouseButton))
             {
                 _aHits = (_aHits + 1) % _pitchesA.Length;
                 var s = SoundManager.Instance.Play(SoundA);
@@ -106,7 +106,7 @@ namespace Assets.Scripts
                 _drum.PlayNote(Drum.NoteType.A);
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(Common.Controls.RightMouseButton))
             {
                 _bHits = (_bHits + 1) % _pitchesB.Length;
 
@@ -120,7 +120,7 @@ namespace Assets.Scripts
                 _drum.PlayNote(Drum.NoteType.B);
             }
 
-            if (Input.GetMouseButtonDown(2))
+            if (Input.GetMouseButtonDown(Common.Controls.MiddleMouseButton))
                 _drum.PlayNote(Drum.NoteType.SequenceEnd);
         }
 
@@ -133,7 +133,7 @@ namespace Assets.Scripts
             if (Cursor.Instance.IsInDrumArea)
                 return;
 
-            if (seq.Name.Equals("Move"))
+            if (seq.Name.Equals(Common.Patterns.Move))
             {
                 foreach (var hamster in Cursor.Instance.FindHamsters())
                 {
@@ -141,16 +141,16 @@ namespace Assets.Scripts
                 }
             }
 
-            if (seq.Name.Equals("Sacrifice"))
+            if (seq.Name.Equals(Common.Patterns.MoveNearest))
             {
-                var nearestHamster = Cursor.Instance.FindNearest();
+                var nearestHamster = Cursor.Instance.FindNearestHamster();
                 if (nearestHamster != null)
                 {
                     nearestHamster.SetDestination(Cursor.Instance.transform.position, _drum.Bpm);
                 }
             }
 
-            if (seq.Name.Equals("Restart"))
+            if (seq.Name.Equals(Common.Patterns.Restart))
             {
                 DrummerController.Instance.Die();
             }

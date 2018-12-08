@@ -46,7 +46,7 @@ namespace Assets.Scripts.EnvironmentLogic
 
         private void ActivatorOnActivated()
         {
-            var nearestHamster = Cursor.Instance.FindNearest();
+            var nearestHamster = Cursor.Instance.FindNearestHamster();
             if (nearestHamster != null)
                 nearestHamster.SetDestination(transform.position, bypassEnergyCheck: true);
 

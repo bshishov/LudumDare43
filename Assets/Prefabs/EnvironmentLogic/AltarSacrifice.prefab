@@ -73,9 +73,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4290781134635118}
   - component: {fileID: 135129118628085334}
+  - component: {fileID: 114179074075689076}
+  - component: {fileID: 114810186956547774}
   - component: {fileID: 114550720178581726}
   - component: {fileID: 114976569272495014}
-  - component: {fileID: 114810186956547774}
   - component: {fileID: 114902184869599720}
   m_Layer: 0
   m_Name: AltarSacrifice
@@ -350,6 +351,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.231151, y: 0.6224637, z: 5.2544804}
   m_Center: {x: -0.016595602, y: -0.109738685, z: -0.019221663}
+--- !u!114 &114179074075689076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924150561619494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96204de3923eff43b775f9b0fd349af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HideCursor: 0
+  SnapCursor: 1
+  Targets: []
 --- !u!114 &114550720178581726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -361,10 +376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efe0b6fcc267ad419de8070e2935897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Decay: 0.1
-  RotationSpeed: 1
   SacrificeRange: 2
   EnergyPerHamster: 200
+  Decay: 0.1
+  RotationSpeed: 1
   Sphere: {fileID: 4610953381949176}
   Ring1: {fileID: 4147175707607356}
   Ring2: {fileID: 4529276325795424}
@@ -383,7 +398,6 @@ MonoBehaviour:
     Name: 
     Notes: 01000000010000000100000002000000
   MinBpm: 100
-  HideCursor: 0
   OneTime: 0
   Targets:
   - {fileID: 114976569272495014}

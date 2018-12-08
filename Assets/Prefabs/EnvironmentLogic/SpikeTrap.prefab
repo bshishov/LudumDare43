@@ -241,7 +241,7 @@ MonoBehaviour:
   AttachToObject: 1
   ActivateSound:
     Clip: {fileID: 8300000, guid: 5d264e7881522a0419aec085fde8c773, type: 3}
-    VolumeModifier: 0.25
+    VolumeModifier: 0.2
     MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
       type: 2}
     Loop: 0

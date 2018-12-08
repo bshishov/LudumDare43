@@ -2,12 +2,13 @@
 
 namespace Assets.Scripts.EnvironmentLogic
 {
+    [RequireComponent(typeof(DrumArea))]
     public class DrumDetector : MonoBehaviour
     {
         [Header("General")]
-        public Drum.CommandSequence Sequence;  
+        public Drum.CommandSequence Sequence;
+        [Range(0f, 1000f)]
         public float MinBpm = 100f;
-        public bool HideCursor = false;
         public bool OneTime = true;
 
         [Header("Activation")]
@@ -24,19 +25,23 @@ namespace Assets.Scripts.EnvironmentLogic
         [Range(0, 1)] public float SuccessImpact = 0.5f;
         public Sound SuccessPatternSound;
 
+        private DrumArea _drumArea;
         private bool _isActivated;
         private Drum _drum;
-        private bool _cursorEntered;
 
         void Start ()
         {
+            _drumArea = GetComponent<DrumArea>();
+            _drumArea.CursorEnter += OnCursorEnter;
+            _drumArea.CursorExit += OnCursorExit;
+
             if (FlameFx != null)
                 FlameFx.BaseColor = UnactivatedColor;
         }
 
         private void DrumOnOnNotePlayed(Drum.Note note)
         {
-            if (_cursorEntered && !_isActivated)
+            if (_drumArea.IsCursorInArea && !_isActivated)
             {
                 ReactToNote(note);
                 // If sequence match
@@ -48,35 +53,10 @@ namespace Assets.Scripts.EnvironmentLogic
                     if(OneTime)
                         _isActivated = true;
 
-                    SendActivationEvents();
-                }
-            }
-        }
-
-        void Update ()
-        {
-        }
-
-        void SendActivationEvents()
-        {
-            if (Targets != null)
-            {
-                foreach (var target in Targets)
-                {
-                    if (target != null)
-                        target.Activate();
-                }
-            }
-        }
-
-        void SendDeactivationEvents()
-        {
-            if (Targets != null)
-            {
-                foreach (var target in Targets)
-                {
-                    if (target != null)
-                        target.Deactivate();
+                    if (Targets != null)
+                        foreach (var target in Targets)
+                            if (target != null)
+                                target.Activate();
                 }
             }
         }
@@ -89,20 +69,15 @@ namespace Assets.Scripts.EnvironmentLogic
                 if (_drum == null)
                     Debug.LogError("[DRUM DETECTOR] Can't find drum!");
             }
-
-            _cursorEntered = true;
+            
             _drum.OnNotePlayed += DrumOnOnNotePlayed;
 
             if (FlameFx != null)
                 FlameFx.BaseColor = ActiveCursorColor;
-
-            if (HideCursor)
-                Cursor.Instance.Show();
         }
 
-        public void OnCursorLeave()
+        public void OnCursorExit()
         {
-            _cursorEntered = false;
             _drum.OnNotePlayed -= DrumOnOnNotePlayed;
 
             if (FlameFx != null)
@@ -112,9 +87,6 @@ namespace Assets.Scripts.EnvironmentLogic
                 else
                     FlameFx.BaseColor = ActivatedColor;
             }
-
-            if (HideCursor)
-                Cursor.Instance.Hide();
         }
 
         /// <summary>
@@ -143,11 +115,12 @@ namespace Assets.Scripts.EnvironmentLogic
                 FlameFx.AddTrauma(SuccessImpact, ActivatedColor);
             }
 
-            SoundManager.Instance.Play(SuccessPatternSound);
+            SoundManager.Instance.Play(SuccessPatternSound, transform);
         }
 
         void OnDrawGizmosSelected()
         {
+            // Activatable targets visualization
             if (Targets != null)
             {
                 foreach (var target in Targets)

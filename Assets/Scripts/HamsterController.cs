@@ -191,7 +191,7 @@ namespace Assets.Scripts
         void OnTriggerEnter(Collider col)
         {
             Debug.Log(string.Format("[Hamster] trigger with {0}", col.name));
-            if (col.CompareTag("Killer"))
+            if (col.CompareTag(Common.Tags.Killer))
             {
                 Die();
             }
@@ -200,7 +200,7 @@ namespace Assets.Scripts
         void OnCollisionEnter(Collision col)
         {
             Debug.Log(string.Format("[Hamster] collision with {0}", col.collider.name));
-            if (col.collider.CompareTag("Killer"))
+            if (col.collider.CompareTag(Common.Tags.Killer))
             {
                 Die();
             }

@@ -54,11 +54,11 @@ namespace Assets.Scripts
 
             var forward = _camera.transform.forward;
             forward.y = 0f;
-            movement += forward.normalized * Input.GetAxis("Vertical");
+            movement += forward.normalized * Input.GetAxis(Common.Controls.VerticalMovementAxis);
 
             var side = _camera.transform.right;
             side.y = 0f;
-            movement += side.normalized * Input.GetAxis("Horizontal");
+            movement += side.normalized * Input.GetAxis(Common.Controls.HorizontalMovementAxis);
 
             if (_agent.enabled)
             {
@@ -75,10 +75,10 @@ namespace Assets.Scripts
                     var lfDcLocalTarget = _drumController.LeftHandSourcePosition;
                     var rfDcLocalTarget = _drumController.RightHandSourcePosition;
 
-                    if (Input.GetMouseButton(0))
+                    if (Input.GetMouseButton(Common.Controls.LeftMouseButton))
                         lfDcLocalTarget = _drumController.DrumHitCenter;
 
-                    if (Input.GetMouseButton(1))
+                    if (Input.GetMouseButton(Common.Controls.RightMouseButton))
                         rfDcLocalTarget = _drumController.DrumHitCenter;
 
                     _ikController.LeftHandTargetPosition = Vector3.SmoothDamp(
@@ -111,7 +111,7 @@ namespace Assets.Scripts
         void OnTriggerEnter(Collider col)
         {
             Debug.Log(string.Format("[DRUMMER] trigger with {0}", col.name));
-            if (col.CompareTag("Killer"))
+            if (col.CompareTag(Common.Tags.Killer))
             {
                 Die();
             }
@@ -120,7 +120,7 @@ namespace Assets.Scripts
         void OnCollisionEnter(Collision col)
         {
             Debug.Log(string.Format("[DRUMMER] collision with {0}", col.collider.name));
-            if (col.collider.CompareTag("Killer"))
+            if (col.collider.CompareTag(Common.Tags.Killer))
             {
                 Die();
             }

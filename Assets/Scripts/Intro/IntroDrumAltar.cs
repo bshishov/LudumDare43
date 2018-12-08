@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.UI;
+﻿using Assets.Scripts.EnvironmentLogic;
+using Assets.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,11 +29,13 @@ namespace Assets.Scripts.Intro
         public Sound SoundB;
         public Sound ActivatedSound;
         
-        
-        [Header("Spawning")]
-        public GameObject[] ObjectsToDestroy;
+        [Header("Objects control")]
         public GameObject NewPlayer;
+        public GameObject[] ObjectsToDestroy;
         public GameObject[] ObjectsToSpawn;
+        public GameObject[] ObjectsToDisable;
+        public GameObject[] ObjectsToEnable;
+        public ActivatorProxy[] ActivatableTargets;
 
         private GameObject _player;
         private SphereCollider _collider;
@@ -129,6 +132,10 @@ namespace Assets.Scripts.Intro
                     _camera.Shake(1f);
                 }
 
+                if(ObjectsToDisable != null)
+                    foreach (var o in ObjectsToDisable)
+                        o.SetActive(false);
+
                 if(ObjectsToDestroy != null)
                     foreach (var o in ObjectsToDestroy)
                         Destroy(o);
@@ -143,6 +150,14 @@ namespace Assets.Scripts.Intro
                     foreach (var o in ObjectsToSpawn)
                         GameObject.Instantiate(o, transform.position, Quaternion.identity);
 
+                if (ObjectsToEnable != null)
+                    foreach (var o in ObjectsToEnable)
+                        o.SetActive(true);
+
+                if(ActivatableTargets != null)
+                    foreach (var a in ActivatableTargets)
+                        a.Activate();
+                    
                 var music = SoundManager.Instance.MusicHandler;
                 if(music != null && music.IsActive)
                     music.Stop();

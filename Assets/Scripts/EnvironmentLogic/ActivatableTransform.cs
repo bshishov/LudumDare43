@@ -14,7 +14,7 @@ namespace Assets.Scripts.EnvironmentLogic
         private float _state = 0f;
         private ActivatorProxy _activator;
         private Vector3 _initialPosition;
-        private Vector3 _targedPosition;
+        private Vector3 _targetPosition;
 
         void Awake()
         {
@@ -23,7 +23,7 @@ namespace Assets.Scripts.EnvironmentLogic
                 TargetTransform = transform;
 
             _initialPosition = TargetTransform.position;
-            _targedPosition = _initialPosition + DeltaPosition;
+            _targetPosition = _initialPosition + DeltaPosition;
         }
 
         void Start()
@@ -36,13 +36,13 @@ namespace Assets.Scripts.EnvironmentLogic
             if (_activator.IsActivated && _state < 1f)
             {
                 _state += Time.deltaTime * DeactivationSpeed;
-                TargetTransform.position = Vector3.Lerp(_initialPosition, _targedPosition, DeactivationMovement.Evaluate(_state));
+                TargetTransform.position = Vector3.Lerp(_initialPosition, _targetPosition, DeactivationMovement.Evaluate(_state));
             }
 
             if (!_activator.IsActivated && _state > 0f)
             {
                 _state -= Time.deltaTime * ActivationSpeed;
-                TargetTransform.position = Vector3.Lerp(_initialPosition, _targedPosition, ActivationMovement.Evaluate(_state));
+                TargetTransform.position = Vector3.Lerp(_initialPosition, _targetPosition, ActivationMovement.Evaluate(_state));
             }
         }
 
@@ -55,7 +55,7 @@ namespace Assets.Scripts.EnvironmentLogic
             if (meshFilter != null)
             {
                 if (Application.isPlaying)
-                    Gizmos.DrawWireMesh(meshFilter.sharedMesh, _targedPosition,
+                    Gizmos.DrawWireMesh(meshFilter.sharedMesh, _targetPosition,
                         t.rotation, t.localScale);
                 else
                     Gizmos.DrawWireMesh(meshFilter.sharedMesh, t.position + DeltaPosition,
@@ -63,7 +63,7 @@ namespace Assets.Scripts.EnvironmentLogic
             }
 
             if (Application.isPlaying)
-                Gizmos.DrawLine(_initialPosition, _targedPosition);
+                Gizmos.DrawLine(_initialPosition, _targetPosition);
             else
                 Gizmos.DrawLine(t.position, t.position + DeltaPosition);
         }

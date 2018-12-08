@@ -234,7 +234,7 @@ public class SoundManager : MonoBehaviour
 
         var handler = Play(sound.Clip, sound.VolumeModifier, sound.Loop, pitch, sound.IgnoreListenerPause, delay, sound.MixerGroup);
 
-        if (handler != null)
+        if (isLimiting && handler != null)
         {
             if (isInGroup)
             {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EnvironmentLogic;
 using Assets.Scripts.Utils;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Assets.Scripts
 
         public bool IsInDrumArea
         {
-            get { return _drumArea != null; }
+            get { return _activeDrumArea != null; }
         }
 
         [Header("Mechanics")]
@@ -41,7 +42,7 @@ namespace Assets.Scripts
         ParticleSystem.MainModule _particles;
         private Vector3 _mouseWorldPosition;
         private Camera _camera;
-        private GameObject _drumArea;
+        private DrumArea _activeDrumArea;
         private Vector3 _targetPosition;
         private bool _cursorIsHittingGround;
 
@@ -59,46 +60,18 @@ namespace Assets.Scripts
         void Update()
         {
             RaycastHit hit;
-            _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f,
-                LayerMask.GetMask("Environment"));
+            _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f, Common.Layers.EnvironmentMask);
 
             if (_cursorIsHittingGround)
             {
                 _mouseWorldPosition = hit.point;
-                
-                // Drum zone collisions check
-                var overlapColliders = Physics.OverlapSphere(_mouseWorldPosition, 1f);
-                if (overlapColliders != null && overlapColliders.Length > 0)
-                {
-                    var z = overlapColliders.FirstOrDefault(c => c.CompareTag("DrumArea"));
-                    if (z != null)
-                    {
-                        if(_drumArea == null)
-                            z.gameObject.SendMessage("OnCursorEnter", SendMessageOptions.DontRequireReceiver);
-                        _drumArea = z.gameObject;
-                    }
-                    else
-                    {
-                        if(_drumArea != null)
-                            _drumArea.SendMessage("OnCursorLeave", SendMessageOptions.DontRequireReceiver);
-                        _drumArea = null;
-                    }
-                }
-                else
-                {
-                    if (_drumArea != null)
-                        _drumArea.SendMessage("OnCursorLeave", SendMessageOptions.DontRequireReceiver);
-                    _drumArea = null;
-                }
+                CheckDrumAreasCollisions();
 
-                if (_drumArea == null)
-                {
-                    _targetPosition = _mouseWorldPosition;
-                }
-                else
-                {
-                    _targetPosition = _drumArea.transform.position;
-                }
+
+                _targetPosition = _mouseWorldPosition;
+
+                if (_activeDrumArea != null && _activeDrumArea.SnapCursor)
+                    _targetPosition = _activeDrumArea.transform.position;
             }
 
             // Impact Effects
@@ -108,8 +81,6 @@ namespace Assets.Scripts
             if (Renderer != null)
                 Renderer.material.color = Color.Lerp(Color.white, _targetColor, _noteActivity);
 
-            //transform.localScale = _initialScale + Vector3.one * _noteActivity;
-
             if (Particles != null)
             {
                 _particles.startSizeMultiplier = 1 + _noteActivity * ScaleMod;
@@ -117,8 +88,10 @@ namespace Assets.Scripts
                 _particles.startColor = Color.Lerp(BaseColor, _targetColor, _noteActivity);
             }
 
-            if(_drumArea != null)
+            if (_activeDrumArea != null && _activeDrumArea.SnapCursor)
+            {
                 transform.position = Vector3.Lerp(transform.position, _targetPosition, 0.2f);
+            }
             else
             {
                 transform.position = Vector3.Lerp(transform.position, _targetPosition, 0.9f);
@@ -145,19 +118,6 @@ namespace Assets.Scripts
             _trauma += trauma;
         }
 
-        public void SetDesiredPosition(Vector3 targetPosition)
-        {
-            _targetPosition = targetPosition;
-            //transform.position = targetPosition;
-        }
-
-        void OnDrawGizmos()
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawSphere(_mouseWorldPosition, 0.5f);
-            Gizmos.DrawWireSphere(transform.position, GatherRadius);
-        }
-
         public IEnumerable<Collider> FindNearObjectsWithTag(string requestTag, float radiusMul = 1f)
         {
             return Physics.OverlapSphere(_mouseWorldPosition, GatherRadius * radiusMul)
@@ -166,14 +126,14 @@ namespace Assets.Scripts
 
         public IEnumerable<HamsterController> FindHamsters(float radiusMul = 1f)
         {
-            return FindNearObjectsWithTag("Hamster", radiusMul)
+            return FindNearObjectsWithTag(Common.Tags.Hamster, radiusMul)
                 .Select(c => c.GetComponent<HamsterController>());
         }
 
-        public HamsterController FindNearest(float radiusMul = 1f)
+        public HamsterController FindNearestHamster(float radiusMul = 1f)
         {
             var cursorPos = transform.position;
-            var hamsterCols = FindNearObjectsWithTag("Hamster", radiusMul).ToList();
+            var hamsterCols = FindNearObjectsWithTag(Common.Tags.Hamster, radiusMul).ToList();
             if (hamsterCols.Count > 0)
             {
                 var hamsterCol = hamsterCols.Aggregate((h1, h2) =>
@@ -199,6 +159,52 @@ namespace Assets.Scripts
         {
             if(Particles != null && !Particles.isPlaying)
                 Particles.Play();
+        }
+
+        void OnDrawGizmos()
+        {
+            // Display cursor radius
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawSphere(_mouseWorldPosition, 0.5f);
+            Gizmos.DrawWireSphere(transform.position, GatherRadius);
+        }
+
+        /// <summary>
+        /// Drum areas collisions check by sphere overlap
+        /// </summary>
+        void CheckDrumAreasCollisions()
+        {
+            DrumArea overlapArea = null;
+
+            var overlapColliders = Physics.OverlapSphere(_mouseWorldPosition, 1f);
+            if (overlapColliders != null && overlapColliders.Length > 0)
+            {
+                overlapArea = overlapColliders
+                    .Where(c => c.CompareTag(Common.Tags.DrumArea))
+                    .Select(o => o.GetComponent<DrumArea>())
+                    .FirstOrDefault();
+            }
+
+            if (_activeDrumArea != overlapArea)
+            {
+                // if old is a drum area
+                if (_activeDrumArea != null)
+                {
+                    if (_activeDrumArea.HideCursor)
+                        this.Show();
+                    _activeDrumArea.OnCursorExit(this);
+                }
+
+                // if new is a drum area
+                if (overlapArea != null)
+                {
+                    if(overlapArea.HideCursor)
+                        this.Hide();
+                    overlapArea.OnCursorEnter(this);
+                }
+
+                _activeDrumArea = overlapArea;
+            }
         }
     }
 }

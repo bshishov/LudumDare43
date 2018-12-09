@@ -2,6 +2,9 @@
 using Assets.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Assets.Scripts
 {
@@ -21,6 +24,13 @@ namespace Assets.Scripts
 
             SoundManager.Instance.PlayMusic(Music);
         }
+
+        void OnLevelWasLoaded(int level)
+        {
+            // Unpause
+            Time.timeScale = 1f;
+        }
+
 
         private void StateChanged()
         {
@@ -43,6 +53,25 @@ namespace Assets.Scripts
         public void Restart()
         {
             LoadLevel(SceneManager.GetActiveScene().name);
+        }
+
+        public void MainMenu()
+        {
+            LoadLevel(Common.BaseLevelNames.MainMenu);
+        }
+
+        public void IntroLevel()
+        {
+            LoadLevel(Common.BaseLevelNames.Intro);
+        }
+
+        public void Quit()
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
     }
 }

@@ -40,5 +40,11 @@ namespace Assets.Scripts
             public static string MainMenu = "Scenes/MainMenu";
             public static string Intro = "Scenes/Levels/Intro";
         }
+
+        public static class SoundParameters
+        {
+            public static string MusicVolume = "MusicVolume";
+            public static string SoundVolume = "SoundVolume";
+        }
     }
 }

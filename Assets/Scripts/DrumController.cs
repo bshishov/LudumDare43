@@ -93,6 +93,10 @@ namespace Assets.Scripts
 
         void Update ()
         {
+            //If paused - do nothing
+            if(Time.timeScale < 0.5f)
+                return;
+
             if (Input.GetMouseButtonDown(Common.Controls.LeftMouseButton))
             {
                 _aHits = (_aHits + 1) % _pitchesA.Length;

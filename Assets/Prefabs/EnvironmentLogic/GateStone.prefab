@@ -61,7 +61,7 @@ GameObject:
   m_Layer: 0
   m_Name: GateStone
   m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -231,8 +231,9 @@ MonoBehaviour:
     MaxAdditionalDelay: 0
   DeactivateSound:
     Clip: {fileID: 8300000, guid: 963dd032e78e6bc4ba4a0edb1642f82f, type: 3}
-    VolumeModifier: 0.7
-    MixerGroup: {fileID: 0}
+    VolumeModifier: 0.6
+    MixerGroup: {fileID: 243965513180393054, guid: 9a58a68bbb187a940b649df73338cb06,
+      type: 2}
     Loop: 0
     IgnoreListenerPause: 0
     Pitch: 1

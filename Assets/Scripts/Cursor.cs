@@ -3,6 +3,8 @@ using System.Linq;
 using Assets.Scripts.EnvironmentLogic;
 using Assets.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Experimental.LowLevel;
 
 namespace Assets.Scripts
 {
@@ -59,19 +61,24 @@ namespace Assets.Scripts
 
         void Update()
         {
-            RaycastHit hit;
-            _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f, Common.Layers.EnvironmentMask);
-
-            if (_cursorIsHittingGround)
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                _mouseWorldPosition = hit.point;
-                CheckDrumAreasCollisions();
+                RaycastHit hit;
+
+                _cursorIsHittingGround = Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100f,
+                    Common.Layers.EnvironmentMask);
+
+                if (_cursorIsHittingGround)
+                {
+                    _mouseWorldPosition = hit.point;
+                    CheckDrumAreasCollisions();
 
 
-                _targetPosition = _mouseWorldPosition;
+                    _targetPosition = _mouseWorldPosition;
 
-                if (_activeDrumArea != null && _activeDrumArea.SnapCursor)
-                    _targetPosition = _activeDrumArea.transform.position;
+                    if (_activeDrumArea != null && _activeDrumArea.SnapCursor)
+                        _targetPosition = _activeDrumArea.transform.position;
+                }
             }
 
             // Impact Effects

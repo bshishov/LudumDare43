@@ -3433,6 +3433,56 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224128643705599246, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224128643705599246, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224238317232803824, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224238317232803824, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224238317232803824, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224622783990359390, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224622783990359390, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224205568200192400, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224205568200192400, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224205568200192400, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 551f0b014113388499f9cbd808af7608, type: 2}
   m_IsPrefabAsset: 0

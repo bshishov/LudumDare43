@@ -25263,7 +25263,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 373038492}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -43803,7 +43803,7 @@ RectTransform:
   m_Children:
   - {fileID: 1713024082}
   m_Father: {fileID: 373038492}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -45943,6 +45943,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114520393739376736, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: SoundSlider
+      value: 
+      objectReference: {fileID: 843797212}
+    - target: {fileID: 114520393739376736, guid: 551f0b014113388499f9cbd808af7608,
+        type: 2}
+      propertyPath: MusicSlider
+      value: 
+      objectReference: {fileID: 1297661720}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 551f0b014113388499f9cbd808af7608, type: 2}
   m_IsPrefabAsset: 0

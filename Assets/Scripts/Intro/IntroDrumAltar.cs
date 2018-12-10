@@ -20,6 +20,7 @@ namespace Assets.Scripts.Intro
         public AnimationCurve VolumeByInvDistance = AnimationCurve.Linear(0, 0, 1, 1);
 
         [Header("Fading")]
+        public UICanvasGroupFader Fader;
         public Color FadeColor = Color.white;
         public float FadeInTime = 0.5f;
         public float FadeOutTime = 1f;
@@ -43,7 +44,6 @@ namespace Assets.Scripts.Intro
         private int _step;
         private float _t;
         private State _state;
-        private UICanvasGroupFader _fader;
         private Image _faderImage;
         private CameraController _camera;
         private Color _defaultImageColor;
@@ -56,16 +56,19 @@ namespace Assets.Scripts.Intro
             _state = State.NotActivatedYet;
 
             _camera = FindObjectOfType<CameraController>();
-            _fader = FindObjectOfType<UICanvasGroupFader>();
-            if (_fader == null)
-                Debug.LogError("NO FADER IN SCENE");
+            if (Fader == null)
+            {
+                Fader = FindObjectOfType<UICanvasGroupFader>();
+                if (Fader == null)
+                    Debug.LogError("NO FADER IN SCENE");
+            }
 
-            _defaultFadeTime = _fader.FadeTime;
-            _faderImage = _fader.GetComponent<Image>();
+            _defaultFadeTime = Fader.FadeTime;
+            _faderImage = Fader.GetComponent<Image>();
             if(_faderImage != null)
                 _defaultImageColor = Color.black;
 
-            _fader.StateChanged += StateChanged;
+            Fader.StateChanged += StateChanged;
         }
 
         void Update ()
@@ -122,7 +125,7 @@ namespace Assets.Scripts.Intro
 
         private void StateChanged()
         {
-            if (_state == State.Activating && _fader.State == UICanvasGroupFader.FaderState.FadedIn)
+            if (_state == State.Activating && Fader.State == UICanvasGroupFader.FaderState.FadedIn)
             {
                 SoundManager.Instance.Play(ActivatedSound);
 
@@ -164,11 +167,11 @@ namespace Assets.Scripts.Intro
 
                 Debug.Log("!!!!!!!!!!! STUFF IS HAPPENING !!!!!!!!!!!!");
                 _state = State.Activated;
-                _fader.FadeTime = FadeOutTime;
-                _fader.FadeOut();
+                Fader.FadeTime = FadeOutTime;
+                Fader.FadeOut();
             }
 
-            if (_state == State.Activated && _fader.State == UICanvasGroupFader.FaderState.FadedOut)
+            if (_state == State.Activated && Fader.State == UICanvasGroupFader.FaderState.FadedOut)
             {
                 if (_camera != null)
                 {
@@ -178,18 +181,18 @@ namespace Assets.Scripts.Intro
                 if (_faderImage != null)
                     _faderImage.color = _defaultImageColor;
 
-                _fader.FadeTime = _defaultFadeTime;
+                Fader.FadeTime = _defaultFadeTime;
             }
         }
 
         void Activate()
         {
-            if (_fader != null)
+            if (Fader != null)
             {
                 if(_faderImage != null)
                     _faderImage.color = FadeColor;
-                _fader.FadeTime = FadeInTime;
-                _fader.FadeIn();
+                Fader.FadeTime = FadeInTime;
+                Fader.FadeIn();
             }
         }
     }

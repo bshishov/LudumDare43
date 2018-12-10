@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-guid: 14b7d9c9cc99fde438b99dd6e3f0e9f1
+guid: f51fb8382915ee8488302a3fc20c2963
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ui_button
-    21300002: ui_panel
-    21300004: ui_knob
+    21300000: UI_button
+    21300002: UI_PanelFrame
+    21300004: UI_Panel
+    21300006: UI_knob
+    21300008: UI_Hamster
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -98,27 +100,47 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui_button
+      name: UI_button
       rect:
         serializedVersion: 2
         x: 24
-        y: 898
+        y: 897
         width: 218
-        height: 103
+        height: 104
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 16, y: 29, z: 16, w: 15}
+      pivot: {x: 0, y: 0}
+      border: {x: 18, y: 19, z: 21, w: 21}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 379d29c0ec9acc8489a9a918a41fe466
+      spriteID: 5c23bbe5e7034fd458b85b990bd7d048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_panel
+      name: UI_PanelFrame
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 682
+        width: 252
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 12, y: 12, z: 13, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4a5149856535943b34a59944c17d09
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Panel
       rect:
         serializedVersion: 2
         x: 274
@@ -126,33 +148,53 @@ TextureImporter:
         width: 224
         height: 224
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 26, y: 26, z: 26, w: 26}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27d89679dab2b734faa3dc46ea9c786b
+      spriteID: af159a26d8f82c2428a4f9d954470209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_knob
+      name: UI_knob
       rect:
         serializedVersion: 2
-        x: 27
-        y: 783
-        width: 31
-        height: 79
+        x: 23
+        y: 779
+        width: 39
+        height: 89
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 12, y: 28, z: 11, w: 21}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f93edcc5e9797ec46a93dda8a1465146
+      spriteID: 66c3037997fc1094383b4b0122c1a58d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Hamster
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 751
+        width: 139
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82b2cd9c6664ef84eb7e42bf8dce7d78
       vertices: []
       indices: 
       edges: []
@@ -160,12 +202,12 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: bde94ef3d6bb8f4458960088147accc8
+    spriteID: a209fbc73901e4f409f2997dca10f5cc
     vertices: []
     indices: 
     edges: []
     weights: []
-  spritePackingTag: ui
+  spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 

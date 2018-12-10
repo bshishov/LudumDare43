@@ -263,28 +263,28 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public SoundHandler PlayMusic(AudioClipWithVolume clip, bool loop = true, float pitch = 1f,
-        bool ignoreListenerPause = false, float delay = 0f)
+    public SoundHandler PlayMusic(Sound sound)
     {
-        if (clip == null)
+        if (sound == null)
             return null;
 
-        if (clip.Clip == null)
+        if (sound.Clip == null)
             return null;
 
 
         if (MusicHandler != null)
         {
-            MusicHandler.Source.clip = clip.Clip;
+            MusicHandler.Source.clip = sound.Clip;
             //MusicHandler.Volume = clip.VolumeModifier;
-            MusicHandler.Source.volume = clip.VolumeModifier;
-            MusicHandler.IsLooped = loop;
-            MusicHandler.Pitch = pitch;
+            MusicHandler.Source.volume = sound.VolumeModifier;
+            MusicHandler.IsLooped = sound.Loop;
+            MusicHandler.Pitch = sound.Pitch;
             MusicHandler.Source.Play();
+            MusicHandler.MixerGroup = sound.MixerGroup;
             return MusicHandler;
         }
 
-        var handler = Play(clip, loop, pitch, true, delay);
+        var handler = Play(sound);
         DontDestroyOnLoad(handler.Source.gameObject);
         MusicHandler = handler;
         return handler;

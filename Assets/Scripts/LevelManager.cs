@@ -11,7 +11,7 @@ namespace Assets.Scripts
     public class LevelManager : Singleton<LevelManager>
     {
         public UICanvasGroupFader ScreenFader;
-        public AudioClipWithVolume Music;
+        public Sound Music;
         private string _nextLevelRequest;
 
         void Start ()
